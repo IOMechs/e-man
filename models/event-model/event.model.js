@@ -21,6 +21,11 @@ const eventSchema = mongoose.Schema(
             type: Date,
             required: true
         },
+        eventImage:
+        {
+            data: Buffer,
+            fileInfo: Object
+        },
         createdOn:  //The date when the post for the event will be created.
         {
             type: Date,

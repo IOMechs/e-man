@@ -16,8 +16,20 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const multer = require('multer');
 
 const app = express();
+
+//Multer stuff
+const storage = multer.diskStorage({
+    destination: (req, file, callback) => {
+        callback(null, './uploads/');
+    },
+    filename: (req, file, callback) => {
+        callback(null, file.originalname);
+    }
+});
+const upload = multer({ storage: storage });
 
 //Middlewares
 app.use(express.json());    //To parse json objects sent by the client.
@@ -25,7 +37,7 @@ app.use(cors());            //To resolve cross-origin browser issues.
 
 //Routes
 userRouter.createRoutes(app, jwt, authentication.verifyToken);
-eventRouter.createRoutes(app, jwt, authentication.verifyToken);
+eventRouter.createRoutes(app, jwt, authentication.verifyToken, upload);
 
 //Validating the user on Login
 authentication.validateUser(app, jwt);

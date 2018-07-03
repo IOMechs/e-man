@@ -7,6 +7,7 @@
 
 //Dependencies
 const config = require('../../config');
+const fs = require('fs');
 const eventModel = require('./event.model');
 
 const EventModel = eventModel.EventModel;
@@ -14,12 +15,12 @@ const EventModel = eventModel.EventModel;
 /*
 method: addEvent(expressInstance, jwtInstance, verifyToken)
 url: domain/event
-request object: expects a json object of type { "event": object }
+request object: expects a json object of type { object }
 response type: sends a json object of type { "event": object }. Else sends "Unauthorized"
 */
-addEvent = function(expressInstance, jwtInstance, verifyToken)
+addEvent = function(expressInstance, jwtInstance, verifyToken, multerInstance)
 {
-    expressInstance.post('/event', verifyToken, (req, res) => {
+    expressInstance.post('/event', verifyToken, multerInstance.single('eventImage'), (req, res) => {
         jwtInstance.verify(req.token, config.jwt_key, (err, userData) => {
             if(err)
             {
@@ -27,16 +28,34 @@ addEvent = function(expressInstance, jwtInstance, verifyToken)
             }
             else
             {
-                EventModel.create(req.body.event, (err, dbObject) => {
-                    if (err) 
+                var newEvent = new EventModel(req.body);
+                newEvent.eventImage.data = fs.readFileSync(req.file.path);
+                newEvent.eventImage.fileInfo = req.file;
+                console.log(req.file);
+                newEvent.save( (err, dbObject) => {
+                    if(err)
                     {
                         res.status(400).send("Bad request");
                     }
-                    else 
+                    else
                     {
                         res.json({ "event": dbObject });
                     }
                 });
+                
+                // EventModel.create(req.body, (err, dbObject) => {
+                //     if (err) 
+                //     {
+                //         res.status(400).send("Bad request");
+                //     }
+                //     else 
+                //     {
+                //         console.log(req.body);
+                //         console.log(req.file);
+                        
+                //         res.json({ "event": dbObject });
+                //     }
+                // });
             }
         });
     });
@@ -153,9 +172,9 @@ getAllEvents = function(expressInstance)
 }
 
 //CRUD operations at one place
-exports.createRoutes = function(expressInstance, jwtInstance, verifyToken)
+exports.createRoutes = function(expressInstance, jwtInstance, verifyToken, multerInstance)
 {
-    addEvent(expressInstance, jwtInstance, verifyToken);
+    addEvent(expressInstance, jwtInstance, verifyToken, multerInstance);
     updateEvent(expressInstance, jwtInstance, verifyToken);
     deleteEvent(expressInstance, jwtInstance, verifyToken);
     getEventById(expressInstance);
