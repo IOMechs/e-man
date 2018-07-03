@@ -6,6 +6,7 @@
 //Application dependencies
     //custom dependencies
 const server = require('./server');
+const connection = require('./connection.mongoose');
 
     //npm dependencies
 const express = require('express');
@@ -24,3 +25,6 @@ app.use(cors());            //To resolve cross-origin browser issues.
 
 //Running the server
 server.run(app, 3000);
+
+//Connecting to database
+connection.connect(mongoose);
