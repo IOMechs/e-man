@@ -10,7 +10,7 @@ const port = "27017";
 
 exports.connect = function(mongooseInstance)
 {
-    mongooseInstance.connect(`mongodb://localhost:${port}/${dbName}`, (err) => {
+    mongooseInstance.connect(`mongodb://localhost/${dbName}`, (err) => {
         if(err)
         {
             console.log(`[-]: Error in MongoDB connection: ${dbName}, PORT: ${port}`);

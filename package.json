@@ -1,18 +1,10 @@
 {
   "name": "api-e-man",
   "version": "1.0.0",
-  "description": "API for Events Manager App.",
+  "description": "API for Events Manager application.",
   "main": "app.js",
-  "dependencies": {
-    "cors": "^2.8.4",
-    "express": "^4.16.3",
-    "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.2.0"
-  },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -23,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/EmadBinAbid/e-man/issues"
   },
-  "homepage": "https://github.com/EmadBinAbid/e-man#readme"
+  "homepage": "https://github.com/EmadBinAbid/e-man#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.1.7"
+  }
 }
