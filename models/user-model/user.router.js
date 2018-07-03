@@ -140,6 +140,7 @@ getAllUsers = function(expressInstance)
     });
 }
 
+//CRUD operations at one place
 exports.createRoutes = function(expressInstance, jwtInstance, verifyToken)
 {
     addUser(expressInstance);
