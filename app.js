@@ -7,6 +7,8 @@
     //custom dependencies
 const server = require('./server');
 const connection = require('./connection.mongoose');
+const authentication = require('./authentication.mongoose');
+const userRouter = require('./models/user-model/user.router');
 
     //npm dependencies
 const express = require('express');
@@ -22,6 +24,11 @@ app.use(cors());            //To resolve cross-origin browser issues.
 
 //Http requests
 
+//userRouter
+userRouter.createRoutes(app, jwt, authentication.verifyToken);
+
+//Validating the user on Login
+authentication.validateUser(app, jwt);
 
 //Running the server
 server.run(app, 3000);
