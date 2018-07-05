@@ -21,7 +21,7 @@ exports.validateUser = function(expressInstance, jwtInstance)
     //Validating User
     expressInstance.post('/login', (req, res) => 
     {
-        UserModel.findOne(req.body.user, (err, dbObject) => 
+        UserModel.findOne(req.body.user, (err, userObject) => 
         {
             if(err)
             {
@@ -29,13 +29,13 @@ exports.validateUser = function(expressInstance, jwtInstance)
             }
             else
             {
-                if(dbObject === null)
+                if(userObject === null)
                 {
                     res.status(401).send('Unauthorized');
                 }
                 else
                 {
-                    const signObject = { "user": dbObject };
+                    const signObject = { "user": userObject };
                     jwtInstance.sign(signObject, config.jwt_key, (err, token) => 
                     {
                         if(err)
@@ -44,7 +44,7 @@ exports.validateUser = function(expressInstance, jwtInstance)
                         }
                         else
                         {
-                            res.json({ "user": dbObject, "token": token });
+                            res.json({ "user": userObject, "token": token });
                         }
                     });
                 }

@@ -21,7 +21,7 @@ addUser = function(expressInstance)
     expressInstance.post('/user', (req, res) => {
 
         //Checking User already exists.
-        UserModel.findOne( { "username": req.body.username },  (err, dbObjectFind) => 
+        UserModel.findOne( { "username": req.body.username },  (err, userObject) => 
         {
             if(err)
             {
@@ -29,10 +29,10 @@ addUser = function(expressInstance)
             }
             else
             {
-                if(dbObjectFind === null)
+                if(userObject === null)
                 {
                     //Adding User if it doesn't exist.
-                    UserModel.create(req.body.user, (err, dbObject) => 
+                    UserModel.create(req.body.user, (err, userObject) => 
                     {
                         if(err)
                         {
@@ -40,7 +40,7 @@ addUser = function(expressInstance)
                         }
                         else
                         {
-                            res.json( { "user": dbObject } );
+                            res.json( { "user": userObject } );
                         }
                     });
                 }
@@ -73,14 +73,14 @@ updateUser = function (expressInstance, jwtInstance, verifyToken)
                 const query = { username: userData.user.username };
                 const options = { new: true };
 
-                UserModel.findOneAndUpdate(query, req.body.user, options, (err, dbObject) => {
+                UserModel.findOneAndUpdate(query, req.body.user, options, (err, userObject) => {
                     if(err)
                     {
                         res.status(400).send("Bad request");
                     }
                     else
                     {
-                        res.json({ "user": dbObject });
+                        res.json({ "user": userObject });
                     }
                 });
             }
@@ -104,7 +104,7 @@ response type: sends a json object of type { "user": object } if it exists. Else
 getUser = function(expressInstance)
 {
     expressInstance.get('/user', (req, res) => {
-        UserModel.findOne( { "username": req.query.username },  (err, dbObject) => 
+        UserModel.findOne( { "username": req.query.username },  (err, userObject) => 
         {
             if(err)
             {
@@ -112,7 +112,7 @@ getUser = function(expressInstance)
             }
             else
             {
-                res.json( { "user": dbObject } );
+                res.json( { "user": userObject } );
             }
         });
     });
@@ -126,7 +126,7 @@ response type: sends an array of objects of type { "user": object }[] if it exis
 getAllUsers = function(expressInstance)
 {
     expressInstance.get('/user/all-users', (req, res) => {
-        UserModel.find( (err, dbObject) => 
+        UserModel.find( (err, userObject) => 
         {
             if(err)
             {
@@ -134,7 +134,7 @@ getAllUsers = function(expressInstance)
             }
             else
             {
-                res.json( { "user": dbObject } );
+                res.json( { "user": userObject } );
             }
         });
     });

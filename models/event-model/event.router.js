@@ -32,30 +32,16 @@ addEvent = function(expressInstance, jwtInstance, verifyToken, multerInstance)
                 newEvent.eventImage.data = fs.readFileSync(req.file.path);
                 newEvent.eventImage.fileInfo = req.file;
                 console.log(req.file);
-                newEvent.save( (err, dbObject) => {
+                newEvent.save( (err, eventObject) => {
                     if(err)
                     {
                         res.status(400).send("Bad request");
                     }
                     else
                     {
-                        res.json({ "event": dbObject });
+                        res.json({ "event": eventObject });
                     }
                 });
-                
-                // EventModel.create(req.body, (err, dbObject) => {
-                //     if (err) 
-                //     {
-                //         res.status(400).send("Bad request");
-                //     }
-                //     else 
-                //     {
-                //         console.log(req.body);
-                //         console.log(req.file);
-                        
-                //         res.json({ "event": dbObject });
-                //     }
-                // });
             }
         });
     });
@@ -80,14 +66,14 @@ updateEvent = function(expressInstance, jwtInstance, verifyToken)
                 const query = { _id: req.query._id };
                 const options = { new: true };
 
-                EventModel.findOneAndUpdate(query, req.body.event, options, (err, dbObject) => {
+                EventModel.findOneAndUpdate(query, req.body.event, options, (err, eventObject) => {
                     if (err) 
                     {
                         res.status(400).send("Bad request");
                     }
                     else 
                     {
-                        res.json({ "event": dbObject });
+                        res.json({ "event": eventObject });
                     }
                 });
             }
@@ -112,14 +98,14 @@ deleteEvent = function(expressInstance, jwtInstance, verifyToken)
             else
             {
                 const query = { _id: req.query._id };
-                EventModel.remove(query, (err, dbObject) => {
+                EventModel.remove(query, (err, eventObject) => {
                     if(err)
                     {
                         res.status(400).send("Bad request");
                     }
                     else
                     {
-                        res.json({ "event": dbObject });
+                        res.json({ "event": eventObject });
                     }
                 });
             }
@@ -135,7 +121,7 @@ response type: sends a json object of type { "event": object }. Else sends "Bad 
 getEventById = function(expressInstance)
 {
     expressInstance.get('/event', (req, res) => {
-        EventModel.findOne({ _id: req.query._id }, (err, dbObject) => {
+        EventModel.findOne({ _id: req.query._id }, (err, eventObject) => {
             if(err)
             {
                 console.log(err);
@@ -143,7 +129,7 @@ getEventById = function(expressInstance)
             }
             else
             {
-                res.json({ "event": dbObject });
+                res.json({ "event": eventObject });
             }
         });
     });
@@ -157,7 +143,7 @@ response type: sends a array of json objects of type { "event": object }[]. Else
 getAllEvents = function(expressInstance)
 {
     expressInstance.get('/event/all-events', (req, res) => {
-        EventModel.find({ }, (err, dbObject) => {
+        EventModel.find({ }, (err, eventObject) => {
             if(err)
             {
                 console.log(err);
@@ -165,7 +151,7 @@ getAllEvents = function(expressInstance)
             }
             else
             {
-                res.json({ "event": dbObject });
+                res.json({ "event": eventObject });
             }
         });
     });
