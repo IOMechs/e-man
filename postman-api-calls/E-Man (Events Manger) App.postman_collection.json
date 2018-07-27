@@ -1,0 +1,311 @@
+{
+	"info": {
+		"_postman_id": "a3334c9f-61c2-441d-8014-547e68cfb8a6",
+		"name": "E-Man (Events Manger) App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "UserModel",
+			"description": null,
+			"item": [
+				{
+					"name": "Add User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user\": {\n\t\t\"firstName\": \"Test\",\n\t\t\"lastName\": \"User\",\n\t\t\"username\": \"testuser\",\n\t\t\"email\": \"test.user@company.com\",\n\t\t\"password\": \"test123\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/user",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							]
+						},
+						"description": "Request to add a new user into the database."
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by Username",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:3000/user?username=testuser",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "testuser"
+								}
+							]
+						},
+						"description": "Request to fetch a particular user from the database."
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:3000/user/all-users",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"all-users"
+							]
+						},
+						"description": "Request to fetch all users from the database."
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjViM2I3YWI4ODdhNmFiNDM5NDI4ZjAwNiIsImZpcnN0TmFtZSI6IlRlc3QiLCJsYXN0TmFtZSI6IlVzZXIiLCJ1c2VybmFtZSI6InRlc3R1c2VyIiwiZW1haWwiOiJ0ZXN0LnVzZXJAY29tcGFueS5jb20iLCJwYXNzd29yZCI6InRlc3QxMjMiLCJfX3YiOjB9LCJpYXQiOjE1MzA2MjY3Njh9.AgBobcXja8xKMLIXX1ARh3ZH76Xe5BflF_HxFTsb33Y"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user\": {\n\t\t\"password\": \"test123\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/user",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							]
+						},
+						"description": "Request to update a user in database."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EventModel",
+			"description": null,
+			"item": [
+				{
+					"name": "Add Event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjViM2I3YWI4ODdhNmFiNDM5NDI4ZjAwNiIsImZpcnN0TmFtZSI6IlRlc3QiLCJsYXN0TmFtZSI6IlVzZXIiLCJ1c2VybmFtZSI6InRlc3R1c2VyIiwiZW1haWwiOiJ0ZXN0LnVzZXJAY29tcGFueS5jb20iLCJwYXNzd29yZCI6InRlc3QxMjMiLCJfX3YiOjB9LCJpYXQiOjE1MzA2MjY3Njh9.AgBobcXja8xKMLIXX1ARh3ZH76Xe5BflF_HxFTsb33Y"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"event\": {\n\t\t\"description\": \"Second event.\",\n\t\t\"eventDate\": \"0000\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/event",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"event"
+							]
+						},
+						"description": "Request to add an event into the database."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Event",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjViM2I3YWI4ODdhNmFiNDM5NDI4ZjAwNiIsImZpcnN0TmFtZSI6IlRlc3QiLCJsYXN0TmFtZSI6IlVzZXIiLCJ1c2VybmFtZSI6InRlc3R1c2VyIiwiZW1haWwiOiJ0ZXN0LnVzZXJAY29tcGFueS5jb20iLCJwYXNzd29yZCI6InRlc3QxMjMiLCJfX3YiOjB9LCJpYXQiOjE1MzA2MjY3Njh9.AgBobcXja8xKMLIXX1ARh3ZH76Xe5BflF_HxFTsb33Y"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"event\": {\n\t\t\"description\": \"First event updated.\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/event?_id=5b3b8e708c46c14640497860",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"event"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "5b3b8e708c46c14640497860"
+								}
+							]
+						},
+						"description": "Request to update an event in the database."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Event",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjViM2I3YWI4ODdhNmFiNDM5NDI4ZjAwNiIsImZpcnN0TmFtZSI6IlRlc3QiLCJsYXN0TmFtZSI6IlVzZXIiLCJ1c2VybmFtZSI6InRlc3R1c2VyIiwiZW1haWwiOiJ0ZXN0LnVzZXJAY29tcGFueS5jb20iLCJwYXNzd29yZCI6InRlc3QxMjMiLCJfX3YiOjB9LCJpYXQiOjE1MzA2MjY3Njh9.AgBobcXja8xKMLIXX1ARh3ZH76Xe5BflF_HxFTsb33Y"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/event?_id=5b3b8e708c46c14640497860",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"event"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "5b3b8e708c46c14640497860"
+								}
+							]
+						},
+						"description": "Request to delete an event from the database."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Event by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:3000/event?_id=5b3b9df1a5a25f3d148e7717",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"event"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "5b3b9df1a5a25f3d148e7717"
+								}
+							]
+						},
+						"description": "Request to fetch an event by Id from the database."
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:3000/event/all-events",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"event",
+								"all-events"
+							]
+						},
+						"description": "Request to fetch all events from database."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"testuser\",\n\t\"password\": \"test123\"\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				},
+				"description": "Request to login a user into the system."
+			},
+			"response": []
+		}
+	]
+}
