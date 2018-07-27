@@ -27,12 +27,15 @@ addUser = function(expressInstance)
             {
                 res.status(400).send("Bad request");
             }
+            else if (userObject) {
+                res.status(400).send("User already created");
+            }
             else
             {
                 if(userObject === null)
                 {
                     //Adding User if it doesn't exist.
-                    UserModel.create(req.body.user, (err, userObject) => 
+                    UserModel.create(req.body, (err, userObject) => 
                     {
                         if(err)
                         {
@@ -40,7 +43,19 @@ addUser = function(expressInstance)
                         }
                         else
                         {
-                            res.json( { "user": userObject } );
+                            const user = userObject.toJSON();
+                            delete user.password
+                            const signObject = { "user": user };
+                            jwtInstance.sign(signObject, config.jwt_key, (err, token) => {
+                                if(err)
+                                {
+                                    res.status(401).send('Unauthorized');
+                                }
+                                else
+                                {
+                                    res.json({ "user": user, "token": token });
+                                }
+                            });
                         }
                     });
                 }
@@ -73,7 +88,7 @@ updateUser = function (expressInstance, jwtInstance, verifyToken)
                 const query = { username: userData.user.username };
                 const options = { new: true };
 
-                UserModel.findOneAndUpdate(query, req.body.user, options, (err, userObject) => {
+                UserModel.findOneAndUpdate(query, req.body, options, (err, userObject) => {
                     if(err)
                     {
                         res.status(400).send("Bad request");
@@ -112,7 +127,9 @@ getUser = function(expressInstance)
             }
             else
             {
-                res.json( { "user": userObject } );
+                const user = userObject.toJSON();
+                delete user.password
+                res.json( { "user": user } );
             }
         });
     });
@@ -143,7 +160,7 @@ getAllUsers = function(expressInstance)
 //CRUD operations at one place
 exports.createRoutes = function(expressInstance, jwtInstance, verifyToken)
 {
-    addUser(expressInstance);
+    addUser(expressInstance, jwtInstance);
     updateUser(expressInstance, jwtInstance, verifyToken);
     deleteUser(expressInstance, jwtInstance, verifyToken);
     getUser(expressInstance);

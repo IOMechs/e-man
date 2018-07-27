@@ -23,10 +23,10 @@ const app = express();
 //Multer stuff
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
-        callback(null, './uploads/');
+        callback(null, 'uploads/');
     },
     filename: (req, file, callback) => {
-        callback(null, file.originalname);
+        callback(null, file.originalname + '-' + Data.now()+ '.jpg');
     }
 });
 const upload = multer({ storage: storage });

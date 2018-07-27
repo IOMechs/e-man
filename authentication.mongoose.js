@@ -38,14 +38,19 @@ exports.validateUser = function(expressInstance, jwtInstance)
                     const signObject = { "user": userObject };
                     jwtInstance.sign(signObject, config.jwt_key, (err, token) => 
                     {
-                        if(err)
-                        {
-                            res.status(401).send('Unauthorized');
-                        }
-                        else
-                        {
-                            res.json({ "user": userObject, "token": token });
-                        }
+                        const user = userObject.toJSON();
+                        delete user.password
+                        const signObject = { "user": user };
+                        jwtInstance.sign(signObject, config.jwt_key, (err, token) => {
+                            if(err)
+                            {
+                                res.status(401).send('Unauthorized');
+                            }
+                            else
+                            {
+                                res.json({ "user": user, "token": token });
+                            }
+                        });
                     });
                 }
             }

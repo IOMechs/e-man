@@ -31,7 +31,6 @@ addEvent = function(expressInstance, jwtInstance, verifyToken, multerInstance)
                 var newEvent = new EventModel(req.body);
                 newEvent.eventImage.data = fs.readFileSync(req.file.path);
                 newEvent.eventImage.fileInfo = req.file;
-                console.log(req.file);
                 newEvent.save( (err, eventObject) => {
                     if(err)
                     {
@@ -66,7 +65,7 @@ updateEvent = function(expressInstance, jwtInstance, verifyToken)
                 const query = { _id: req.query._id };
                 const options = { new: true };
 
-                EventModel.findOneAndUpdate(query, req.body.event, options, (err, eventObject) => {
+                EventModel.findOneAndUpdate(query, req.body, options, (err, eventObject) => {
                     if (err) 
                     {
                         res.status(400).send("Bad request");
