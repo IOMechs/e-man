@@ -5,7 +5,7 @@
 
 //Dependencies
 const config = require('./config');
-const userModel = require('./models/user-model/user.model');
+const userModel = require('./api/user/user.model');
 
 const UserModel = userModel.UserModel;
 

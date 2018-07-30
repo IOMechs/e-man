@@ -10,7 +10,14 @@ const mongoose = require('mongoose');
 const eventSchema = mongoose.Schema(
     {
         //eventId --> auto-generated
-
+        organizationId: {
+            type: String,
+            required: true
+        },
+        name: {
+            type: String,
+            required: true
+        },
         description: 
         {
             type: String,

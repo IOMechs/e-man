@@ -1,23 +1,24 @@
-/*
-@author: Emad Bin Abid
-@date: July 03, 2018
-*/
+const mongoose = require('mongoose');
+// mongoose.connect('mongodb://localhost/e-man');
+mongoose.connect('mongodb://e-man:eman123@ds159631.mlab.com:59631/e-man');
 
-//Creating database connection
+let db = mongoose.connection;
 
-const dbName = "EManApp";
-const port = "27017";
+/**
+ * @author Saad Qamar
+ * @desc When there's an error connecting to database, this handler will trigger
+ */
+db.on('error', (err) => {
+  console.error('connection error:', err);
+});
 
-exports.connect = function(mongooseInstance)
-{
-    mongooseInstance.connect(`mongodb://localhost/${dbName}`, (err) => {
-        if(err)
-        {
-            console.log(`[-]: Error in MongoDB connection: ${dbName}, PORT: ${port}`);
-        }
-        else
-        {
-            console.log(`[+]: Connected to MongoDB: ${dbName}, PORT: ${port}`);
-        }
-    });
-}
+/**
+ * @author Saad Qamar
+ * @desc When connection is properly established with the MongoDB, this handler
+ * will trigger.
+ */
+db.once('open', () => {
+  console.log('db connection established successfully');
+});
+
+module.exports = db;

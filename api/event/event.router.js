@@ -29,11 +29,12 @@ addEvent = function(expressInstance, jwtInstance, verifyToken, multerInstance)
             else
             {
                 var newEvent = new EventModel(req.body);
-                newEvent.eventImage.data = fs.readFileSync(req.file.path);
+                // newEvent.eventImage.data = fs.readFileSync(req.file.path).type;
                 newEvent.eventImage.fileInfo = req.file;
                 newEvent.save( (err, eventObject) => {
                     if(err)
                     {
+                        console.log(err);
                         res.status(400).send("Bad request");
                     }
                     else
@@ -136,13 +137,13 @@ getEventById = function(expressInstance)
 
 /*
 method: getAllEvents(expressInstance)
-url: domain/event/all-events
+url: domain/event/all-events?_id
 response type: sends a array of json objects of type { "event": object }[]. Else sends "Unauthorized"
 */
-getAllEvents = function(expressInstance)
+getAllEventsByOranization = function(expressInstance)
 {
     expressInstance.get('/event/all-events', (req, res) => {
-        EventModel.find({ }, (err, eventObject) => {
+        EventModel.find({ organizationId : req.query._id}, (err, eventObject) => {
             if(err)
             {
                 console.log(err);
@@ -163,5 +164,5 @@ exports.createRoutes = function(expressInstance, jwtInstance, verifyToken, multe
     updateEvent(expressInstance, jwtInstance, verifyToken);
     deleteEvent(expressInstance, jwtInstance, verifyToken);
     getEventById(expressInstance);
-    getAllEvents(expressInstance);
+    getAllEventsByOranization(expressInstance);
 }

@@ -16,12 +16,12 @@ method: addUser(expressInstance)
 url: domain/user
 response type: sends a json object of type { "user": object } if it doesn't exist already. Else sends "Unauthorized"
 */
-addUser = function(expressInstance)
+addUser = function(expressInstance, jwtInstance)
 {
-    expressInstance.post('/user', (req, res) => {
+    expressInstance.post('/signup', (req, res) => {
 
         //Checking User already exists.
-        UserModel.findOne( { "username": req.body.username },  (err, userObject) => 
+        UserModel.findOne( { "email": req.body.email },  (err, userObject) => 
         {
             if(err)
             {
