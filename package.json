@@ -4,7 +4,8 @@
   "description": "API for Events Manager application.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve:client": "cd client && ng serve"
   },
   "repository": {
     "type": "git",
