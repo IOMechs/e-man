@@ -1,20 +1,20 @@
-import { AdminComponent } from './admin/admin.component';
-import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginDialogComponent } from './core/components/login-dialog/login-dialog.component';
-import { SignupDialogComponent } from './core/components/signup-dialog/signup-dialog.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 const routes: Routes = [
-  {path:'',
-   component: AppComponent        
+  {
+    path:'',
+    redirectTo: 'admin',
+    pathMatch: 'full'        
   },{
     path:'login',
-    component: LoginDialogComponent
+    component: LoginComponent
   },{
     path:'register',
-    component: SignupDialogComponent
+    component: SignupComponent
   },{
     path:'admin',
     loadChildren: './admin/admin.module#AdminModule'

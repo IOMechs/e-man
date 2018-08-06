@@ -1,0 +1,18 @@
+// .wrapper{
+//     position: relative;
+//     top: 0;
+//     height: 100vh;
+// }
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#content{
+    width: 100%;
+    background-color: #f0efeff5;
+}
+
+
