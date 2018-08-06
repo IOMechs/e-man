@@ -4,18 +4,21 @@ import { MaterialCustomModule } from './material-custom/material-custom.module';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialCustomModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   declarations: [HeaderComponent, SidebarComponent],
   exports: [
     MaterialCustomModule,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

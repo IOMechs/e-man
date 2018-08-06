@@ -1,3 +1,32 @@
-<p>
-  login works!
-</p>
+<div class="login-outer-container">
+  <mat-card>
+      <mat-card-header class="">
+          <mat-card-title>
+            <h3>LOGIN ACCOUNT</h3>
+          </mat-card-title>
+      </mat-card-header>
+
+
+      <!-- form -->
+      <form class="example-form" [formGroup]="loginForm" (submit)="onSubmit()">
+        
+        <!-- email   -->
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Email" name="email" formControlName="email">
+            <!-- <mat-error *ngIf="email.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error> -->
+          </mat-form-field>
+
+        <!-- password -->
+        <mat-form-field>
+            <input matInput placeholder="Input" type="password" name="password" placeholder="Password" formControlName="password">
+              <!-- <mat-error *ngIf="password.hasError('required')">
+                Password is <strong>required</strong>
+              </mat-error> -->
+        </mat-form-field>
+
+        <button mat-raised-button color="warn">Submit</button>
+        </form> 
+  </mat-card>
+</div>

@@ -5,7 +5,8 @@ import {
   MatInputModule,
   MatIconModule,
   MatSidenavModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatCardModule
 } from '@angular/material';
 
 
@@ -16,7 +17,8 @@ import {
     MatInputModule,
     MatIconModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatCardModule
   ],
   declarations: [],
   exports: [
@@ -24,7 +26,8 @@ import {
     MatInputModule,
     MatIconModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatCardModule
   ]
 })
 export class MaterialCustomModule { }
