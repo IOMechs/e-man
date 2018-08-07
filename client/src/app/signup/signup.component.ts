@@ -1,9 +1,8 @@
+import { Router } from '@angular/router';
 import { Signup } from './../core/common/signup';
 import { AuthService } from './../core/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder , Validators, FormControl } from '@angular/forms';
-
-
 
 @Component({
   selector: 'em-signup',
@@ -30,19 +29,25 @@ export class SignupComponent implements OnInit {
     })
   });
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private route: Router) { }
 
   ngOnInit() {
   }
 
   onSubmit(){
     const formData = this.signupForm.value; 
-    console.log(formData);
     this.authService
     .signup(formData)
-    .subscribe((data: Signup) => {
-      console.log(data);
-    })
+    .subscribe(
+      (data: boolean) => {
+        if(data){
+          this.route.navigate(['/admin']);
+        }
+      },
+      (err) => {
+        console.log(err);
+      },
+    )  
   }
 
 }

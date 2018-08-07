@@ -1,9 +1,83 @@
+@import './../../styles/e-man/_variables.scss';
+
 div.login-outer-container{
-    width: 50%;
+    width: 30%;
     display: flex;
     flex-direction: column;
-    margin: 15% auto;
-    & .mat-form-field{
+    padding: 20px;
+    margin: 5% auto;
+    & mat-card-header{
+        & .mat-card-header-text{
+            margin: 0 auto;
+        }
+        
+    }
+
+    & mat-card-title{
+        text-align: center;
+        & h3{
+            font-size: 20px;
+            font-weight: bold;
+        }
+    }
+
+    & .mat-form-field, button.btnSubmit{
         width: 100%;
+    }
+    & section.sec-remember{
+        margin-top: 30px;
+    }
+    & a.forgot-password{
+        font-size: 12px;
+        font-weight: bold;
+        color: darkgray;
+        float: right;
+        clear: both;
+    }
+    & mat-checkbox{
+        font-size: 15px;
+        font-weight: bold;
+    }
+    & section.sec-or{
+        margin-top: 20px;
+        text-align: center;
+        font-size: 15px;
+        color: rgba(0,0,0,.54);
+        font-weight: bold;
+    }
+    & section.social-btn{
+        margin-top: 20px;
+        text-align: center;
+        & div{
+            margin-bottom: 20px;
+            &.btn-google{
+                & button{
+                    background-color: #d73d32;
+                }
+            }
+            &.btn-fb {
+                & button{
+                    background-color: #3f5c9a;
+                }
+                
+            }
+            & button{
+                width: 80%;
+            }
+        }
+        
+    }
+    
+}
+
+@media (max-width: $mediaMinWidth) and (min-width: 0px) {
+    div.login-outer-container{  
+        width: 100%;
+    }
+
+}
+@media (min-width: 501px) and (max-width: $mediaBp1Width) {
+    div.login-outer-container{
+        width: 50%;
     }
 }

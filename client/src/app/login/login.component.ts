@@ -1,9 +1,8 @@
+import { Router } from '@angular/router';
 import { Login } from './../core/common/login';
 import { AuthService } from './../core/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder , Validators, FormControl } from '@angular/forms';
-
-
 
 
 @Component({
@@ -24,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private route: Router) {
    }
 
   ngOnInit() {
@@ -34,9 +33,16 @@ export class LoginComponent implements OnInit {
     const formData = this.loginForm.value; 
     this.authService
     .login(formData)
-    .subscribe((data : Login) => {
-     // console.log(data);
-    })
+    .subscribe(
+      (data : Login) => {
+        if(data){
+          this.route.navigate(['/admin']);
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
   }
 
 }
