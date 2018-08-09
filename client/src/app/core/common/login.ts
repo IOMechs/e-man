@@ -1,4 +1,4 @@
-export interface Login {
-    email: String;
-    password: String;
+export interface LoginForm {
+    email:    string;
+    password: string;
 }

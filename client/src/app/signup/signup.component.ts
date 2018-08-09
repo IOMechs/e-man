@@ -1,4 +1,4 @@
-import { Signup } from './../core/common/signup';
+import { SignupForm } from './../core/common/signup';
 import { AuthService } from './../core/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder , Validators, FormControl } from '@angular/forms';
@@ -40,7 +40,7 @@ export class SignupComponent implements OnInit {
     console.log(formData);
     this.authService
     .signup(formData)
-    .subscribe((data: Signup) => {
+    .subscribe((data: SignupForm) => {
       console.log(data);
     })
   }
