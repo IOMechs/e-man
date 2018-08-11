@@ -1,14 +1,44 @@
+@import "../../styles/e-man/variables";
 .login-outer-container{
     
     & .row{
         margin: 0px;
         height: 100vh;
+        display: flex;
     }
     .login-intro-container{
-        background: #e2e2e2;
+        background: #c3c0c0;
+        width: 75%;
+        height: 100%;
+        @media (max-width: $lg) { 
+            width: 65%;
+        }
+        @media (max-width: $md) { 
+            width: 60%;
+        }
+        @media (max-width: $sm) { 
+            width: 50%;
+        }
+        @media (max-width: $xs) { 
+            display: none;
+        }
     }
     .login-form-container{
+        width: 25%;
+        height: 100%;
         padding: 0px;
+        @media (max-width: $lg) { 
+            width: 35%;
+        }
+        @media (max-width: $md) { 
+            width: 40%;
+        }
+        @media (max-width: $sm) { 
+            width: 50%;
+        }
+        @media (max-width: $xs) { 
+            width: 100%;
+        }
         mat-card{
             height: 100%;
             display: flex;
@@ -20,6 +50,10 @@
             flex-direction: column;
             align-items: center;
             padding: 5px;
+            
+            @media (max-width: $xs) { 
+                padding: 40px;
+            }
             .login-error{
                 height: 78px;
                 width: 100%;
@@ -41,6 +75,9 @@
             .login-content{
                 margin-top: 10px;
                 padding: 10px;
+                input.-webkit-autofill{
+                    background-color: white !important;
+                }
                 mat-form-field{
                     width: 100%;
                     &.mat-form-field{

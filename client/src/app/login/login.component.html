@@ -1,20 +1,19 @@
 <div class = "login-outer-container">
   <div class="row">
-    <div class="col-lg-9 col-md-7 col-sm-6 d-none d-sm-block login-intro-container" >
+    <div class="login-intro-container" >
   
     </div>
-    <div class="col-lg-3 col-md-5 col-sm-6 col-xs-12 login-form-container">
+    <div class="login-form-container">
       <mat-card>
         <div class="card-container">
             
             <div class="login-header">
                 <mat-card-header>
                     <mat-card-title>
-                      <h6>LOGIN TO YOUR ACCOUNT</h6>
+                      <h2>LOGIN TO YOUR ACCOUNT</h2>
                     </mat-card-title>
                 </mat-card-header>
             </div>
-            
             <!-- Error Box -->
             <div class="login-error" *ngIf="showErrorBox">
               <div class="error-message">
@@ -22,11 +21,8 @@
               </div>
               <mat-icon class="em-icon" (click)="hideErrorBox($event)">clear</mat-icon>
             </div>
-            <!-- form -->
             <div class="login-content">
               <form [formGroup]="loginForm" (submit)="onSubmit()">
-            
-                <!-- email   -->
                 <mat-form-field>
                     <input matInput placeholder="Email" name="email" formControlName="email">
                     <mat-error *ngIf="loginControls.email.hasError('required')">
@@ -36,27 +32,23 @@
                         Invalid <strong>Email address</strong>.
                     </mat-error>
                 </mat-form-field>
-          
-                  <!-- password -->
-                  <mat-form-field>
-                      <input matInput placeholder="Input" type="password" name="password" placeholder="Password" formControlName="password">
-                        <mat-error *ngIf="loginControls.password.hasError('required')">
-                          Password is <strong>required</strong>.
-                        </mat-error>
-                  </mat-form-field>
-                  
-                  <div class="login__checkbox__forgot">
-                      <mat-checkbox
-                        [labelPosition]="after">
-                        Remember Me
-                      </mat-checkbox>
-                      <a class="forgot__password" href="javascript:void(0)">Forgot Password?</a>
-                  </div>
-
-                  <div class="login__button">
-                      <button class="button--state-submit" mat-raised-button color="primary">Login</button>
-                  </div>
-                </form>
+                <mat-form-field>
+                    <input matInput placeholder="Input" type="password" name="password" placeholder="Password" formControlName="password">
+                      <mat-error *ngIf="loginControls.password.hasError('required')">
+                        Password is <strong>required</strong>.
+                      </mat-error>
+                </mat-form-field>
+                <div class="login__checkbox__forgot">
+                    <mat-checkbox
+                      [labelPosition]="after">
+                      Remember Me
+                    </mat-checkbox>
+                    <a class="forgot__password" href="javascript:void(0)">Forgot Password?</a>
+                </div>
+                <div class="login__button">
+                    <button class="button--state-submit" mat-raised-button color="primary" [disabled]="requestSent">Login</button>
+                </div>
+              </form>
             </div>
             <div class="login-footer">
               <span>Don't have account?</span>
