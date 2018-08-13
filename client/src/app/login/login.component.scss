@@ -1,118 +1,113 @@
 @import "../../styles/e-man/variables";
-.login-outer-container{
-    
-    & .row{
-        margin: 0px;
-        height: 100vh;
+.login-outer-container {
+  .row {
+    margin: 0px;
+    height: 100vh;
+    display: flex;
+  }
+  .login-intro-container {
+    background: #c3c0c0;
+    width: 75%;
+    height: 100%;
+    @media (max-width: $lg) {
+      width: 65%;
+    }
+    @media (max-width: $md) {
+      width: 60%;
+    }
+    @media (max-width: $sm) {
+      width: 50%;
+    }
+    @media (max-width: $xs) {
+      display: none;
+    }
+  }
+  .login-form-container {
+    width: 25%;
+    height: 100%;
+    padding: 0px;
+    @media (max-width: $lg) {
+      width: 35%;
+    }
+    @media (max-width: $md) {
+      width: 40%;
+    }
+    @media (max-width: $sm) {
+      width: 50%;
+    }
+    @media (max-width: $xs) {
+      width: 100%;
+    }
+    mat-card {
+      height: 100%;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 5px;
+      @media (max-width: $xs) {
+        padding: 40px;
+      }
+      .login-error {
+        height: 78px;
+        width: 100%;
+        background-color: red;
+        padding: 20px 24px;
+        margin: 20px 0;
         display: flex;
-    }
-    .login-intro-container{
-        background: #c3c0c0;
-        width: 75%;
-        height: 100%;
-        @media (max-width: $lg) { 
-            width: 65%;
+        flex-direction: row;
+        align-items: center;
+        .error-message {
+          color: white;
+          font-weight: bold;
+          font-size: 13px;
+          line-height: 18px;
+          margin-right: 20px;
+          flex: 1;
         }
-        @media (max-width: $md) { 
-            width: 60%;
+      }
+      .login-content {
+        margin-top: 10px;
+        padding: 10px;
+        input.-webkit-autofill {
+          background-color: white;
         }
-        @media (max-width: $sm) { 
-            width: 50%;
+        mat-form-field {
+          width: 100%;
+          &.mat-form-field {
+            font-size: 13px;
+          }
         }
-        @media (max-width: $xs) { 
-            display: none;
+        .login__checkbox__forgot {
+          display: flex;
+          justify-content: space-between;
+          font-size: 13px;
+          margin-top: 20px;
+          .forgot__password {
+            font-size: 12px;
+          }
         }
-    }
-    .login-form-container{
-        width: 25%;
-        height: 100%;
-        padding: 0px;
-        @media (max-width: $lg) { 
-            width: 35%;
-        }
-        @media (max-width: $md) { 
-            width: 40%;
-        }
-        @media (max-width: $sm) { 
-            width: 50%;
-        }
-        @media (max-width: $xs) { 
+        .login__button {
+          display: flex;
+          justify-content: center;
+          margin-top: 20px;
+          .button--state-submit {
             width: 100%;
+          }
         }
-        mat-card{
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .card-container{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 5px;
-            
-            @media (max-width: $xs) { 
-                padding: 40px;
-            }
-            .login-error{
-                height: 78px;
-                width: 100%;
-                background-color: red;
-                padding: 20px 24px;
-                margin: 20px 0;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                .error-message{
-                    color: white;
-                    font-weight: bold;
-                    font-size: 13px;
-                    line-height: 18px;
-                    margin-right: 20px;
-                    flex: 1;
-                }
-            }
-            .login-content{
-                margin-top: 10px;
-                padding: 10px;
-                input.-webkit-autofill{
-                    background-color: white;
-                }
-                mat-form-field{
-                    width: 100%;
-                    &.mat-form-field{
-                        font-size: 13px;
-                    }
-                }
-                .login__checkbox__forgot{
-                    display: flex;
-                    justify-content: space-between;
-                    font-size: 13px;
-                    margin-top: 20px;
-                    .forgot__password{
-                        font-size: 12px;
-                    }
-                }
-                .login__button{
-                    display: flex;
-                    justify-content: center;
-                    margin-top: 20px;
-                    .button--state-submit{
-                        width: 100%;
-                    }
-                }
-            }
-            .login-footer{
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                margin-top: 35px;
-                font-size: 13px;
-            }
-        }
-        
+      }
+      .login-footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 35px;
+        font-size: 13px;
+      }
     }
-    
-
+  }
 }
-    
