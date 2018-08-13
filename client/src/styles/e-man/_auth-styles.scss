@@ -1,0 +1,170 @@
+@import "variables";
+
+.auth-outer-container{
+    & .row{
+        margin: 0px;
+        height: 100vh;
+        display: flex;
+    }
+    .auth-intro-container{
+        background: $em-grey;
+        display: flex;
+        flex: 1;
+        height: 100%;
+    }
+    .auth-form-container{
+        width: 350px;
+        min-width: 350px;
+        max-width: 350px;
+        height: 100%;
+        padding: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        mat-card{
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            .auth-header{
+                display: flex;
+                justify-content: flex-start;
+                h2{
+                    font-size: 17px;
+                    font-weight: 300;
+                }
+                
+            }
+        }
+        .card-container{
+            display: flex;
+            flex-direction: column;
+            .auth-error{
+                height: 78px;
+                width: 100%;
+                background-color: red;
+                padding: 20px 24px;
+                margin: 20px 0;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                .error-message{
+                    color: white;
+                    font-weight: bold;
+                    font-size: 13px;
+                    line-height: 18px;
+                    margin-right: 20px;
+                    flex: 1;
+                }
+            }
+            .auth-content{
+                margin-top: 10px;
+                padding: 10px;
+                input.-webkit-autofill{
+                    background-color: $em-white;
+                }
+                mat-form-field{
+                    width: 100%;
+                    &.mat-form-field{
+                        font-size: 13px;
+                    }
+                }
+                .auth__checkbox__forgot {
+                    display: flex;
+                    justify-content: space-between;
+                    font-size: 13px;
+                    margin-top: 20px;
+                    font-weight: bold;
+                    .forgot__password {
+                      font-size: 12px;
+                      text-decoration: none;
+                      color: $em-purple;
+                    }
+                }
+                .auth__checkbox{
+                    display: flex;
+                    justify-content: center;
+                    font-size: 13px;
+                    margin-top: 20px;
+                    font-weight: bold;
+                    .forgot__password{
+                        font-size: 12px;
+                    }
+                }
+                .auth__button{
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 25px;
+                    .button--state-submit{
+                        width: 100%;
+                    }
+                }
+            }
+            .auth-footer{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 25px;
+                font-size: 13px;
+                font-weight: bold;
+                a{
+                    color: $em-purple;
+                    text-decoration: none;
+                }
+            }
+        }
+        
+    }
+}
+    
+@media (max-width: $widthsm) { 
+    .auth-form-container{
+        .auth-form-container{
+            width: 300px;
+            min-width: 300px;
+            max-width: 300px;
+        }
+    }
+}
+
+@media (max-width: $widthxs) { 
+    .auth-outer-container{
+        .auth-form-container{
+            width: 100%;
+            min-width: 100%;
+            max-width: 100%;
+            mat-card{
+                padding: 0px 20px;
+                width: 100%;
+                .auth-header{
+                    display: flex;
+                    justify-content: center;
+                    h2{
+                        font-size: 21px;
+                    }
+                }
+            }
+            .card-container{
+                .auth-content{
+                    padding: 0px 40px;
+                    .auth__checkbox__forgot {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        .forgot__password {
+                          margin-top: 16px;
+                        }
+                    }
+                }
+            }
+            
+        }
+        
+        .auth-intro-container{
+            display: none;
+        }
+    }
+    
+}

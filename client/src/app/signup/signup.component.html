@@ -1,13 +1,13 @@
-<div class = "signup-outer-container">
+<div class = "auth-outer-container">
   <div class="row">
-    <div class="signup-intro-container" >
+    <div class="auth-intro-container" >
   
     </div>
-    <div class="signup-form-container">
+    <div class="auth-form-container">
       <mat-card>
         <div class="card-container">
             
-            <div class="signup-header">
+            <div class="auth-header">
                 <mat-card-header>
                     <mat-card-title>
                       <h2>CREATE AN ACCOUNT</h2>
@@ -16,14 +16,14 @@
             </div>
             
             <!-- Error Box -->
-            <div class="signup-error" *ngIf="showErrorBox">
+            <div class="auth-error" *ngIf="showErrorBox">
               <div class="error-message">
                 {{ $errorMessage }}
               </div>
               <mat-icon class="em-icon" (click)="hideErrorBox($event)">clear</mat-icon>
             </div>
             <!-- form -->
-            <div class="signup-content">
+            <div class="auth-content">
               <form [formGroup]="signupForm" (submit)="onSubmit()">
                 <mat-form-field>
                   <input matInput placeholder="First Name" name="firstName" formControlName="firstName">
@@ -64,18 +64,18 @@
                         Password is <strong>required</strong>.
                       </mat-error>
                 </mat-form-field>
-                <div class="signup__checkbox">
+                <div class="auth__checkbox">
                     <mat-checkbox
                       [labelPosition]="after">
-                      Accept Terms and Condition
+                      Accept terms and condition
                     </mat-checkbox>
                 </div>
-                <div class="signup__button">
-                    <button class="button--state-submit" mat-raised-button color="primary" [disabled]="requestSent">Register</button>
+                <div class="auth__button">
+                    <button class="button--state-submit" mat-raised-button color="primary" [disabled]="signupForm.invalid">CREATE AN ACCOUNT</button>
                 </div>
               </form>
             </div>
-            <div class="signup-footer">
+            <div class="auth-footer">
               <span>Already have an account?</span>
                 <a routerLink="/login">Login</a>
             </div>
