@@ -14,14 +14,6 @@
                     </mat-card-title>
                 </mat-card-header>
             </div>
-            
-            <!-- Error Box -->
-            <div class="auth-error" *ngIf="showErrorBox">
-              <div class="error-message">
-                {{ $errorMessage }}
-              </div>
-              <mat-icon class="em-icon" (click)="hideErrorBox($event)">clear</mat-icon>
-            </div>
             <!-- form -->
             <div class="auth-content">
               <form [formGroup]="signupForm" (submit)="onSubmit()">
