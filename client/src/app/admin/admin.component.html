@@ -1,8 +1,62 @@
-<div class="wrapper">
-    <em-sidebar></em-sidebar>
-    <!-- Page Content -->
-    <div id="content">
-        <em-header></em-header>   
-        <router-outlet></router-outlet> 
-    </div>
-</div>       
+<mat-sidenav-container class="nav">
+    <mat-sidenav #sidenav mode="side" class="nav__side-nav">
+        <div class="nav__side-nav__navbar-header">
+            <div class="nav__side-nav__navbar-header__top-contianer">
+                <div class="nav__side-nav__navbar-header__top-contianer__logo">
+                    <img src="../../assets/images/logo1.jpg" class="nav__side-nav__navbar-header__top-contianer__logo__logo-icon">
+                    <span class="nav__side-nav__navbar-header__top-contianer__logo__logo-text">MANAGER</span>
+                </div>
+                <button mat-icon-button  class="nav__side-nav__navbar-header__top-contianer__logo__back-button" (click)="sidenav.toggle()">
+                    <mat-icon >arrow_back</mat-icon>
+                </button>
+            </div>  
+            <div class="nav__side-nav__navbar-header__profile-container">
+                <div class="nav__side-nav__navbar-header__profile-container-name">
+                    John Doe
+                </div>
+                <div class="nav__side-nav__navbar-header__profile-container-email">
+                    JohnDoe@gmail.com
+                </div>
+                <div class="nav__side-nav__navbar-header__profile-container__image-container">
+                    <img src="../../assets/images/user-image.jpg" class="nav__side-nav__navbar-header__profile-container__image-container-image">
+                </div>
+            </div>
+        </div>
+        <div class="nav__side-nav__side-menu">
+          <div class="nav__side-nav__side-menu__list-item" [routerLink]="['/admin']">
+            <mat-icon class="nav__side-nav__side-menu__list-item__item-icon">dashboard</mat-icon>
+            <span class="nav__side-nav__side-menu__list-item__item-title">Dashboard</span>
+            <mat-icon class="nav__side-nav__side-menu__list-item__item-collapse-arrow-icon">keyboard_arrow_right</mat-icon>
+          </div>
+          <div class="nav__side-nav__side-menu__list-item" [routerLink]="['/admin/organizations']">
+              <mat-icon class="nav__side-nav__side-menu__list-item__item-icon">group</mat-icon>
+              <span class="nav__side-nav__side-menu__list-item__item-title">Organizations</span>
+              <mat-icon class="nav__side-nav__side-menu__list-item__item-collapse-arrow-icon">keyboard_arrow_right</mat-icon>
+          </div>
+          <div class="nav__side-nav__side-menu__list-item">
+              <mat-icon class="nav__side-nav__side-menu__list-item__item-icon">event</mat-icon>
+              <span class="nav__side-nav__side-menu__list-item__item-title">Events</span>
+              <mat-icon class="nav__side-nav__side-menu__list-item__item-collapse-arrow-icon">keyboard_arrow_right</mat-icon>
+          </div>
+          <div class="nav__side-nav__side-menu__list-item">
+              <mat-icon class="nav__side-nav__side-menu__list-item__item-icon">chat</mat-icon>
+              <span class="nav__side-nav__side-menu__list-item__item-title">Chat</span>
+              <mat-icon class="nav__side-nav__side-menu__list-item__item-collapse-arrow-icon">keyboard_arrow_right</mat-icon>
+          </div>
+          <div class="nav__side-nav__side-menu__list-item">
+              <mat-icon class="nav__side-nav__side-menu__list-item__item-icon">account_box</mat-icon>
+              <span class="nav__side-nav__side-menu__list-item__item-title">Contacts</span>
+              <mat-icon class="nav__side-nav__side-menu__list-item__item-collapse-arrow-icon">keyboard_arrow_right</mat-icon>
+          </div>
+          <div class="nav__side-nav__side-menu__list-item">
+              <mat-icon class="nav__side-nav__side-menu__list-item__item-icon">search</mat-icon>
+              <span class="nav__side-nav__side-menu__list-item__item-title">Search</span>
+              <mat-icon class="nav__side-nav__side-menu__list-item__item-collapse-arrow-icon">keyboard_arrow_right</mat-icon>
+          </div>
+        </div>
+      </mat-sidenav>
+    <mat-sidenav-content class="content-outer-container">
+        <em-header (toggleMenuBar)="sidenav.toggle()"></em-header>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

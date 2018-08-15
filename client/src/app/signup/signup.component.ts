@@ -19,12 +19,12 @@ constructor(private authService: AuthService, private formBuilder: FormBuilder, 
     this.signupForm = this.formBuilder.group({
       firstName: ["",[
           Validators.required,
-          Validators.pattern("^[a-z ,.'-]+$")
+          Validators.pattern("^[a-zA-Z ,.'-]+$")
         ]
       ],
       lastName: ["",[
           Validators.required,
-          Validators.pattern("^[a-z ,.'-]+$")
+          Validators.pattern("^[a-zA-Z ,.'-]+$")
         ]
       ],
       username: ["",[

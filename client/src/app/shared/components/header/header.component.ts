@@ -10,20 +10,19 @@ declare const $: any;
 })
 export class HeaderComponent implements OnInit {
 
-    @Output() toggleValue = new EventEmitter<string>();
+  @Output() toggleMenuBar = new EventEmitter();
 
-
-    constructor(location: Location,  private element: ElementRef, private router: Router) {
+  constructor(private router: Router) {
      
-    }
+  }
 
-    ngOnInit(){
+  ngOnInit(){
 
-    }
+  }
 
-    toggleSlider(){
-      $('#sidebar').toggleClass('active');
-    }
+  toggleMenu() {
+    this.toggleMenuBar.emit();
+  }
 
     
 }

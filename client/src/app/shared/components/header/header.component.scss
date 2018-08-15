@@ -1,8 +1,11 @@
-nav.top-navbar-container{
-   background-color: #e6e5e5f5; 
-   height: 72px;
-   & u.ml-auto {
-        margin-left: auto !important;
-   }
+@import "../../../../styles/e-man/variables";
+.header-navbar{
+  background-color: $em-grey-1;
+  color: $em-white;
+  .header-sidenav-content{
+    flex: 1%;
+  }
+  button{
+    margin: 10px;
+  }
 }
-

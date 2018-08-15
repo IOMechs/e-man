@@ -20,7 +20,8 @@ import {
     MatSidenavModule,
     MatToolbarModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSidenavModule
   ],
   declarations: [],
   exports: [
@@ -30,7 +31,8 @@ import {
     MatSidenavModule,
     MatToolbarModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSidenavModule
   ]
 })
 export class MaterialCustomModule { }
