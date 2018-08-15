@@ -32,8 +32,8 @@
                 display: flex;
                 justify-content: flex-start;
                 h2{
-                    font-size: 17px;
-                    font-weight: 300;
+                    font-size: 18px;
+                    font-weight: 500;
                 }
                 
             }
@@ -50,7 +50,7 @@
                 mat-form-field{
                     width: 100%;
                     &.mat-form-field{
-                        font-size: 13px;
+                        font-size: 15px;
                     }
                 }
                 .auth__checkbox__forgot {
