@@ -15,6 +15,12 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  isLoggednIn() {
+    const key = localStorage.getItem(EmanConstant.eman_user)? true : false;
+    return key;
+  }
+
+
   login(loginData) : Observable<any>{
     return this.http.post(`${this.apiBaseUrl}/login`, loginData).pipe(
       map((data: any)=>{
