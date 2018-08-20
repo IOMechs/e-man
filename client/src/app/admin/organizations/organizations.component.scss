@@ -1,3 +1,70 @@
-.organizations-outer-conatainer{
+@import "../../../styles/e-man/_variables";
+
+.organizations-container{
     padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+      & .header-container{
+        display: flex;
+        flex-direction:  row;
+        width: 100%;
+        max-width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        & h1{
+          letter-spacing: -0.9px;
+          font-weight: 300;
+          font-style: italic;
+        }
+
+      }
+      & .list-container{
+        max-width: 300px;
+        width: 300px;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        padding: 5px 5px 0px 5px;
+        margin:0px 30px 25px 0px;
+        &__image-container{
+            display: flex;
+            flex: 1;
+            background-position: center;
+            background-repeat: none;
+            background-size: cover;
+        }
+        &__desc-container{
+            height: 45px;
+            margin: -5px;
+            text-align: center;
+            padding-bottom: 7px;
+            background-color: $em-white-1;
+            font-size: 16px;
+            color: $em-black;
+        }
+    }
+}
+
+@media (max-width: $widthsm) {
+    .organizations-container{
+
+        & list-container{
+            max-width: 280px;
+            width: 280px;
+        }
+    }
+}
+
+@media (max-width: $widthxs) {
+    .organizations-container{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        & list-container{
+            max-width: 350px;
+            width: 350px;
+            margin-right: 0px;
+        }
+    }
 }

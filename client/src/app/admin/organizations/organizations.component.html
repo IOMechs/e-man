@@ -1,5 +1,26 @@
-<div class="organizations-outer-conatainer">
-  <p>
-    organizations works!
-  </p>
+<div class="organizations-container">
+  <div class="header-container">
+    <h1>
+       Organizations
+    </h1>
+    <div class="header-container__button">
+        <button class="button--state-submit" mat-raised-button color="primary">
+            <mat-icon>add_box</mat-icon>
+            Add Organization
+          </button>
+    </div>
+  </div>
+
+  <!-- organization list -->
+  <mat-card *ngFor="let organization of organizations" class="list-container">
+      <div class="list-container__image-container"
+      [ngStyle]="{'background-image': 'url(../../../assets/images/image-placeholder.png)'}">
+
+      </div>
+
+      <div class="list-container__desc-container">
+          <p>{{ organization.name }}</p>
+      </div>
+  </mat-card>
+
 </div>

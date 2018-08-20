@@ -13,19 +13,19 @@ export class DashboardComponent implements OnInit {
   constructor(private organizationService: OrganizationService) { }
 
   ngOnInit() {
-  this.getOrganization();  
+  this.getOrganization();
   }
 
-  getOrganization(){
+  getOrganization() {
     this.organizationService.get()
     .subscribe(
-      (data:any) => {
+      (data: any) => {
         this.organizations =  data['organization'];
       },
-      (err)=>{
+      (err) => {
         console.log(err);
       }
-    )
+    );
   }
 
   // TODO: getImageUrl(imagePath){
