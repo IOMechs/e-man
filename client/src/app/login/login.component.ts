@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ['', [
-          Validators.required, 
+          Validators.required,
           Validators.email
         ]
       ],
@@ -33,22 +33,21 @@ export class LoginComponent implements OnInit {
 
   get loginControls() { return this.loginForm.controls; }
 
-  onSubmit(){
-    if(!this.loginForm.invalid){
+  onSubmit() {
+    if (!this.loginForm.invalid) {
       const formData = this.loginForm.value;
       this.authService
       .login(formData)
       .subscribe(
-        (data : LoginForm) => {
+        (data: LoginForm) => {
           this.route.navigate(['/admin']);
         },
         (err) => {
           console.log(err);
         }
-      )
-    }
-    else{
-      console.log("Please Provide Valid Inputs");
+      );
+    } else {
+      console.log('Please Provide Valid Inputs');
     }
   }
 }

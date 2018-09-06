@@ -13,16 +13,13 @@ export class HeaderComponent implements OnInit {
   @Output() toggleMenuBar = new EventEmitter();
 
   constructor(private router: Router) {
-     
   }
 
-  ngOnInit(){
+  ngOnInit() {
 
   }
 
   toggleMenu() {
     this.toggleMenuBar.emit();
   }
-
-    
 }

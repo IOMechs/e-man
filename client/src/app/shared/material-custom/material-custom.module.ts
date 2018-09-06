@@ -1,38 +1,47 @@
+import { MatDialogModule } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  MatButtonModule, 
+  MatButtonModule,
   MatInputModule,
   MatIconModule,
   MatSidenavModule,
   MatToolbarModule,
   MatCardModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    MatButtonModule, 
+    MatButtonModule,
     MatInputModule,
     MatIconModule,
     MatSidenavModule,
     MatToolbarModule,
     MatCardModule,
     MatCheckboxModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   declarations: [],
   exports: [
-    MatButtonModule, 
+    MatButtonModule,
     MatInputModule,
     MatIconModule,
     MatSidenavModule,
     MatToolbarModule,
     MatCardModule,
     MatCheckboxModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class MaterialCustomModule { }

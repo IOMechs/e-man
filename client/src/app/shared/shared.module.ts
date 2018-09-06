@@ -6,6 +6,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { OranizationDialogComponent } from './components/oranization-dialog/oranization-dialog.component';
 
 
 @NgModule({
@@ -14,15 +15,15 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialCustomModule,
     RouterModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  declarations: [HeaderComponent, SidebarComponent],
+  declarations: [HeaderComponent, SidebarComponent, OranizationDialogComponent],
   exports: [
     MaterialCustomModule,
     HeaderComponent,
     SidebarComponent,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ]
 })
 export class SharedModule { }

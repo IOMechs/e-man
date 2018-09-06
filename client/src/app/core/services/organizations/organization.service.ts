@@ -13,22 +13,35 @@ export class OrganizationService {
 apiBaseUrl: string  = EmanConfig.apiBaseUrl;
 user: any;
 
-  constructor(private http: HttpClient, private userService: UserService) { 
-
+  constructor(private http: HttpClient, private userService: UserService) {
   }
 
-  get() : Observable<any>{
+  get(): Observable<any> {
     this.user = this.userService.getUser();
     return this.http.get(`${this.apiBaseUrl}/organizations?_id=${this.user._id}`)
     .pipe(
 
-      map((res)=>{
+      map((res) => {
         return res;
       }),
       catchError(err => {
         throw(err);
       })
-    )
+    );
+
+  }
+
+  create(data): Observable<any> {
+    data['userId'] = this.userService.getUser()._id;
+    return this.http.post(`${this.apiBaseUrl}/organization`, data)
+    .pipe(
+      map((res) => {
+        return res;
+      }),
+      catchError(err => {
+        throw(err);
+      })
+    );
 
   }
 }

@@ -1,3 +1,4 @@
+import { OranizationDialogComponent } from './../shared/components/oranization-dialog/oranization-dialog.component';
 
 import { AdminComponent } from './admin.component';
 import { NgModule } from '@angular/core';
@@ -16,8 +17,10 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     AdminComponent,
     OrganizationsComponent,
-    DashboardComponent
-    
-  ]
+    DashboardComponent,
+  ],
+  entryComponents: [
+    OranizationDialogComponent
+]
 })
 export class AdminModule { }
