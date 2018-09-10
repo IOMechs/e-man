@@ -42,6 +42,17 @@ user: any;
         throw(err);
       })
     );
+  }
 
+  update(data): Observable<any> {
+    return this.http.put(`${this.apiBaseUrl}/organization`, data)
+    .pipe(
+      map((res) => {
+        return res;
+      }),
+      catchError(err => {
+        throw(err);
+      })
+    );
   }
 }

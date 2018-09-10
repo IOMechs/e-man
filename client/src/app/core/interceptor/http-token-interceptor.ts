@@ -10,7 +10,6 @@ export class TokenInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('in interceptor');
     let headers  = new HttpHeaders().set('Content-Type', 'application/json');
     const token = this.auth.getToken();
     if (token) {

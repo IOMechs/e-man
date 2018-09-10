@@ -4,7 +4,7 @@
        Organizations
     </h1>
     <div class="header-container__button">
-        <button class="button--state-submit" mat-raised-button color="primary" (click)="openOrgDialog()">
+        <button class="button--state-submit" mat-raised-button color="primary" (click)="openOrgDialog('add')">
             <mat-icon>add_box</mat-icon>
             Add Organization
           </button>
@@ -13,14 +13,22 @@
 
   <!-- organization list -->
   <mat-card *ngFor="let organization of organizations" class="list-container">
-      <div class="list-container__image-container"
+    <div class="list-container__image-container"
       [ngStyle]="{'background-image': 'url(../../../assets/images/image-placeholder.png)'}">
 
-      </div>
-
-      <div class="list-container__desc-container">
-          <p>{{ organization.name }}</p>
-      </div>
+      <button
+        mat-icon-button
+        (click)=select.open() class="list-container__image-container__button">
+        <mat-icon>more_horiz</mat-icon>
+        <mat-select #select class="list-container__image-container__button__crud-select">
+          <mat-option (click)="openOrgDialog('edit', organization)">Edit</mat-option>
+          <mat-option (click)="deleteOrganization(organization)">Delete</mat-option>
+        </mat-select>
+      </button>
+    </div>
+    <div class="list-container__desc-container">
+        <p>{{ organization.name }}</p>
+    </div>
   </mat-card>
 
 </div>

@@ -30,6 +30,18 @@ export class OrganizationsComponent implements OnInit {
     );
   }
 
+  updateOrganization(formData) {
+    this.organizationService.update(formData)
+    .subscribe(
+      (data: any) => {
+        console.log(data);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
   createOrganization(formData) {
     this.organizationService.create(formData)
     .subscribe(
@@ -42,18 +54,26 @@ export class OrganizationsComponent implements OnInit {
     );
   }
 
-  openOrgDialog() {
+  openOrgDialog(title, data?) {
     const dialogRef = this.dialog.open(OranizationDialogComponent, {
-      data: { header : 'Add organization'},
+      data: { header : title === 'add' ? 'Add organization' : 'Edit organization', orgData: data ? data : null},
       height: '400px',
       width: '500px',
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result !== '') {
-        result['createdOn'] = Date();
-      this.createOrganization(result);
+        if (title === 'add') {
+          result['createdOn'] = Date();
+          this.createOrganization(result);
+        } else {
+         const res = Object.assign(data, result);
+          this.updateOrganization(res);
+        }
       }
     });
   }
 
+  deleteOrganization(data) {
+
+  }
 }

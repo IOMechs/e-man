@@ -27,6 +27,9 @@ export class OranizationDialogComponent implements OnInit {
         ]
       ]
     });
+    if (this.data.orgData) {
+      this.organizationDialogForm.patchValue(this.data.orgData);
+    }
   }
   get organizationControls() { return this.organizationDialogForm.controls; }
 }

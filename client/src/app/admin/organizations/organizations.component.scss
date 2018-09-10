@@ -4,7 +4,6 @@
     padding: 30px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     margin-top: 30px;
       & .header-container{
         display: flex;
@@ -34,6 +33,17 @@
             background-position: center;
             background-repeat: none;
             background-size: cover;
+            &__button{
+              color: $em-grey;
+              position: absolute;
+              left: 20px;
+              top: 10px;
+              &__crud-select{
+                ::ng-deep div.mat-select-arrow-wrapper{
+                  display: none;
+                }
+              }
+            }
         }
         &__desc-container{
             height: 45px;

@@ -10,7 +10,9 @@ import {
   MatCardModule,
   MatCheckboxModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatOptionModule,
+  MatSelectModule
 } from '@angular/material';
 
 
@@ -27,7 +29,9 @@ import {
     MatSidenavModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   declarations: [],
   exports: [
@@ -41,7 +45,9 @@ import {
     MatSidenavModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatOptionModule,
+    MatSelectModule
   ]
 })
 export class MaterialCustomModule { }

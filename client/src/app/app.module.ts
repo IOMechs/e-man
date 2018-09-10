@@ -1,3 +1,4 @@
+import { CoreModule } from './core/core.module';
 import { AuthGuard } from './core/guard/auth.guard';
 import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,15 +22,11 @@ import { TokenInterceptor } from './core/interceptor/http-token-interceptor';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    CoreModule
   ],
   providers: [
     AuthGuard,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    }
   ],
   bootstrap: [AppComponent],
 
