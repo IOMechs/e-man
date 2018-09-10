@@ -22,7 +22,7 @@
         <mat-icon>more_horiz</mat-icon>
         <mat-select #select class="list-container__image-container__button__crud-select">
           <mat-option (click)="openOrgDialog('edit', organization)">Edit</mat-option>
-          <mat-option (click)="deleteOrganization(organization)">Delete</mat-option>
+          <mat-option (click)="openWarningDialog(organization)">Delete</mat-option>
         </mat-select>
       </button>
     </div>

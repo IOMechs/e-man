@@ -55,4 +55,16 @@ user: any;
       })
     );
   }
+
+  delete(data): Observable<any> {
+    return this.http.delete(`${this.apiBaseUrl}/organization/${data._id}`)
+    .pipe(
+      map((res) => {
+        return res;
+      }),
+      catchError(err => {
+        throw(err);
+      })
+    );
+  }
 }

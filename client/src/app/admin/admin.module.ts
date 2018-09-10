@@ -1,3 +1,4 @@
+import { DeleteWarningDialogComponent } from './../shared/components/delete-warning-dialog/delete-warning-dialog.component';
 import { OranizationDialogComponent } from './../shared/components/oranization-dialog/oranization-dialog.component';
 
 import { AdminComponent } from './admin.component';
@@ -7,6 +8,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { OrganizationsComponent } from './organizations/organizations.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
+
 
 @NgModule({
   imports: [
@@ -20,7 +22,8 @@ import { SharedModule } from '../shared/shared.module';
     DashboardComponent,
   ],
   entryComponents: [
-    OranizationDialogComponent
+    OranizationDialogComponent,
+    DeleteWarningDialogComponent
 ]
 })
 export class AdminModule { }

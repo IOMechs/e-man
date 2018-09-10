@@ -1,0 +1,11 @@
+.warning-dialog-container{
+  .warning-dialog-heading{
+    display: flex;
+    justify-content: center;
+  }
+  .warning-dialog-actions{
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+

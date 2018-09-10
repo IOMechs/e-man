@@ -1,3 +1,4 @@
+import { DeleteWarningDialogComponent } from './../../shared/components/delete-warning-dialog/delete-warning-dialog.component';
 import { OranizationDialogComponent } from './../../shared/components/oranization-dialog/oranization-dialog.component';
 import { OrganizationService } from './../../core/services/organizations/organization.service';
 import { Component, OnInit } from '@angular/core';
@@ -54,6 +55,20 @@ export class OrganizationsComponent implements OnInit {
     );
   }
 
+  deleteOrganization(formData) {
+    if (formData) {
+      this.organizationService.delete(formData)
+    .subscribe(
+      (data: any) => {
+        this.getOrganization();
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+    }
+  }
+
   openOrgDialog(title, data?) {
     const dialogRef = this.dialog.open(OranizationDialogComponent, {
       data: { header : title === 'add' ? 'Add organization' : 'Edit organization', orgData: data ? data : null},
@@ -73,7 +88,16 @@ export class OrganizationsComponent implements OnInit {
     });
   }
 
-  deleteOrganization(data) {
-
+  openWarningDialog(data) {
+    const dialogRef = this.dialog.open(DeleteWarningDialogComponent, {
+      height: '150px',
+      width: '400px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result === true) {
+        this.deleteOrganization(data);
+      }
+    });
   }
+
 }

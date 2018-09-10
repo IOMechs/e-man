@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { OranizationDialogComponent } from './components/oranization-dialog/oranization-dialog.component';
+import { DeleteWarningDialogComponent } from './components/delete-warning-dialog/delete-warning-dialog.component';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import { OranizationDialogComponent } from './components/oranization-dialog/oran
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  declarations: [HeaderComponent, SidebarComponent, OranizationDialogComponent],
+  declarations: [HeaderComponent, SidebarComponent, OranizationDialogComponent, DeleteWarningDialogComponent],
   exports: [
     MaterialCustomModule,
     HeaderComponent,
