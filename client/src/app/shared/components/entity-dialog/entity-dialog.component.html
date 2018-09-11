@@ -1,0 +1,45 @@
+<div class="dialog-container">
+    <div class="dialog-container__header-container">
+        <h1 mat-dialog-title>{{data.header}}</h1>
+    </div>
+    <div class="dialog-container__content-container">
+        <mat-dialog-content>
+            <form class="dialog-container__content-container__entity-form" [formGroup]="entityDialogForm">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="{{data.entityType}} Name" formControlName="name">
+                    <mat-error *ngIf="entityControls.name.hasError('required')">
+                      Name is <strong>required</strong>.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="{{data.entityType}}'s Description" formControlName="description">
+                  <mat-error *ngIf="entityControls.description.hasError('required')">
+                      Description is <strong>required</strong>.
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field *ngIf= "isOrganization">
+                  <input matInput [matDatepicker]="picker" placeholder="Select {{data.entityType}} Date" formControlName="organizationDate">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-error *ngIf="entityControls.organizationDate.hasError('required')">
+                      Date is <strong>required</strong>.
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field *ngIf= "!isOrganization">
+                    <input matInput [matDatepicker]="picker" placeholder="Select {{data.entityType}} Date" formControlName="eventDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="entityControls.eventDate.hasError('required')">
+                        Date is <strong>required</strong>.
+                    </mat-error>
+                  </mat-form-field>
+            </form>
+        </mat-dialog-content>
+    </div>
+    <div class = "dialog-container__footer-container">
+      <mat-dialog-actions>
+        <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="entityDialogForm.value" [disabled]="entityDialogForm.invalid">Submit</button>
+      </mat-dialog-actions>
+    </div>
+  </div>

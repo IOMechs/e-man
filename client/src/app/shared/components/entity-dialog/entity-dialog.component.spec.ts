@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OranizationDialogComponent } from './oranization-dialog.component';
+import { EntityDialogComponent } from './entity-dialog.component';
 
-describe('OranizationDialogComponent', () => {
-  let component: OranizationDialogComponent;
-  let fixture: ComponentFixture<OranizationDialogComponent>;
+describe('EntityDialogComponent', () => {
+  let component: EntityDialogComponent;
+  let fixture: ComponentFixture<EntityDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OranizationDialogComponent ]
+      declarations: [ EntityDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OranizationDialogComponent);
+    fixture = TestBed.createComponent(EntityDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

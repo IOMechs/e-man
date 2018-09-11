@@ -17,7 +17,9 @@
           font-weight: 300;
           font-style: italic;
         }
-
+      }
+      & .error-container{
+        color: $em-red;
       }
       & .list-container{
         max-width: 300px;
@@ -59,6 +61,7 @@
               text-decoration: none;
               text-align: center;
               color: $em-black;
+              text-transform: capitalize;
             }
         }
     }

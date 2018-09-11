@@ -6,8 +6,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { OranizationDialogComponent } from './components/oranization-dialog/oranization-dialog.component';
 import { DeleteWarningDialogComponent } from './components/delete-warning-dialog/delete-warning-dialog.component';
+import { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
 
 
 @NgModule({
@@ -18,7 +18,7 @@ import { DeleteWarningDialogComponent } from './components/delete-warning-dialog
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  declarations: [HeaderComponent, SidebarComponent, OranizationDialogComponent, DeleteWarningDialogComponent],
+  declarations: [HeaderComponent, SidebarComponent, DeleteWarningDialogComponent, EntityDialogComponent],
   exports: [
     MaterialCustomModule,
     HeaderComponent,

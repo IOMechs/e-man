@@ -19,6 +19,9 @@
         }
 
       }
+      & .error-container{
+        color: $em-red;
+      }
       & .list-container{
         max-width: 360px;
         width: 360px;
@@ -41,6 +44,7 @@
           &__name-container{
             margin-top: 35px;
             & h2{
+              text-transform: capitalize;
               font-weight: 100;
               font-size: 22px;
             }
@@ -69,23 +73,22 @@
 
 @media (max-width: $widthsm) {
     .events-container{
-
-        & list-container{
-            max-width: 280px;
-            width: 280px;
-        }
+      & list-container{
+        max-width: 360px;
+        width: 360px;
+      }
     }
 }
 
 @media (max-width: $widthxs) {
-    .events-container{
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        & list-container{
-            max-width: 350px;
-            width: 350px;
-            margin-right: 0px;
-        }
+  .events-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    & list-container{
+      max-width: 350px;
+      width: 350px;
+      margin-right: 0px;
     }
+  }
 }

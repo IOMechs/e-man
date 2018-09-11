@@ -3,11 +3,8 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-  &__header-container{
-
-  }
   &__content-container{
-    &__organization-form{
+    &__entity-form{
       display: flex;
       flex-direction: column;
       height: 100%;

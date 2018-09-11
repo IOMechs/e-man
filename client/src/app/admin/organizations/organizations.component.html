@@ -12,23 +12,28 @@
   </div>
 
   <!-- organization list -->
-  <mat-card *ngFor="let organization of organizations" class="list-container">
-    <div class="list-container__image-container"
-      [ngStyle]="{'background-image': 'url(../../../assets/images/image-placeholder.png)'}">
+  <ng-container *ngIf = "organizations.length > 0">
+    <mat-card *ngFor="let organization of organizations" class="list-container">
+      <div class="list-container__image-container"
+        [ngStyle]="{'background-image': 'url(../../../assets/images/image-placeholder.png)'}">
 
-      <button
-        mat-icon-button
-        (click)=select.open() class="list-container__image-container__button">
-        <mat-icon>more_horiz</mat-icon>
-        <mat-select #select class="list-container__image-container__button__crud-select">
-          <mat-option (click)="openOrgDialog('edit', organization)">Edit</mat-option>
-          <mat-option (click)="openWarningDialog(organization)">Delete</mat-option>
-        </mat-select>
-      </button>
-    </div>
-    <div class="list-container__desc-container">
-        <a routerLink = "{{organization._id }}/events">{{ organization.name }}</a>
-    </div>
-  </mat-card>
+        <button
+          mat-icon-button
+          (click)=select.open() class="list-container__image-container__button">
+          <mat-icon>more_horiz</mat-icon>
+          <mat-select #select class="list-container__image-container__button__crud-select">
+            <mat-option (click)="openOrgDialog('edit', organization)">Edit</mat-option>
+            <mat-option (click)="openWarningDialog(organization)">Delete</mat-option>
+          </mat-select>
+        </button>
+      </div>
+      <div class="list-container__desc-container">
+          <a routerLink = "{{organization._id }}/events">{{ organization.name }}</a>
+      </div>
+    </mat-card>
+  </ng-container>
 
+  <div class="error-container" *ngIf ="organizations.length === 0">
+    <p>No Organization Avaliable.. You Can Add New Organization. </p>
+  </div>
 </div>

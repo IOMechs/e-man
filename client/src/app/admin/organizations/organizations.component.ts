@@ -1,9 +1,11 @@
+import { EntityDialogComponent } from './../../shared/components/entity-dialog/entity-dialog.component';
 import { Router } from '@angular/router';
 import { DeleteWarningDialogComponent } from './../../shared/components/delete-warning-dialog/delete-warning-dialog.component';
 import { OranizationDialogComponent } from './../../shared/components/oranization-dialog/oranization-dialog.component';
 import { OrganizationService } from './../../core/services/organizations/organization.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+
 
 
 @Component({
@@ -13,7 +15,7 @@ import { MatDialog } from '@angular/material';
 })
 export class OrganizationsComponent implements OnInit {
 
-  organizations: any = [] ;
+  organizations: any = [];
   constructor(private organizationService: OrganizationService, private dialog: MatDialog, public router: Router) { }
 
   ngOnInit() {
@@ -24,7 +26,7 @@ export class OrganizationsComponent implements OnInit {
     this.organizationService.get()
     .subscribe(
       (data: any) => {
-        this.organizations =  data['organization'];
+        this.organizations =  data['organization'] && data['organization'].length > 0 ? data['organization'] : [];
       },
       (err) => {
         console.log(err);
@@ -71,8 +73,9 @@ export class OrganizationsComponent implements OnInit {
   }
 
   openOrgDialog(title, data?) {
-    const dialogRef = this.dialog.open(OranizationDialogComponent, {
-      data: { header : title === 'add' ? 'Add organization' : 'Edit organization', orgData: data ? data : null},
+    const dialogRef = this.dialog.open(EntityDialogComponent, {
+      // tslint:disable-next-line:max-line-length
+      data: { header : title === 'add' ? 'Add Organization' : 'Edit Organization', entityData: data ? data : null, entityType: 'Organization'},
       height: '400px',
       width: '500px',
     });
