@@ -1,5 +1,4 @@
 import { Component, OnInit, ElementRef, Output, EventEmitter} from '@angular/core';
-import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
 declare const $: any;
 
@@ -21,5 +20,10 @@ export class HeaderComponent implements OnInit {
 
   toggleMenu() {
     this.toggleMenuBar.emit();
+  }
+
+  logOut() {
+    localStorage.clear();
+    this.router.navigateByUrl('login');
   }
 }
