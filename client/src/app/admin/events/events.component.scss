@@ -15,7 +15,6 @@
         & h1{
           letter-spacing: -0.9px;
           font-weight: 300;
-          font-style: italic;
         }
 
       }
@@ -73,7 +72,7 @@
 
 @media (max-width: $widthsm) {
     .events-container{
-      & list-container{
+      & .list-container{
         max-width: 360px;
         width: 360px;
       }
@@ -85,10 +84,26 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    & list-container{
+    & .header-container{
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 30px;
+    }
+    & .list-container{
       max-width: 350px;
       width: 350px;
       margin-right: 0px;
+      &__desc-container{
+        width: 140px;
+        &__date-container{
+          font-size: 14px;
+        }
+        &__name-container{
+          & h2{
+            font-size: 19px;
+          }
+        }
+      }
     }
   }
 }

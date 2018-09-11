@@ -1,7 +1,6 @@
 import { EntityDialogComponent } from './../../shared/components/entity-dialog/entity-dialog.component';
 import { Router } from '@angular/router';
 import { DeleteWarningDialogComponent } from './../../shared/components/delete-warning-dialog/delete-warning-dialog.component';
-import { OranizationDialogComponent } from './../../shared/components/oranization-dialog/oranization-dialog.component';
 import { OrganizationService } from './../../core/services/organizations/organization.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';

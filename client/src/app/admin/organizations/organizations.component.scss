@@ -15,7 +15,6 @@
         & h1{
           letter-spacing: -0.9px;
           font-weight: 300;
-          font-style: italic;
         }
       }
       & .error-container{
@@ -69,11 +68,10 @@
 
 @media (max-width: $widthsm) {
     .organizations-container{
-
-        & list-container{
-            max-width: 280px;
-            width: 280px;
-        }
+      & .list-container{
+        max-width: 280px;
+        width: 280px;
+      }
     }
 }
 
@@ -82,10 +80,15 @@
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        & list-container{
+        & .header-container{
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 30px;
+        }
+        & .list-container{
             max-width: 350px;
             width: 350px;
-            margin-right: 0px;
+            margin:0px 0px 25px 0px;
         }
     }
 }

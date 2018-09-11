@@ -21,6 +21,7 @@
             background-size: cover;
         }
         &__desc-container{
+            text-transform: capitalize;
             height: 45px;
             margin: -5px;
             text-align: center;
@@ -32,9 +33,9 @@
     }
 }
 
-@media (max-width: $widthsm) { 
+@media (max-width: $widthsm) {
     .dashboard-container{
-        
+
         &__list-container{
             max-width: 280px;
             width: 280px;
@@ -42,7 +43,7 @@
     }
 }
 
-@media (max-width: $widthxs) { 
+@media (max-width: $widthxs) {
     .dashboard-container{
         display: flex;
         justify-content: center;
