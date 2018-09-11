@@ -1,0 +1,59 @@
+<div class="events-container">
+  <div class="header-container">
+    <h1>
+      Events
+    </h1>
+    <div class="header-container__button">
+        <button class="button--state-submit" mat-raised-button color="primary" (click)="openOrgDialog('add')">
+          <mat-icon>add_box</mat-icon>
+          Add Events
+        </button>
+    </div>
+  </div>
+
+  <!-- events list -->
+  <!-- <mat-card *ngFor="let event of events" class="list-container"> -->
+  <mat-card  class="list-container">
+    <div class="list-container__image-container"
+      [ngStyle]="{'background-image': 'url(../../../assets/images/logo1.jpg)'}">
+    </div>
+    <div class="list-container__desc-container">
+      <div class ="list-container__desc-container__button-container">
+        <button
+          mat-icon-button
+          (click)=select.open() class="list-container__desc-container__button-container--button">
+          <mat-icon>more_horiz</mat-icon>
+          <mat-select #select class="list-container__desc-container__button-container--button__crud-select">
+            <mat-option (click)="openOrgDialog('edit', organization)">Edit</mat-option>
+            <mat-option (click)="openWarningDialog(organization)">Delete</mat-option>
+          </mat-select>
+        </button>
+      </div>
+      <div class ="list-container__desc-container__name-container">
+        <h2>My Event</h2>
+      </div>
+      <div class ="list-container__desc-container__date-container">
+        <p>12-03-2019</p>
+      </div>
+    </div>
+  </mat-card>
+    <!-- TODO: <mat-card *ngFor="let event of events" class="list-container">
+      <div class="list-container__image-container"
+        [ngStyle]="{'background-image': 'url(../../../assets/images/image-placeholder.png)'}">
+
+        <button
+          mat-icon-button
+          (click)=select.open() class="list-container__image-container__button">
+          <mat-icon>more_horiz</mat-icon>
+          <mat-select #select class="list-container__image-container__button__crud-select">
+            <mat-option (click)="openOrgDialog('edit', organization)">Edit</mat-option>
+            <mat-option (click)="openWarningDialog(organization)">Delete</mat-option>
+          </mat-select>
+        </button>
+      </div>
+      <div class="list-container__desc-container">
+        <a routerLink = "{{organization._id }}/events">{{ organization.name }}</a>
+      </div>
+    </mat-card> -->
+
+</div>

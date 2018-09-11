@@ -8,6 +8,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { OrganizationsComponent } from './organizations/organizations.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
+import { EventsComponent } from './events/events.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { SharedModule } from '../shared/shared.module';
     AdminComponent,
     OrganizationsComponent,
     DashboardComponent,
+    EventsComponent,
   ],
   entryComponents: [
     OranizationDialogComponent,

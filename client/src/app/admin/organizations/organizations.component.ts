@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { DeleteWarningDialogComponent } from './../../shared/components/delete-warning-dialog/delete-warning-dialog.component';
 import { OranizationDialogComponent } from './../../shared/components/oranization-dialog/oranization-dialog.component';
 import { OrganizationService } from './../../core/services/organizations/organization.service';
@@ -13,7 +14,7 @@ import { MatDialog } from '@angular/material';
 export class OrganizationsComponent implements OnInit {
 
   organizations: any = [] ;
-  constructor(private organizationService: OrganizationService, private dialog: MatDialog) { }
+  constructor(private organizationService: OrganizationService, private dialog: MatDialog, public router: Router) { }
 
   ngOnInit() {
   this.getOrganization();
@@ -100,4 +101,7 @@ export class OrganizationsComponent implements OnInit {
     });
   }
 
+  event(organization) {
+    this.router.navigate(['organization/' + organization._id]);
+  }
 }

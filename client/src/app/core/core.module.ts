@@ -1,3 +1,4 @@
+import { EventsService } from './services/events/events.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { OrganizationService } from './services/organizations/organization.service';
 
@@ -20,7 +21,8 @@ import { TokenInterceptor } from './interceptor/http-token-interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    EventsService
   ]
 
 })

@@ -1,3 +1,4 @@
+import { EventsComponent } from './events/events.component';
 import { AuthService } from './../core/services/auth/auth.service';
 import { OrganizationsComponent } from './organizations/organizations.component';
 import { AdminComponent } from './admin.component';
@@ -17,7 +18,11 @@ const routes: Routes = [
       },
       {
         path: 'organizations',
-        component: OrganizationsComponent
+        component: OrganizationsComponent,
+      },
+      {
+        path: 'organizations/:id/events',
+        component: EventsComponent
       }
     ]
   }

@@ -2,7 +2,7 @@ import { EmanConfig } from './../../config/eman-config';
 import { UserService } from './../user/user.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, mergeMap, catchError} from 'rxjs/operators';
+import { map, catchError} from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 
@@ -20,7 +20,6 @@ user: any;
     this.user = this.userService.getUser();
     return this.http.get(`${this.apiBaseUrl}/organizations?_id=${this.user._id}`)
     .pipe(
-
       map((res) => {
         return res;
       }),
@@ -28,7 +27,6 @@ user: any;
         throw(err);
       })
     );
-
   }
 
   create(data): Observable<any> {
