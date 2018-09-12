@@ -74,18 +74,21 @@
 
 @media (max-width: $widthxs) {
     .organizations-container{
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      & .header-container{
         display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        & .header-container{
-          display: flex;
-          flex-direction: column;
-          margin-bottom: 30px;
-        }
-        & .list-container{
-            max-width: 350px;
-            width: 350px;
-            margin:0px 0px 25px 0px;
-        }
+        flex-direction: column;
+        margin-bottom: 30px;
+      }
+      & .list-container{
+        max-width: 350px;
+        width: 350px;
+        margin:0px 0px 25px 0px;
+      }
+      & .error-container{
+        text-align: center;
+      }
     }
 }
