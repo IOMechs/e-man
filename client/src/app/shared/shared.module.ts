@@ -6,6 +6,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DeleteWarningDialogComponent } from './components/delete-warning-dialog/delete-warning-dialog.component';
+import { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
 
 
 @NgModule({
@@ -14,15 +16,15 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialCustomModule,
     RouterModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  declarations: [HeaderComponent, SidebarComponent],
+  declarations: [HeaderComponent, SidebarComponent, DeleteWarningDialogComponent, EntityDialogComponent],
   exports: [
     MaterialCustomModule,
     HeaderComponent,
     SidebarComponent,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ]
 })
 export class SharedModule { }

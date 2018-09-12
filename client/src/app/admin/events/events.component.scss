@@ -1,0 +1,109 @@
+@import "../../../styles/e-man/_variables";
+
+.events-container{
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+      & .header-container{
+        display: flex;
+        flex-direction:  row;
+        width: 100%;
+        max-width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        & h1{
+          letter-spacing: -0.9px;
+          font-weight: 300;
+        }
+
+      }
+      & .error-container{
+        color: $em-red;
+      }
+      & .list-container{
+        max-width: 360px;
+        width: 360px;
+        height: 170px;
+        display: flex;
+        flex-direction: row;
+        padding: 0px;
+        margin: 0px 30px 25px 0px;
+        &__image-container{
+            display: flex;
+            flex: 1;
+            background-position: center;
+            background-repeat: none;
+            background-size: cover;
+         }
+        &__desc-container{
+          width: 210px;
+          padding: 10px 10px 10px 0px;
+          margin-left: 10px;
+          &__name-container{
+            margin-top: 35px;
+            & h2{
+              text-transform: capitalize;
+              font-weight: 100;
+              font-size: 22px;
+            }
+          }
+          &__date-container{
+            color: $em-red;
+            font-weight: bold;
+            font-size: 16px;
+          }
+          &__button-container{
+            &--button{
+              color: $em-grey;
+              position: absolute;
+              right: 5px;
+              top: 5px;
+              &__crud-select{
+                ::ng-deep div.mat-select-arrow-wrapper{
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+    }
+}
+
+@media (max-width: $widthsm) {
+    .events-container{
+      & .list-container{
+        max-width: 360px;
+        width: 360px;
+      }
+    }
+}
+
+@media (max-width: $widthxs) {
+  .events-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    & .header-container{
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 30px;
+    }
+    & .list-container{
+      max-width: 350px;
+      width: 350px;
+      margin-right: 0px;
+      &__desc-container{
+        width: 140px;
+        &__date-container{
+          font-size: 14px;
+        }
+        &__name-container{
+          & h2{
+            font-size: 19px;
+          }
+        }
+      }
+    }
+  }
+}

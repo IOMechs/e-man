@@ -1,3 +1,5 @@
+import { CoreModule } from './core/core.module';
+import { AuthGuard } from './core/guard/auth.guard';
 import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -17,9 +19,13 @@ import { SignupComponent } from './signup/signup.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    CoreModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthGuard,
+  ],
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }

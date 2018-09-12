@@ -12,9 +12,6 @@ import { FormGroup, FormBuilder , Validators, FormControl } from '@angular/forms
 export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
-  showErrorBox: boolean =  false;
-  $errorMessage: string;
-  requestSent: boolean = false;
 
 constructor(private authService: AuthService, private formBuilder: FormBuilder, private route: Router) { }
 
@@ -22,12 +19,12 @@ constructor(private authService: AuthService, private formBuilder: FormBuilder, 
     this.signupForm = this.formBuilder.group({
       firstName: ["",[
           Validators.required,
-          Validators.pattern("^[a-z ,.'-]+$")
+          Validators.pattern("^[a-zA-Z ,.'-]+$")
         ]
       ],
       lastName: ["",[
           Validators.required,
-          Validators.pattern("^[a-z ,.'-]+$")
+          Validators.pattern("^[a-zA-Z ,.'-]+$")
         ]
       ],
       username: ["",[
@@ -51,10 +48,8 @@ constructor(private authService: AuthService, private formBuilder: FormBuilder, 
   }
 
   onSubmit(){
-    this.requestSent = true;
     if(!this.signupForm.invalid){
       const formData = this.signupForm.value;
-      this.showErrorBox =  false; 
       this.authService
       .signup(formData)
       .subscribe(
@@ -62,23 +57,13 @@ constructor(private authService: AuthService, private formBuilder: FormBuilder, 
           this.route.navigate(['/admin']);
         },
         (err) => {
-          this.$errorMessage = err.error;
-          this.showErrorBox = true;
-          this.requestSent = false;
+          console.log(err);         
         }
       )
     }
     else{
-      this.$errorMessage = "Please Provide Valid Inputs";
-      this.showErrorBox = true;
-      this.requestSent = false;
+      console.log("Please Provide Valid Inputs");
     }
     
   }
-
-  hideErrorBox($event){
-    $event.stopPropagation();
-    this.showErrorBox = false;
-  }
-
 }

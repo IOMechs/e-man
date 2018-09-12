@@ -1,27 +1,20 @@
-<div class = "login-outer-container">
+<div class = "auth-outer-container">
   <div class="row">
-    <div class="login-intro-container" >
+    <div class="auth-intro-container" >
   
     </div>
-    <div class="login-form-container">
+    <div class="auth-form-container">
       <mat-card>
         <div class="card-container">
             
-            <div class="login-header">
+            <div class="auth-header">
                 <mat-card-header>
                     <mat-card-title>
                       <h2>LOGIN TO YOUR ACCOUNT</h2>
                     </mat-card-title>
                 </mat-card-header>
             </div>
-            <!-- Error Box -->
-            <div class="login-error" *ngIf="showErrorBox">
-              <div class="error-message">
-                {{ $errorMessage }}
-              </div>
-              <mat-icon class="em-icon" (click)="hideErrorBox($event)">clear</mat-icon>
-            </div>
-            <div class="login-content">
+            <div class="auth-content">
               <form [formGroup]="loginForm" (submit)="onSubmit()">
                 <mat-form-field>
                     <input matInput placeholder="Email" name="email" formControlName="email">
@@ -33,24 +26,24 @@
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput placeholder="Input" type="password" name="password" placeholder="Password" formControlName="password">
+                    <input matInput type="password" name="password" placeholder="Password" formControlName="password">
                       <mat-error *ngIf="loginControls.password.hasError('required')">
                         Password is <strong>required</strong>.
                       </mat-error>
                 </mat-form-field>
-                <div class="login__checkbox__forgot">
+                <div class="auth__checkbox__forgot">
                     <mat-checkbox
                       [labelPosition]="after">
                       Remember Me
                     </mat-checkbox>
                     <a class="forgot__password" href="javascript:void(0)">Forgot Password?</a>
                 </div>
-                <div class="login__button">
-                    <button class="button--state-submit" mat-raised-button color="primary" [disabled]="requestSent">Login</button>
+                <div class="auth__button">
+                    <button class="button--state-submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">LOGIN</button>
                 </div>
               </form>
             </div>
-            <div class="login-footer">
+            <div class="auth-footer">
               <span>Don't have account?</span>
                 <a routerLink="/register">Create Account</a>
             </div>

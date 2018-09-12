@@ -1,12 +1,123 @@
-.wrapper {
-    display: flex;
+@import "../../styles/e-man/_variables";
+
+.nav{
+    height: 100%;
     width: 100%;
-    align-items: stretch;
+    display: block;
+    .content-outer-container{
+        background-color: $em-light-grey;
+    }
+    &__side-nav {
+        background-color: $em-dark-grey;
+        color: $em-white;
+        width: 280px;
+        &__navbar-header {
+            display: flex;
+            align-items: center;
+            height: 195px;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 195px;
+            padding: 0 16px 0 16px;
+            transition: padding .2s ease;
+            background-color: $em-purple;
+            box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2);
+            &__top-contianer{
+                display: flex;
+                height: 64px;
+                position: absolute;
+                top: 0;
+                align-items: center;
+                width: 90%;
+                min-width: 90%;
+                justify-content: space-between;
+                &__logo {
+                    display: flex;
+                    align-items: center;
+                    margin-right: 90px;
+                    &__logo-icon {
+                      width: 30px;
+                      height: 30px;
+                    }
+                    &__logo-text {
+                      margin-left: 8px;
+                      font-size: 15px;
+                      font-weight: 300;
+                      letter-spacing: .4px;
+                    }
+                }
+            }
+            &__profile-container{
+                height: 150px;
+                min-width: 150px;
+                position: absolute;
+                top: 75px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                &-name{
+                    font-size: 16px;
+                    margin-bottom: 10px;
+                    color: $em-light-grey;
+                }
+                &-email{
+                    font-size: 13px;
+                    margin-bottom: 20px;
+                    color: $em-grey-2;
+                }
+                &__image-container{
+                    width: 100px;
+                    min-width: 100px;
+                    display: flex;
+                    justify-content: center;
+                    &-image{
+                        width: 80px;
+                        height: 80px;
+                        border-radius: 50%;
+                        border: 8px solid $em-dark-grey;
+                    }
+                }
+            }
+        }
+        &__side-menu {
+            margin-top: 80px;
+            font-size: 15px;
+            color: $em-grey-2;
+            &__list-item {
+              text-decoration: none;
+              display: flex;
+              align-items: center;
+              height: 48px;
+              padding: 0 24px;
+              outline: none;
+              cursor: pointer;
+              &:hover{
+                background-color: $em-purple;
+                outline: none;
+              }
+              &__item-icon {
+                font-size: 16px;
+                width: 16px;
+                height: 16px;
+                min-width: 16px;
+                min-height: 16px;
+                line-height: 16px;
+                margin-right: 16px;
+              }
+              &__item-title {
+                flex: 1;
+                white-space: nowrap;
+              }
+              &__item-collapse-arrow-icon {
+                font-size: 16px;
+                width: 16px;
+                height: 16px;
+                min-width: 16px;
+                min-height: 16px;
+                line-height: 16px;
+              }
+            }
+          }
+    }
 }
-
-#content{
-    width: 100%;
-    background-color: #f0efeff5;
-}
-
-

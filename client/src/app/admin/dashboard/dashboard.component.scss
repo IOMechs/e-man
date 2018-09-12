@@ -1,0 +1,57 @@
+@import "../../../styles/e-man/_variables";
+
+.dashboard-container{
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    &__list-container{
+        max-width: 300px;
+        width: 300px;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        padding: 5px 5px 0px 5px;
+        margin:0px 30px 25px 0px;
+        &__image-container{
+            display: flex;
+            flex: 1;
+            background-position: center;
+            background-repeat: none;
+            background-size: cover;
+        }
+        &__desc-container{
+            text-transform: capitalize;
+            height: 45px;
+            margin: -5px;
+            text-align: center;
+            padding-bottom: 7px;
+            background-color: $em-white-1;
+            font-size: 16px;
+            color: $em-black;
+        }
+    }
+}
+
+@media (max-width: $widthsm) {
+    .dashboard-container{
+
+        &__list-container{
+            max-width: 280px;
+            width: 280px;
+        }
+    }
+}
+
+@media (max-width: $widthxs) {
+    .dashboard-container{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        &__list-container{
+            max-width: 350px;
+            width: 350px;
+            margin-right: 0px;
+        }
+    }
+}

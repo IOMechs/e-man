@@ -1,0 +1,94 @@
+@import "../../../styles/e-man/_variables";
+
+.organizations-container{
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+      & .header-container{
+        display: flex;
+        flex-direction:  row;
+        width: 100%;
+        max-width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        & h1{
+          letter-spacing: -0.9px;
+          font-weight: 300;
+        }
+      }
+      & .error-container{
+        color: $em-red;
+      }
+      & .list-container{
+        max-width: 300px;
+        width: 300px;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        padding: 5px 5px 0px 5px;
+        margin:0px 30px 25px 0px;
+        &__image-container{
+            display: flex;
+            flex: 1;
+            background-position: center;
+            background-repeat: none;
+            background-size: cover;
+            &__button{
+              color: $em-grey;
+              position: absolute;
+              left: 20px;
+              top: 10px;
+              &__crud-select{
+                ::ng-deep div.mat-select-arrow-wrapper{
+                  display: none;
+                }
+              }
+            }
+        }
+        &__desc-container{
+            height: 45px;
+            margin: -5px;
+            padding-bottom: 7px;
+            background-color: $em-white-1;
+            font-size: 16px;
+            color: $em-black;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            & a{
+              text-decoration: none;
+              text-align: center;
+              color: $em-black;
+              text-transform: capitalize;
+            }
+        }
+    }
+}
+
+@media (max-width: $widthsm) {
+    .organizations-container{
+      & .list-container{
+        max-width: 280px;
+        width: 280px;
+      }
+    }
+}
+
+@media (max-width: $widthxs) {
+    .organizations-container{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        & .header-container{
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 30px;
+        }
+        & .list-container{
+            max-width: 350px;
+            width: 350px;
+            margin:0px 0px 25px 0px;
+        }
+    }
+}

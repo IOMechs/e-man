@@ -1,5 +1,4 @@
 import { Component, OnInit, ElementRef, Output, EventEmitter} from '@angular/core';
-import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
 declare const $: any;
 
@@ -10,20 +9,21 @@ declare const $: any;
 })
 export class HeaderComponent implements OnInit {
 
-    @Output() toggleValue = new EventEmitter<string>();
+  @Output() toggleMenuBar = new EventEmitter();
 
+  constructor(private router: Router) {
+  }
 
-    constructor(location: Location,  private element: ElementRef, private router: Router) {
-     
-    }
+  ngOnInit() {
 
-    ngOnInit(){
+  }
 
-    }
+  toggleMenu() {
+    this.toggleMenuBar.emit();
+  }
 
-    toggleSlider(){
-      $('#sidebar').toggleClass('active');
-    }
-
-    
+  logOut() {
+    localStorage.clear();
+    this.router.navigateByUrl('login');
+  }
 }

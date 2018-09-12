@@ -13,9 +13,6 @@ import { FormGroup, FormBuilder , Validators, FormControl } from '@angular/forms
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  showErrorBox: boolean =  false;
-  $errorMessage: string;
-  requestSent: boolean = false;
 
   constructor(private authService: AuthService, private route: Router, private formBuilder: FormBuilder) {
    }
@@ -23,7 +20,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ['', [
-          Validators.required, 
+          Validators.required,
           Validators.email
         ]
       ],
@@ -36,34 +33,21 @@ export class LoginComponent implements OnInit {
 
   get loginControls() { return this.loginForm.controls; }
 
-  onSubmit(){
-    this.requestSent = true;
-    if(!this.loginForm.invalid){
+  onSubmit() {
+    if (!this.loginForm.invalid) {
       const formData = this.loginForm.value;
-      this.showErrorBox =  false; 
       this.authService
       .login(formData)
       .subscribe(
-        (data : LoginForm) => {
+        (data: LoginForm) => {
           this.route.navigate(['/admin']);
         },
         (err) => {
-          this.$errorMessage = err.error;
-          this.showErrorBox = true;
+          console.log(err);
         }
-      )
+      );
+    } else {
+      console.log('Please Provide Valid Inputs');
     }
-    else{
-      this.$errorMessage = "Please Provide Valid Inputs";
-      this.showErrorBox = true;
-    }
-    this.requestSent = false;
   }
-
-  hideErrorBox($event){
-    $event.stopPropagation();
-    this.showErrorBox = false;
-  }
-    
-
 }

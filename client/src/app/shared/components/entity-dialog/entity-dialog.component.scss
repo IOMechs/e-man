@@ -1,0 +1,21 @@
+.dialog-container{
+  display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  &__content-container{
+    &__entity-form{
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      & mat-form-field{
+        font-size: 15px;
+      }
+    }
+  }
+  &__footer-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}

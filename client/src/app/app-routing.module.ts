@@ -6,17 +6,20 @@ import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
   {
-    path:'',
+    path: '',
     redirectTo: 'admin',
-    pathMatch: 'full'        
-  },{
-    path:'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
     component: LoginComponent
-  },{
-    path:'register',
+  },
+  {
+    path: 'register',
     component: SignupComponent
-  },{
-    path:'admin',
+  },
+  {
+    path: 'admin',
     loadChildren: './admin/admin.module#AdminModule'
   },
 ];
