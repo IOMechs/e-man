@@ -63,7 +63,7 @@ updateEvent = function(expressInstance, jwtInstance, verifyToken)
             }
             else
             {
-                const query = { _id: req.query._id };
+                const query = { _id: req.body._id };
                 const options = { new: true };
 
                 EventModel.findOneAndUpdate(query, req.body, options, (err, eventObject) => {
@@ -89,7 +89,7 @@ response type: sends a json object of type { "event": object }. Else sends "Unau
 */
 deleteEvent = function(expressInstance, jwtInstance, verifyToken)
 {
-    expressInstance.delete('/event', verifyToken, (req, res) => {
+    expressInstance.delete('/event/:id', verifyToken, (req, res) => {
         jwtInstance.verify(req.token, config.jwt_key, (err, userData) => {
             if(err)
             {
@@ -97,7 +97,7 @@ deleteEvent = function(expressInstance, jwtInstance, verifyToken)
             }
             else
             {
-                const query = { _id: req.query._id };
+                const query = { _id: req.params.id };
                 EventModel.remove(query, (err, eventObject) => {
                     if(err)
                     {
