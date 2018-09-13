@@ -21,23 +21,13 @@ export class DashboardComponent implements OnInit {
     this.organizationService.get()
     .subscribe(
       (data: any) => {
-        this.showToast();
-        this.organizations =  data['organization'];
+        this.organizations =  data['organization'].length > 0 ? data['organization'] : [];
       },
       (err) => {
         console.log(err);
       }
     );
   }
-
-  showToast() {
-    this.snackBar.open('Organization Fetch Sucessfully', '' , {
-      duration: 5000,
-      verticalPosition: 'top',
-      horizontalPosition: 'right'
-    });
-  }
-
   // TODO: getImageUrl(imagePath){
   //   return `url(${EmanConfig.imageBaseUrl}/${imagePath})`;
   // }

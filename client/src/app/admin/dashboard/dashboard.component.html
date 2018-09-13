@@ -1,10 +1,19 @@
+
 <div class="dashboard-container">
-    <mat-card *ngFor="let organization of organizations" class="dashboard-container__list-container">
-        <div class="dashboard-container__list-container__image-container" [ngStyle]="{'background-image': 'url(../../../assets/images/image-placeholder.png)'}">
-            <!-- <img src="../../../assets/images/image-placeholder.png"> -->
-        </div>
-        <div class="dashboard-container__list-container__desc-container">
-            <p>{{ organization.name }}</p>
-        </div>
-    </mat-card>
+  <ng-container *ngIf = "organizations.length > 0">
+      <mat-card *ngFor="let organization of organizations" class="dashboard-container__list-container">
+          <div class="dashboard-container__list-container__image-container" [ngStyle]="{'background-image': 'url(../../../assets/images/image-placeholder.png)'}">
+              <!-- <img src="../../../assets/images/image-placeholder.png"> -->
+          </div>
+          <div class="dashboard-container__list-container__desc-container">
+              <p>{{ organization.name }}</p>
+          </div>
+      </mat-card>
+  </ng-container>
+
+  <div class="error-container" *ngIf ="organizations.length === 0">
+    <p>No Organization Avaliable.. </p>
+  </div>
+
+
 </div>
