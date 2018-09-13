@@ -76,9 +76,7 @@ updateOrganization = function(expressInstance, jwtInstance, verifyToken)
             else
             {
                 const query = { _id: req.body._id };
-                console.log(req.body._id);
                 const options = { new: true };
-
                 OrganizationModel.findOneAndUpdate(query, req.body, options, (err, organizationObject) => {
                     if (err) 
                     {

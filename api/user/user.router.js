@@ -116,10 +116,10 @@ method: getUser(expressInstance)
 url: domain/user?username
 response type: sends a json object of type { "user": object } if it exists. Else sends { "user": null }
 */
-getUser = function(expressInstance)
+getUser = function(expressInstance, jwtInstance)
 {
-    expressInstance.get('/user', (req, res) => {
-        UserModel.findOne( { "username": req.query.username },  (err, userObject) => 
+    expressInstance.post('/login', (req, res) => {
+        UserModel.findOne( { "email": req.body.email },  (err, userObject) => 
         {
             if(err)
             {
@@ -128,8 +128,19 @@ getUser = function(expressInstance)
             else
             {
                 const user = userObject.toJSON();
-                delete user.password
-                res.json( { "user": user } );
+                delete user.password;
+                const signObject = { "user": user };
+                jwtInstance.sign(signObject, config.jwt_key, (err, token) => {
+                    if(err)
+                    {
+                        res.status(401).send('Unauthorized');
+                    }
+                    else
+                    {
+                        res.json({ "user": user, "token": token });
+                    }
+                });
+        
             }
         });
     });
@@ -163,6 +174,6 @@ exports.createRoutes = function(expressInstance, jwtInstance, verifyToken)
     addUser(expressInstance, jwtInstance);
     updateUser(expressInstance, jwtInstance, verifyToken);
     deleteUser(expressInstance, jwtInstance, verifyToken);
-    getUser(expressInstance);
+    getUser(expressInstance,jwtInstance);
     getAllUsers(expressInstance);
 }
