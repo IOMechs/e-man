@@ -1,5 +1,5 @@
 import { DeleteWarningDialogComponent } from './../../shared/components/delete-warning-dialog/delete-warning-dialog.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { EntityDialogComponent } from './../../shared/components/entity-dialog/entity-dialog.component';
 import { EventsService } from './../../core/services/events/events.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +14,8 @@ export class EventsComponent implements OnInit {
 
   orgId: string;
   events: any = [];
-  constructor(private route: ActivatedRoute, private eventService: EventsService, private dialog: MatDialog) {
+  constructor(private route: ActivatedRoute, private eventService: EventsService,
+    private dialog: MatDialog, private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -38,6 +39,7 @@ export class EventsComponent implements OnInit {
     this.eventService.create(formData)
     .subscribe(
       (data: any) => {
+        this.showToast('Create');
         this.events.unshift(data.event);
       },
       (err) => {
@@ -50,6 +52,7 @@ export class EventsComponent implements OnInit {
     this.eventService.update(formData)
     .subscribe(
       (data: any) => {
+        this.showToast('Updated');
         console.log(data);
       },
       (err) => {
@@ -60,6 +63,7 @@ export class EventsComponent implements OnInit {
 
   deleteEvent(formData) {
     if (formData) {
+      this.showToast('Delete');
       this.eventService.delete(formData)
     .subscribe(
       (data: any) => {
@@ -101,6 +105,14 @@ export class EventsComponent implements OnInit {
       if (result && result === true) {
         this.deleteEvent(data);
       }
+    });
+  }
+
+  showToast(title) {
+    this.snackBar.open(`Event ${title} Sucessfully`, '' , {
+      duration: 5000,
+      verticalPosition: 'top',
+      horizontalPosition: 'right'
     });
   }
 
