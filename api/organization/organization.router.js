@@ -21,29 +21,42 @@ response type: sends a json object of type { "organization": object }. Else send
 addOrganization = function(expressInstance, jwtInstance, verifyToken, multerInstance)
 {
     expressInstance.post('/organization', verifyToken, multerInstance.single('organizationImage'), (req, res) => {
-        jwtInstance.verify(req.token, config.jwt_key, (err, userData) => {
+        var newOrganization = new OrganizationModel(req.body);
+        // newOrganization.organizationImage.data = fs.readFileSync(req.file.path).type;
+        newOrganization.organizationImage.fileInfo = req.file;
+        newOrganization.save( (err, organizationObject) => {
             if(err)
             {
-                res.status(401).send("Unauthorized");
+                res.status(400).send("Bad request");
             }
             else
             {
-                var newOrganization = new OrganizationModel(req.body);
-                // newOrganization.organizationImage.data = fs.readFileSync(req.file.path).type;
-                newOrganization.organizationImage.fileInfo = req.file;
-                newOrganization.save( (err, organizationObject) => {
-                    if(err)
-                    {
-                        res.status(400).send("Bad request");
-                    }
-                    else
-                    {
-                        res.json({ "organization": organizationObject });
-                    }
-                });
+                res.json({ "organization": organizationObject });
             }
         });
-    });
+        // jwtInstance.verify(req.token, config.jwt_key, (err, userData) => {
+            // if(err)
+            // {
+            //     res.status(401).send("Unauthorized");
+            // }
+            // else
+            // {
+            //     var newOrganization = new OrganizationModel(req.body);
+                // newOrganization.organizationImage.data = fs.readFileSync(req.file.path).type;
+            //     newOrganization.organizationImage.fileInfo = req.file;
+            //     newOrganization.save( (err, organizationObject) => {
+            //         if(err)
+            //         {
+            //             res.status(400).send("Bad request");
+            //         }
+            //         else
+            //         {
+            //             res.json({ "organization": organizationObject });
+            //         }
+            //     });
+            // }
+        });
+   // });
 }
 
 /*
@@ -62,9 +75,8 @@ updateOrganization = function(expressInstance, jwtInstance, verifyToken)
             }
             else
             {
-                const query = { _id: req.query._id };
+                const query = { _id: req.body._id };
                 const options = { new: true };
-
                 OrganizationModel.findOneAndUpdate(query, req.body, options, (err, organizationObject) => {
                     if (err) 
                     {
@@ -88,7 +100,7 @@ response type: sends a json object of type { "Organization": object }. Else send
 */
 deleteOrganization = function(expressInstance, jwtInstance, verifyToken)
 {
-    expressInstance.delete('/organization', verifyToken, (req, res) => {
+    expressInstance.delete('/organization/:id', verifyToken, (req, res) => {
         jwtInstance.verify(req.token, config.jwt_key, (err, userData) => {
             if(err)
             {
@@ -96,7 +108,7 @@ deleteOrganization = function(expressInstance, jwtInstance, verifyToken)
             }
             else
             {
-                const query = { _id: req.query._id };
+                const query = { _id: req.params.id };
                 OrganizationModel.remove(query, (err, organizationObject) => {
                     if(err)
                     {
@@ -141,7 +153,7 @@ response type: sends a array of json objects of type { "Organization": object }[
 */
 getOrganizationsByUserId = function(expressInstance)
 {
-    expressInstance.get('/organization/all-organizations', (req, res) => {
+    expressInstance.get('/organizations', (req, res) => {
         OrganizationModel.find({userId : req.query._id }, (err, organizationObject) => {
             if(err)
             {

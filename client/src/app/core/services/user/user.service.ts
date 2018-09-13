@@ -8,7 +8,7 @@ export class UserService {
 
   constructor() { }
 
-  getUser() : any{
+  getUser(): any {
     const user  = JSON.parse(localStorage.getItem(EmanConstant.eman_user));
     return user;
   }

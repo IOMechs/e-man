@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { EmanConfig } from '../../config/eman-config';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map, mergeMap, catchError, first } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { EmanConstant } from './../../../../constant/eman-constant';
 
 

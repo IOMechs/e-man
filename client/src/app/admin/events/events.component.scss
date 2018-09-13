@@ -18,9 +18,6 @@
         }
 
       }
-      & .error-container{
-        color: $em-red;
-      }
       & .list-container{
         max-width: 360px;
         width: 360px;
@@ -104,6 +101,9 @@
           }
         }
       }
+    }
+    & .error-container{
+      text-align: center;
     }
   }
 }
