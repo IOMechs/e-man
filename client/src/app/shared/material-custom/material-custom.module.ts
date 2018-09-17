@@ -13,7 +13,8 @@ import {
   MatNativeDateModule,
   MatOptionModule,
   MatSelectModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatTableModule
 } from '@angular/material';
 
 
@@ -33,7 +34,8 @@ import {
     MatNativeDateModule,
     MatOptionModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTableModule
   ],
   declarations: [],
   exports: [
@@ -50,7 +52,8 @@ import {
     MatNativeDateModule,
     MatOptionModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTableModule
   ]
 })
 export class MaterialCustomModule { }

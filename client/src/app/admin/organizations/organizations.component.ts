@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { DeleteWarningDialogComponent } from './../../shared/components/delete-warning-dialog/delete-warning-dialog.component';
 import { OrganizationService } from './../../core/services/organizations/organization.service';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar, MatTableDataSource } from '@angular/material';
 
 
 
@@ -15,11 +15,16 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 export class OrganizationsComponent implements OnInit {
 
   organizations: any = [];
+  dataSource: any = [];
+  displayedColumns: string[] = ['no.', 'image', 'name', 'description', 'createAt', 'action'];
+  organizationCount = 0;
+
   constructor(private organizationService: OrganizationService, private dialog: MatDialog,
     private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   this.getOrganization();
+
   }
 
   getOrganization() {
@@ -27,6 +32,7 @@ export class OrganizationsComponent implements OnInit {
     .subscribe(
       (data: any) => {
         this.organizations =  data['organization'] && data['organization'].length > 0 ? data['organization'] : [];
+        this.dataSource = new MatTableDataSource(this.organizations);
       },
       (err) => {
         console.log(err);
@@ -117,5 +123,9 @@ export class OrganizationsComponent implements OnInit {
       verticalPosition: 'top',
       horizontalPosition: 'right'
     });
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
