@@ -22,7 +22,7 @@ const routes: Routes = [
         component: OrganizationsComponent,
       },
       {
-        path: 'organizations/:id/events',
+        path: 'organization/:id/events',
         component: EventsComponent
       }
     ]

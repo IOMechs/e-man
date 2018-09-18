@@ -1,94 +1,117 @@
 @import "../../../styles/e-man/_variables";
-
 .organizations-container{
-    padding: 30px;
+  padding: 30px;
+  margin-top: 30px;
+  &__top-container{
+    padding: 80px 40px 80px 40px;
+    background-color: $em-purple;
     display: flex;
-    flex-wrap: wrap;
-    margin-top: 30px;
-      & .header-container{
-        display: flex;
-        flex-direction:  row;
-        width: 100%;
-        max-width: 100%;
-        justify-content: space-between;
-        align-items: center;
-        & h1{
-          letter-spacing: -0.9px;
-          font-weight: 300;
+    flex-direction:  row;
+    max-width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    & h1{
+      color: $em-white-1;
+      letter-spacing: 2.9px;
+      font-weight: 100;
+      font-size: 30px;
+    }
+    .error-container{
+      font-size: 25px;
+      color: $em-black;
+    }
+    &__search{
+      color: $em-white-1;
+      & mat-form-field{
+        letter-spacing: 2px;
+        .search-icon{
+          position: relative;
+          top: 6px;
+          font-size: 14px;
+        }
+        font-size: 15px;
+        &.mat-focused {
+          ::ng-deep .mat-form-field-ripple {
+            background-color: $em-white-1;
+            transform: none;
+          }
+        }
+        ::ng-deep .mat-form-field-wrapper {
+            .mat-form-field-underline {
+              background-color: $em-white-1;
+            }
+            .mat-form-field-label {
+              color: $em-white-1;
+          }
         }
       }
-      & .list-container{
-        max-width: 300px;
-        width: 300px;
-        height: 250px;
-        display: flex;
-        flex-direction: column;
-        padding: 5px 5px 0px 5px;
-        margin:0px 30px 25px 0px;
-        &__image-container{
-            display: flex;
-            flex: 1;
+    }
+  }
+  &__bottom-container{
+    display: flex;
+    justify-content: center;
+    &__table {
+      width: 95%;
+      position: relative;
+      padding-bottom: 20px;
+      top:-40px;
+      &__row{
+        height: 90px;
+        cursor: pointer;
+        &--btn{
+          margin-right: 10px;
+        }
+        & td{
+          color: $em-grey;
+          & img{
+            width: 70px;
+            height: 70px;
             background-position: center;
             background-repeat: none;
             background-size: cover;
-            &__button{
-              color: $em-grey;
-              position: absolute;
-              left: 20px;
-              top: 10px;
-              &__crud-select{
-                ::ng-deep div.mat-select-arrow-wrapper{
-                  display: none;
-                }
-              }
-            }
+          }
         }
-        &__desc-container{
-            height: 45px;
-            margin: -5px;
-            padding-bottom: 7px;
-            background-color: $em-white-1;
-            font-size: 16px;
-            color: $em-black;
-            align-items: center;
-            display: flex;
-            justify-content: center;
-            & a{
-              text-decoration: none;
-              text-align: center;
-              color: $em-black;
-              text-transform: capitalize;
-            }
-        }
-    }
-}
-
-@media (max-width: $widthsm) {
-    .organizations-container{
-      & .list-container{
-        max-width: 280px;
-        width: 280px;
       }
     }
+  }
 }
 
 @media (max-width: $widthxs) {
-    .organizations-container{
-      display: flex;
+  .organizations-container{
+    &__top-container{
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
-      & .header-container{
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 30px;
-      }
-      & .list-container{
-        max-width: 350px;
-        width: 350px;
-        margin:0px 0px 25px 0px;
-      }
-      & .error-container{
-        text-align: center;
+      padding: 40px 0px 40px 0px;
+      &__search{
+        margin-bottom: 20px;
       }
     }
+    &__bottom-container{
+      &__table {
+        position: relative;
+        top: -22px;
+      }
+    }
+  }
+}
+
+ @media (max-width: $widthsm){
+  .organizations-container{
+    &__top-container{
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 0px 40px 0px;
+      &__search{
+        margin-bottom: 20px;
+      }
+    }
+    &__bottom-container{
+      &__table {
+        position: relative;
+        top: -22px;
+      }
+    }
+  }
 }
