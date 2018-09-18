@@ -30,8 +30,8 @@ const organizationSchema = mongoose.Schema(
         },
         organizationImage:
         {
-            data: Buffer,
-            fileInfo: Object
+            type: String,
+            required: false
         },
         createdOn:  //The date when the post for the event will be created.
         {

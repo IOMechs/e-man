@@ -2,23 +2,25 @@ var express  =  require('express');
 var router = express.Router();
 var multer = require('multer');
 
-const storage = multer.diskStorage({
+const store = multer.diskStorage({
     destination: (req, file, callback) => {
         callback(null, 'uploads/');
     },
     filename: (req, file, callback) => {
-        callback(null, file.originalname + '-eman.jpg');
+        callback(null, 'eman-' +file.originalname);
     }
 });
-const upload = multer({ storage: storage }).single('file');
+var upload = multer({ storage: store }).single('file');
 
 router.post('/upload', function(req,res){
     upload(req,res, function(err){
         if(err){
-            res.status(501).json({err: err});
+            res.status(501).json({status:'error',err: err});
         }
         else{
-            res.status(200).json({status:'success', path: `/upload/${req.file.filename}`});
+            res.status(200).json({status:'success', path: `/uploads/${req.file.filename}`});
         }
     })
 });
+
+module.exports = router;  
