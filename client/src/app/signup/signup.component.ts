@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { SignupForm } from './../core/common/signup';
 import { AuthService } from './../core/services/auth/auth.service';
@@ -13,57 +14,61 @@ export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
 
-constructor(private authService: AuthService, private formBuilder: FormBuilder, private route: Router) { }
+constructor(private authService: AuthService, private formBuilder: FormBuilder,
+  private route: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
-      firstName: ["",[
+      firstName: ['', [
           Validators.required,
           Validators.pattern("^[a-zA-Z ,.'-]+$")
         ]
       ],
-      lastName: ["",[
+      lastName: ['', [
           Validators.required,
-          Validators.pattern("^[a-zA-Z ,.'-]+$")
+          Validators.pattern("^[a-zA-Z ,.'-]+$"),
         ]
       ],
-      username: ["",[
+      username: ['', [
           Validators.required
         ]
       ],
-      email: ["",[
-          Validators.required, 
+      email: ['', [
+          Validators.required,
           Validators.email
         ]
       ],
-      password: ["",[
+      password: ['', [
           Validators.required
         ]
       ]
-    })
+    });
   }
 
   get signupControls() {
     return this.signupForm.controls;
   }
 
-  onSubmit(){
-    if(!this.signupForm.invalid){
+  onSubmit() {
+    if (!this.signupForm.invalid) {
       const formData = this.signupForm.value;
       this.authService
       .signup(formData)
       .subscribe(
-        (data : SignupForm) => {
+        (data: SignupForm) => {
           this.route.navigate(['/admin']);
         },
         (err) => {
-          console.log(err);         
+          this.snackBar.open(String(err.error), '' , {
+            duration: 5000,
+            verticalPosition: 'top',
+            horizontalPosition: 'right'
+          });
+          console.log(err);
         }
-      )
+      );
+    } else {
+      console.log('Please Provide Valid Inputs');
     }
-    else{
-      console.log("Please Provide Valid Inputs");
-    }
-    
   }
 }
