@@ -16,6 +16,10 @@
       font-weight: 100;
       font-size: 30px;
     }
+    .error-container{
+      font-size: 25px;
+      color: $em-black;
+    }
     &__search{
       color: $em-white-1;
       & mat-form-field{
@@ -46,14 +50,17 @@
   &__bottom-container{
     display: flex;
     justify-content: center;
-    height: 600px;
     &__table {
       width: 95%;
       position: relative;
+      padding-bottom: 20px;
       top:-40px;
-      &--row{
+      &__row{
         height: 90px;
         cursor: pointer;
+        &--btn{
+          margin-right: 10px;
+        }
         & td{
           color: $em-grey;
           & img{
@@ -72,7 +79,6 @@
 @media (max-width: $widthxs) {
   .organizations-container{
     &__top-container{
-      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -90,10 +96,9 @@
   }
 }
 
-@media (max-width: $widthsm) {
+ @media (max-width: $widthsm){
   .organizations-container{
     &__top-container{
-      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;

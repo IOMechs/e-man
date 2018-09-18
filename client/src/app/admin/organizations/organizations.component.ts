@@ -17,7 +17,6 @@ export class OrganizationsComponent implements OnInit {
   organizations: any = [];
   dataSource: any = [];
   displayedColumns: string[] = ['no.', 'image', 'name', 'description', 'createAt', 'action'];
-  organizationCount = 0;
 
   constructor(private organizationService: OrganizationService, private dialog: MatDialog,
     private router: Router, private snackBar: MatSnackBar) { }
@@ -58,7 +57,8 @@ export class OrganizationsComponent implements OnInit {
     .subscribe(
       (data: any) => {
         this.showToast('Create');
-        this.organizations.unshift(data.organization);
+        this.organizations.unshift(data['organization']);
+        this.dataSource = new MatTableDataSource(this.organizations);
       },
       (err) => {
         console.log(err);
@@ -81,7 +81,10 @@ export class OrganizationsComponent implements OnInit {
     }
   }
 
-  openOrgDialog(title, data?) {
+  openOrgDialog(title, data?, event?) {
+    if (event) {
+      event.stopPropagation();
+    }
     const dialogRef = this.dialog.open(EntityDialogComponent, {
       // tslint:disable-next-line:max-line-length
       data: { header : title === 'add' ? 'Add Organization' : 'Edit Organization', entityData: data ? data : null, entityType: 'Organization'},
@@ -101,7 +104,10 @@ export class OrganizationsComponent implements OnInit {
     });
   }
 
-  openWarningDialog(data) {
+  openWarningDialog(data, event?) {
+    if (event) {
+      event.stopPropagation();
+    }
     const dialogRef = this.dialog.open(DeleteWarningDialogComponent, {
       height: '150px',
       width: '400px',
@@ -127,5 +133,9 @@ export class OrganizationsComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  moveToEvent(data) {
+    this.router.navigateByUrl(`admin/organization/${data._id}/events`);
   }
 }
