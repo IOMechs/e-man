@@ -1,12 +1,12 @@
 <div class = "auth-outer-container">
   <div class="row">
     <div class="auth-intro-container" >
-  
+
     </div>
     <div class="auth-form-container">
       <mat-card>
         <div class="card-container">
-            
+
             <div class="auth-header">
                 <mat-card-header>
                     <mat-card-title>
@@ -33,12 +33,6 @@
                   </mat-error>
                   <mat-error *ngIf="signupControls.lastName.hasError('pattern')">
                     Provide Valid <strong>Last Name e.g doe</strong>
-                  </mat-error>
-                </mat-form-field>
-                <mat-form-field>
-                  <input matInput placeholder="User Name" name="username" formControlName="username">
-                  <mat-error *ngIf="signupControls.username.hasError('required')">
-                    User Name is <strong>required</strong>
                   </mat-error>
                 </mat-form-field>
                 <mat-form-field>
