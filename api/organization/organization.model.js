@@ -33,7 +33,7 @@ const organizationSchema = mongoose.Schema(
             data: Buffer,
             fileInfo: Object
         },
-        createdOn:  //The date when the post for the event will be created.
+        createdAt:  //The date when the post for the event will be created.
         {
             type: Date,
             required: true,

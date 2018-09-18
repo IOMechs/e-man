@@ -94,7 +94,7 @@ export class OrganizationsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result !== '') {
         if (title === 'add') {
-          result['createdOn'] = Date();
+          result['createdAt'] = Date();
           this.createOrganization(result);
         } else {
          const res = Object.assign(data, result);
