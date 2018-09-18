@@ -79,7 +79,6 @@ export class OrganizationsComponent implements OnInit {
     const dialogRef = this.dialog.open(EntityDialogComponent, {
       // tslint:disable-next-line:max-line-length
       data: { header : title === 'add' ? 'Add Organization' : 'Edit Organization', entityData: data ? data : null, entityType: 'Organization'},
-      height: '400px',
       width: '500px',
     });
     dialogRef.afterClosed().subscribe(result => {

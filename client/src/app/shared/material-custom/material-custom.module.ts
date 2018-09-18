@@ -1,6 +1,7 @@
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatFileUploadModule } from 'angular-material-fileupload';
 import {
   MatButtonModule,
   MatInputModule,
@@ -15,7 +16,6 @@ import {
   MatSelectModule,
   MatSnackBarModule
 } from '@angular/material';
-
 
 @NgModule({
   imports: [
@@ -33,7 +33,8 @@ import {
     MatNativeDateModule,
     MatOptionModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatFileUploadModule
   ],
   declarations: [],
   exports: [
@@ -50,7 +51,8 @@ import {
     MatNativeDateModule,
     MatOptionModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatFileUploadModule
   ]
 })
 export class MaterialCustomModule { }
