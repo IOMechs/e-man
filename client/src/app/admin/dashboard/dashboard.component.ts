@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
     this.organizationService.get()
     .subscribe(
       (data: any) => {
-        this.organizations =  data['organization'].length > 0 ? data['organization'] : [];
+        this.organizations =  data['organizations'].length > 0 ? data['organizations'] : [];
       },
       (err) => {
         console.log(err);

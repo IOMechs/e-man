@@ -17,14 +17,6 @@
                       Description is <strong>required</strong>.
                   </mat-error>
                 </mat-form-field>
-                <mat-form-field *ngIf= "isOrganization">
-                  <input matInput [matDatepicker]="picker" placeholder="Select {{data.entityType}} Date" formControlName="organizationDate">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                  <mat-error *ngIf="entityControls.organizationDate.hasError('required')">
-                      Date is <strong>required</strong>.
-                  </mat-error>
-                </mat-form-field>
                 <mat-form-field *ngIf= "!isOrganization">
                     <input matInput [matDatepicker]="picker" placeholder="Select {{data.entityType}} Date" formControlName="eventDate">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

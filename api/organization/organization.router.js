@@ -162,7 +162,7 @@ getOrganizationsByUserId = function(expressInstance)
             }
             else
             {
-                res.json({ "organization": organizationObject });
+                res.json({ "organizations": organizationObject });
             }
         });
     });

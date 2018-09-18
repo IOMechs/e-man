@@ -23,11 +23,6 @@ const organizationSchema = mongoose.Schema(
             type: String,
             required: true
         },
-        organizationDate: 
-        {
-            type: Date,
-            required: true
-        },
         organizationImage:
         {
             data: Buffer,

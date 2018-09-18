@@ -45,8 +45,8 @@ export class AuthService {
       map((data: any) => {
         if (data['token']) {
           localStorage.setItem(EmanConstant.eman_token, data['token']);
-          localStorage.setItem(EmanConstant.eman_user, JSON.stringify(data['auth']));
-          return data['auth'];
+          localStorage.setItem(EmanConstant.eman_user, JSON.stringify(data['user']));
+          return data['user'];
         }
       }),
       catchError(err => {
