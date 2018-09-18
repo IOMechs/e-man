@@ -14,7 +14,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: DashboardComponent
+        // pathMatch: 'full',
+        redirectTo: 'organizations',
       },
       {
         path: 'organizations',
