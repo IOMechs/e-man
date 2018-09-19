@@ -1,0 +1,74 @@
+<div class="entity-container">
+  <div class="entity-container__top-container">
+    <h1>
+      <mat-icon>{{ entityType == 'event' ? 'event' : 'group' }}</mat-icon>
+      {{ entityType == 'event' ? 'Events' : 'Organizations' }}
+   </h1>
+   <div class="entity-container__top-container__search">
+      <mat-form-field color="white">
+        <span matPrefix class="search-icon"><mat-icon matPreffix>search</mat-icon> &nbsp;</span>
+        <input matInput type="text" placeholder="Search" (keyup)="applyFilter($event.target.value)">
+      </mat-form-field>
+   </div>
+   <div class="entity-container__top-container__button">
+      <button class="button--state-submit" mat-raised-button (click)="openDialog('add')">
+        Add {{ entityType == 'event' ? 'Event' : 'Organization' }}
+      </button>
+   </div>
+  </div>
+  <div class="entity-container__bottom-container" *ngIf ="list.length > 0">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 entity-container__bottom-container__table">
+
+      <ng-container matColumnDef="no.">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let i = index"> {{ i +1 }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <img src= "../../../assets/images/image-placeholder.png" />
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createAt" *ngIf="entityType != 'event'">
+        <th mat-header-cell *matHeaderCellDef> Created at </th>
+        <td mat-cell *matCellDef="let element"> {{element.createdOn | date: 'EEEE, dd MMM yyyy' }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="eventDate" *ngIf="entityType == 'event'">
+        <th mat-header-cell *matHeaderCellDef> Event Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.eventDate | date: 'EEEE, dd MMM yyyy' }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          <button class="entity-container__bottom-container__table__row--btn" mat-mini-fab color="primary" (click)="openDialog('edit', element, $event)">
+            Edit
+          </button>
+          <button mat-mini-fab color="warn" (click)="openWarningDialog(element,i, $event)">
+            Delete
+          </button>
+        </td>
+      </ng-container>
+
+      <tr class="entity-container__bottom-container__table__row" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr class="entity-container__bottom-container__table__row" mat-row *matRowDef="let row; columns: displayedColumns; let element;" (click)="moveToEvent(element)"></tr>
+    </table>
+  </div>
+
+  <div class="error-container" *ngIf ="list.length === 0">
+    <p>No {{ entityType }} Avaliable.. You Can Add New {{ entityType }}. </p>
+  </div>
+</div>

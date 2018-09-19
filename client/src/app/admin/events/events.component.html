@@ -1,4 +1,4 @@
-<div class="events-container">
+<!-- <div class="events-container">
   <div class="header-container">
     <h1>
       Events
@@ -9,10 +9,10 @@
           Add Events
         </button>
     </div>
-  </div>
+  </div> -->
 
   <!-- events list -->
-  <ng-container *ngIf = "events.length > 0">
+  <!-- <ng-container *ngIf = "events.length > 0">
     <mat-card *ngFor="let event of events"  class="list-container">
         <div class="list-container__image-container"
           [ngStyle]="{'background-image': 'url(../../../assets/images/logo1.jpg)'}">
@@ -43,4 +43,27 @@
     <p>No Events Related To This Organization.. You Can Add Events </p>
   </div>
 
-</div>
+</div> -->
+
+<em-entity-list [entityList] = "events"></em-entity-list>
+
+<!-- <div class="events-container">
+  <div class="events-container__top-container">
+    <h1>
+      <mat-icon>event</mat-icon>
+      Events
+    </h1>
+    <div class="events-container__top-container__search">
+      <mat-form-field color="white">
+        <span matPrefix class="search-icon"><mat-icon matPreffix>search</mat-icon> &nbsp;</span>
+        <input matInput type="text" placeholder="Search" (keyup)="applyFilter($event.target.value)">
+      </mat-form-field>
+    </div>
+    <div class="events-container__top-container__button">
+      <button class="button--state-submit" mat-raised-button (click)="openOrgDialog('add')">
+        Add Events
+      </button>
+    </div>
+  </div>
+  <em-entity-list [entityList]= "events"></em-entity-list>
+</div> -->

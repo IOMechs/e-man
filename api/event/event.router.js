@@ -151,7 +151,7 @@ getAllEventsByOranization = function(expressInstance)
             }
             else
             {
-                res.json({ "event": eventObject });
+                res.json({ "events": eventObject });
             }
         });
     });

@@ -30,7 +30,7 @@ export class OrganizationsComponent implements OnInit {
     this.organizationService.get()
     .subscribe(
       (data: any) => {
-        this.organizations =  data['organization'] && data['organization'].length > 0 ? data['organization'] : [];
+        this.organizations =  data['organizations'] && data['organizations'].length > 0 ? data['organizations'] : [];
         this.dataSource = new MatTableDataSource(this.organizations);
       },
       (err) => {

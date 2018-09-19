@@ -13,7 +13,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class EventsComponent implements OnInit {
 
   orgId: string;
-  events: any = [];
+  events: any = {type: 'event', list: []};
+
+
   constructor(private route: ActivatedRoute, private eventService: EventsService,
     private dialog: MatDialog, private snackBar: MatSnackBar) {
   }
@@ -28,7 +30,7 @@ export class EventsComponent implements OnInit {
   getEvents() {
     this.eventService.getEvents(this.orgId)
     .subscribe(data => {
-      this.events = (data.event && data.event.length > 0 ) ? data.event : [];
+      this.events = (data.events && data.events.length > 0 ) ? {type: 'event', list: data.events} :  {type: 'event', list: []} ;
     },
     err => {
       console.log(err);

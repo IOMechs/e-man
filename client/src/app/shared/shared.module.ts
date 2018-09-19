@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DeleteWarningDialogComponent } from './components/delete-warning-dialog/delete-warning-dialog.component';
 import { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
+import { EntityListComponent } from './components/entity-list/entity-list.component';
 
 
 @NgModule({
@@ -18,13 +19,14 @@ import { EntityDialogComponent } from './components/entity-dialog/entity-dialog.
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  declarations: [HeaderComponent, SidebarComponent, DeleteWarningDialogComponent, EntityDialogComponent],
+  declarations: [HeaderComponent, SidebarComponent, DeleteWarningDialogComponent, EntityDialogComponent, EntityListComponent],
   exports: [
     MaterialCustomModule,
     HeaderComponent,
     SidebarComponent,
     ReactiveFormsModule,
     HttpClientModule,
+    EntityListComponent
   ]
 })
 export class SharedModule { }
