@@ -14,7 +14,6 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        // pathMatch: 'full',
         redirectTo: 'organizations',
       },
       {
@@ -23,7 +22,7 @@ const routes: Routes = [
       },
       {
         path: 'organization/:id/events',
-        component: EventsComponent
+        component: EventsComponent,
       }
     ]
   }

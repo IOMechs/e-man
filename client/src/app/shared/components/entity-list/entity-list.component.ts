@@ -15,6 +15,7 @@ export class EntityListComponent implements OnInit {
 
   dataSource: any = [];
   list: any = [];
+  entityId: string;
   entityType: string;
   displayedColumns: string[] = ['no.', 'image', 'name', 'description'];
 
@@ -23,6 +24,7 @@ export class EntityListComponent implements OnInit {
     this.list = entity.list;
     this.dataSource = new MatTableDataSource(this.list);
     this.entityType = entity.type;
+    this.entityId = entity.orgId;
   }
 
   constructor(private organizationService: OrganizationService, private dialog: MatDialog,
@@ -58,6 +60,7 @@ export class EntityListComponent implements OnInit {
       if (result !== '') {
         if (title === 'add') {
           result['createdAt'] = Date();
+          if (this.entityType === 'event') { result['organizationId'] =  this.entityId; }
           this.createEntity(result);
         } else {
          const res = Object.assign(data, result);
@@ -100,7 +103,7 @@ export class EntityListComponent implements OnInit {
     .subscribe(
       (data: any) => {
         this.showToast('Create');
-        this.list.unshift(data['organization']);
+        this.list.unshift(data[this.entityType]);
         this.dataSource = new MatTableDataSource(this.list);
       },
       (err) => {
@@ -126,7 +129,7 @@ export class EntityListComponent implements OnInit {
   }
 
   showToast(title) {
-    this.snackBar.open(`Organization ${title} Sucessfully`, '' , {
+    this.snackBar.open(`${this.entityType === 'event' ? 'Event' : 'Organization' } ${title} Sucessfully`, '' , {
       duration: 5000,
       verticalPosition: 'top',
       horizontalPosition: 'right'
@@ -139,12 +142,12 @@ export class EntityListComponent implements OnInit {
 
   moveToEvent(data) {
     if (this.entityType === 'organization') {
-      this.router.navigateByUrl(`admin/organization/${data._id}/events`);
+      this.router.navigateByUrl(`admin/organization/${data._id}/events`, data);
     }
   }
 
   removeElement(index) {
-    this.list = this.list.splice(index, 1);
+    const list = this.list.splice(index, 1);
     this.dataSource = new MatTableDataSource(this.list);
   }
 }

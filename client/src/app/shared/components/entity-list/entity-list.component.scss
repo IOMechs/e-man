@@ -60,7 +60,7 @@
       width: 95%;
       position: relative;
       padding-bottom: 20px;
-      top:-40px;
+      top: -40px;
       &__row{
         height: 90px;
         cursor: pointer;
@@ -69,6 +69,7 @@
         }
         & td{
           color: $em-grey;
+          text-transform: capitalize;
           & img{
             width: 70px;
             height: 70px;
