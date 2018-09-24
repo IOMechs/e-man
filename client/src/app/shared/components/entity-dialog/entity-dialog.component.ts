@@ -25,10 +25,6 @@ export class EntityDialogComponent implements OnInit {
           Validators.required
         ]
       ],
-      organizationDate: ['', [
-          Validators.required
-        ]
-      ],
       eventDate: ['', [
           Validators.required
         ]
@@ -43,8 +39,6 @@ export class EntityDialogComponent implements OnInit {
   resettValidators() {
     if (this.data.entityType === 'Organization') {
       this.entityDialogForm.controls['eventDate'].setValidators(null);
-    } else {
-      this.entityDialogForm.controls['organizationDate'].setValidators(null);
     }
   }
 

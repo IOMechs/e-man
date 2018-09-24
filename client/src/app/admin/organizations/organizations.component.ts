@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { DeleteWarningDialogComponent } from './../../shared/components/delete-warning-dialog/delete-warning-dialog.component';
 import { OrganizationService } from './../../core/services/organizations/organization.service';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar, MatTableDataSource } from '@angular/material';
 
 
 
@@ -15,11 +15,15 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 export class OrganizationsComponent implements OnInit {
 
   organizations: any = [];
+  dataSource: any = [];
+  displayedColumns: string[] = ['no.', 'image', 'name', 'description', 'createAt', 'action'];
+
   constructor(private organizationService: OrganizationService, private dialog: MatDialog,
     private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   this.getOrganization();
+
   }
 
   getOrganization() {
@@ -52,7 +56,8 @@ export class OrganizationsComponent implements OnInit {
     .subscribe(
       (data: any) => {
         this.showToast('Create');
-        this.organizations.unshift(data.organization);
+        this.organizations.unshift(data['organization']);
+        this.dataSource = new MatTableDataSource(this.organizations);
       },
       (err) => {
         console.log(err);
@@ -75,7 +80,10 @@ export class OrganizationsComponent implements OnInit {
     }
   }
 
-  openOrgDialog(title, data?) {
+  openOrgDialog(title, data?, event?) {
+    if (event) {
+      event.stopPropagation();
+    }
     const dialogRef = this.dialog.open(EntityDialogComponent, {
       // tslint:disable-next-line:max-line-length
       data: { header : title === 'add' ? 'Add Organization' : 'Edit Organization', entityData: data ? data : null, entityType: 'Organization'},
@@ -84,7 +92,7 @@ export class OrganizationsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result !== '') {
         if (title === 'add') {
-          result['createdOn'] = Date();
+          result['createdAt'] = Date();
           this.createOrganization(result);
         } else {
          const res = Object.assign(data, result);
@@ -94,7 +102,10 @@ export class OrganizationsComponent implements OnInit {
     });
   }
 
-  openWarningDialog(data) {
+  openWarningDialog(data, event?) {
+    if (event) {
+      event.stopPropagation();
+    }
     const dialogRef = this.dialog.open(DeleteWarningDialogComponent, {
       height: '150px',
       width: '400px',
@@ -116,5 +127,13 @@ export class OrganizationsComponent implements OnInit {
       verticalPosition: 'top',
       horizontalPosition: 'right'
     });
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  moveToEvent(data) {
+    this.router.navigateByUrl(`admin/organization/${data._id}/events`);
   }
 }

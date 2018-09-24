@@ -14,14 +14,15 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: DashboardComponent
+        // pathMatch: 'full',
+        redirectTo: 'organizations',
       },
       {
         path: 'organizations',
         component: OrganizationsComponent,
       },
       {
-        path: 'organizations/:id/events',
+        path: 'organization/:id/events',
         component: EventsComponent
       }
     ]
