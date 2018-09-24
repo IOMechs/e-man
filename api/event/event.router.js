@@ -18,9 +18,9 @@ url: domain/event
 request object: expects a json object of type { object }
 response type: sends a json object of type { "event": object }. Else sends "Unauthorized"
 */
-addEvent = function(expressInstance, jwtInstance, verifyToken, multerInstance)
+addEvent = function(expressInstance, jwtInstance, verifyToken)
 {
-    expressInstance.post('/event', verifyToken, multerInstance.single('eventImage'), (req, res) => {
+    expressInstance.post('/event', verifyToken, (req, res) => {
         jwtInstance.verify(req.token, config.jwt_key, (err, userData) => {
             if(err)
             {
@@ -158,9 +158,9 @@ getAllEventsByOranization = function(expressInstance)
 }
 
 //CRUD operations at one place
-exports.createRoutes = function(expressInstance, jwtInstance, verifyToken, multerInstance)
+exports.createRoutes = function(expressInstance, jwtInstance, verifyToken)
 {
-    addEvent(expressInstance, jwtInstance, verifyToken, multerInstance);
+    addEvent(expressInstance, jwtInstance, verifyToken);
     updateEvent(expressInstance, jwtInstance, verifyToken);
     deleteEvent(expressInstance, jwtInstance, verifyToken);
     getEventById(expressInstance);

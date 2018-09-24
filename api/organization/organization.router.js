@@ -20,7 +20,7 @@ response type: sends a json object of type { "organization": object }. Else send
 */
 addOrganization = function(expressInstance, jwtInstance, verifyToken, multerInstance)
 {
-    expressInstance.post('/organization', verifyToken, multerInstance.single('organizationImage'), (req, res) => {
+    expressInstance.post('/organization', verifyToken,(req, res) => {
         var newOrganization = new OrganizationModel(req.body);
         // newOrganization.organizationImage.data = fs.readFileSync(req.file.path).type;
         newOrganization.organizationImage.fileInfo = req.file;
@@ -169,9 +169,9 @@ getOrganizationsByUserId = function(expressInstance)
 }
 
 //CRUD operations at one place
-exports.createRoutes = function(expressInstance, jwtInstance, verifyToken, multerInstance)
+exports.createRoutes = function(expressInstance, jwtInstance, verifyToken)
 {
-    addOrganization(expressInstance, jwtInstance, verifyToken, multerInstance);
+    addOrganization(expressInstance, jwtInstance, verifyToken);
     updateOrganization(expressInstance, jwtInstance, verifyToken);
     deleteOrganization(expressInstance, jwtInstance, verifyToken);
     getOrganizationById(expressInstance);

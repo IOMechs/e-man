@@ -30,8 +30,7 @@ export class OrganizationsComponent implements OnInit {
     this.organizationService.get()
     .subscribe(
       (data: any) => {
-        this.organizations =  data['organization'] && data['organization'].length > 0 ? data['organization'] : [];
-        this.dataSource = new MatTableDataSource(this.organizations);
+        this.organizations =  data['organizations'] && data['organizations'].length > 0 ? data['organizations'] : [];
       },
       (err) => {
         console.log(err);
@@ -88,7 +87,6 @@ export class OrganizationsComponent implements OnInit {
     const dialogRef = this.dialog.open(EntityDialogComponent, {
       // tslint:disable-next-line:max-line-length
       data: { header : title === 'add' ? 'Add Organization' : 'Edit Organization', entityData: data ? data : null, entityType: 'Organization'},
-      height: '400px',
       width: '500px',
     });
     dialogRef.afterClosed().subscribe(result => {

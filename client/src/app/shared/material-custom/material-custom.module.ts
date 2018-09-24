@@ -1,6 +1,7 @@
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatFileUploadModule } from 'angular-material-fileupload';
 import {
   MatButtonModule,
   MatInputModule,
@@ -16,7 +17,6 @@ import {
   MatSnackBarModule,
   MatTableModule
 } from '@angular/material';
-
 
 @NgModule({
   imports: [
@@ -35,6 +35,7 @@ import {
     MatOptionModule,
     MatSelectModule,
     MatSnackBarModule,
+    MatFileUploadModule,
     MatTableModule
   ],
   declarations: [],
@@ -53,6 +54,7 @@ import {
     MatOptionModule,
     MatSelectModule,
     MatSnackBarModule,
+    MatFileUploadModule,
     MatTableModule
   ]
 })

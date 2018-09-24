@@ -18,20 +18,28 @@
                   </mat-error>
                 </mat-form-field>
                 <mat-form-field *ngIf= "!isOrganization">
-                    <input matInput [matDatepicker]="picker" placeholder="Select {{data.entityType}} Date" formControlName="eventDate">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                    <mat-error *ngIf="entityControls.eventDate.hasError('required')">
-                        Date is <strong>required</strong>.
-                    </mat-error>
-                  </mat-form-field>
+                  <input matInput [matDatepicker]="picker" placeholder="Select {{data.entityType}} Date" formControlName="eventDate">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-error *ngIf="entityControls.eventDate.hasError('required')">
+                      Date is <strong>required</strong>.
+                  </mat-error>
+                </mat-form-field>
+
+                <div class="dialog-container__content-container__entity-form__uploadImage">
+                  <label for="singleFile" class="dialog-container__content-container__entity-form__uploadImage-label">Upload Image</label>
+                  <input id="singleFile" class="dialog-container__content-container__entity-form__uploadImage-input" type="file" [fileUploadInputFor]= "fileUploadQueue"/>
+                  <br>
+
+                  <mat-file-upload-queue #fileUploadQueue [fileAlias]="'file'">
+                    <mat-file-upload class="dialog-container__content-container__entity-form__uploadImage-upload" [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index"></mat-file-upload>
+                  </mat-file-upload-queue>
+                </div>
             </form>
         </mat-dialog-content>
-    </div>
-    <div class = "dialog-container__footer-container">
-      <mat-dialog-actions>
-        <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-        <button mat-raised-button color="primary" [mat-dialog-close]="entityDialogForm.value" [disabled]="entityDialogForm.invalid">Submit</button>
-      </mat-dialog-actions>
+        <mat-dialog-actions class ="dialog-container__content-container__footer-container">
+          <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+          <button mat-raised-button color="primary" [mat-dialog-close]="getData(fileUploadQueue.fileUploads, entityDialogForm.value)" [disabled]="entityDialogForm.invalid">Submit</button>
+        </mat-dialog-actions>
     </div>
   </div>
