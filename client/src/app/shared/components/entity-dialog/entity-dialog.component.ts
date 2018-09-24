@@ -55,11 +55,10 @@ export class EntityDialogComponent implements OnInit {
   }
 
   getData(file, formData) {
-    const value = {
-        file: file,
-        data : formData
+    return {
+      file,
+      data: formData
     };
-    return value;
   }
 
 }
