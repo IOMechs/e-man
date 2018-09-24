@@ -23,17 +23,12 @@ const organizationSchema = mongoose.Schema(
             type: String,
             required: true
         },
-        organizationDate: 
-        {
-            type: Date,
-            required: true
-        },
         organizationImage:
         {
             type: String,
             required: false
         },
-        createdOn:  //The date when the post for the event will be created.
+        createdAt:  //The date when the post for the event will be created.
         {
             type: Date,
             required: true,
