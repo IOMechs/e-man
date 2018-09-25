@@ -7,7 +7,7 @@
   <ng-container matColumnDef="image">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
-      <img src= "../../../assets/images/image-placeholder.png" />
+      <img src= "{{element.imageUrl && element.imageUrl !== '' ? apiBaseUrl + element.imageUrl : '../../../assets/images/image-placeholder.png'}}" />
     </td>
   </ng-container>
 

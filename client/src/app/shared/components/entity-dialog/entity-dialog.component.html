@@ -31,15 +31,15 @@
                   <input id="singleFile" class="dialog-container__content-container__entity-form__uploadImage-input" type="file" [fileUploadInputFor]= "fileUploadQueue"/>
                   <br>
 
-                  <mat-file-upload-queue #fileUploadQueue [fileAlias]="'file'">
-                    <mat-file-upload class="dialog-container__content-container__entity-form__uploadImage-upload" [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index"></mat-file-upload>
+                  <mat-file-upload-queue #fileUploadQueue [fileAlias]="'file'" [httpUrl]="'http://localhost:3000/file/upload'">
+                    <mat-file-upload (onUpload)="uploadDone($event)" class="dialog-container__content-container__entity-form__uploadImage-upload" [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index"></mat-file-upload>
                   </mat-file-upload-queue>
                 </div>
             </form>
         </mat-dialog-content>
         <mat-dialog-actions class ="dialog-container__content-container__footer-container">
           <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-          <button mat-raised-button color="primary" [mat-dialog-close]="getData(fileUploadQueue.fileUploads, entityDialogForm.value)" [disabled]="entityDialogForm.invalid">Submit</button>
+          <button mat-raised-button color="primary" (click)="submitEntity(fileUploadQueue.fileUploads)" [disabled]="entityDialogForm.invalid">Submit</button>
         </mat-dialog-actions>
     </div>
   </div>

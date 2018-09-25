@@ -2,6 +2,7 @@ import { EntityDialogComponent } from './../../shared/components/entity-dialog/e
 import { OrganizationService } from './../../core/services/organizations/organization.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar, MatTableDataSource } from '@angular/material';
+import { ImageService } from '../../core/services/image/image.service';
 
 export interface Organzation {
   name: string;
@@ -20,7 +21,8 @@ export class OrganizationsComponent implements OnInit {
   organizations: Organzation[] = [];
   filterValue = '';
 
-  constructor(private organizationService: OrganizationService, private snackBar: MatSnackBar, private dialog: MatDialog ) { }
+  constructor(private organizationService: OrganizationService,
+    private snackBar: MatSnackBar, private dialog: MatDialog, private imageService: ImageService ) { }
 
   ngOnInit() {
     this.getOrganization();
@@ -33,11 +35,7 @@ export class OrganizationsComponent implements OnInit {
         this.organizations =  data['organizations'] && data['organizations'].length > 0 ? data['organizations']  : [];
       },
       (err) => {
-        this.snackBar.open(`Internal Server Error`, '' , {
-          duration: 5000,
-          verticalPosition: 'top',
-          horizontalPosition: 'right'
-        });
+        this.showToast(`Internal Server Error`);
       }
     );
   }
@@ -64,10 +62,9 @@ export class OrganizationsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result !== '') {
-        if (title === 'add') {
-          result['data']['createdAt'] = Date();
-          this.createOrganization(result['data']);
-        }
+        result['data']['createdAt'] = Date();
+        result['data']['imageUrl'] = result['file'];
+        this.createOrganization(result['data']);
       }
     });
   }
@@ -76,18 +73,18 @@ export class OrganizationsComponent implements OnInit {
     this.organizationService.create(formData)
     .subscribe(
       (data: Organzation) => {
-        this.showToast('Create');
+        this.showToast('Organization Create Sucessfully');
         this.organizations.unshift(data['organization']);
         this.organizations = [].concat(this.organizations);
       },
       (err) => {
-        console.log(err);
+        this.showToast(`Internal Server Error`);
       }
     );
   }
 
-  showToast(title) {
-    this.snackBar.open(`Organization ${title} Sucessfully`, '' , {
+  showToast(message) {
+    this.snackBar.open(message, '' , {
       duration: 5000,
       verticalPosition: 'top',
       horizontalPosition: 'right'

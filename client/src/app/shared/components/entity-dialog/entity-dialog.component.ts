@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormGroup, FormBuilder , Validators, FormControl } from '@angular/forms';
 
 @Component({
@@ -11,7 +11,11 @@ export class EntityDialogComponent implements OnInit {
   isOrganization: boolean;
   entityDialogForm: FormGroup;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<EntityDialogComponent>
+  ) {
     this.isOrganization = this.data.entityType === 'Organization' ? true : false;
   }
 
@@ -48,11 +52,27 @@ export class EntityDialogComponent implements OnInit {
     }
   }
 
-  getData(file, formData) {
-    return {
-      file,
-      data: this.entityDialogForm.value
-    };
+  submitEntity(queue) {
+    const files = queue['_results'];
+    if (files && files[0]) {
+      files[0].upload();
+    } else {
+      this.dialogRef.close({
+        file: '',
+        data: this.entityDialogForm.value
+      });
+    }
+  }
+
+  uploadDone(response) {
+    console.log(response);
+    if (response.event.type === 4) {
+      this.dialogRef.close({
+        file: response.event.body.path,
+        data: this.entityDialogForm.value
+      });
+    }
+
   }
 
 }

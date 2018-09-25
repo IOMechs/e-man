@@ -66,6 +66,7 @@ export class EventsComponent implements OnInit {
         if (title === 'add') {
           result['data']['createdAt'] = Date();
           result['data']['organizationId'] = this.orgId;
+          result['data']['imageUrl'] = result['file'];
           this.createOrganization(result['data']);
         }
       }

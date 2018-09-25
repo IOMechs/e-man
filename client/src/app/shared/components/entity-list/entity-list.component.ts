@@ -5,6 +5,7 @@ import { OrganizationService } from './../../../core/services/organizations/orga
 import { MatTableDataSource, MatSnackBar, MatDialog } from '@angular/material';
 import { Component, OnInit, Input, Output, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
 import { EventsService } from '../../../core/services/events/events.service';
+import { EmanConfig } from '../../../core/config/eman-config';
 
 @Component({
   selector: 'em-entity-list',
@@ -19,6 +20,7 @@ export class EntityListComponent implements OnInit {
   entityId: string;
   entityType: string;
   displayedColumns: string[] = ['no.', 'image', 'name', 'description'];
+  apiBaseUrl: string  = EmanConfig.apiBaseUrl;
 
   @Input()
   set entityList(list: any) {
@@ -68,14 +70,12 @@ export class EntityListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result !== '') {
-        if (title === 'add') {
-          result['createdAt'] = Date();
-          if (this.entityType === 'event') { result['organizationId'] =  this.entityId; }
-          // this.createEntity(result);
-        } else {
-         const res = Object.assign(data, result['data']);
-          this.updateEntity(res, index);
+        result['createdAt'] = Date();
+        if (result.file !== '') {
+          result.data['imageUrl'] = result.file;
         }
+        const res = Object.assign(data, result['data']);
+        this.updateEntity(res, index);
       }
     });
   }
