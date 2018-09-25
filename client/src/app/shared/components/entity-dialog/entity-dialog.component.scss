@@ -1,3 +1,4 @@
+@import "../../../../styles/e-man/_variables";
 .dialog-container{
   display: flex;
   flex-direction: column;
@@ -9,18 +10,55 @@
     }
   }
   &__content-container{
+    margin-top: 10px;
     &__entity-form{
       display: flex;
       flex-direction: column;
       height: 100%;
+      &__uploadImage{
+        margin-top: 10px;
+        ::ng-deep .mat-raised-button{
+          display: none;
+        }
+        &-label{
+          font-size: 15px;
+          margin-right: 20px;
+          color: $em-purple;
+        }
+        &-upload{
+          ::ng-deep .mat-card{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding: 20px;
+            color: $em-grey;
+            span:first-child{
+              display: block;
+              font-size: 14px;
+            }
+            span {
+              display: none;
+            }
+            .example-section{
+              a, .mat-progress-bar {
+                display: none;
+              }
+              .mat-icon{
+                margin-top: 14px;
+                font-size: 18px;
+              }
+            }
+          }
+        }
+      }
       & mat-form-field{
         font-size: 15px;
       }
     }
-  }
-  &__footer-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    &__footer-container{
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+    }
   }
 }

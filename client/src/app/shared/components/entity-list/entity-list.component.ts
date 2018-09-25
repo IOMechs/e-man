@@ -3,13 +3,14 @@ import { Router } from '@angular/router';
 import { EntityDialogComponent } from './../entity-dialog/entity-dialog.component';
 import { OrganizationService } from './../../../core/services/organizations/organization.service';
 import { MatTableDataSource, MatSnackBar, MatDialog } from '@angular/material';
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
 import { EventsService } from '../../../core/services/events/events.service';
 
 @Component({
   selector: 'em-entity-list',
   templateUrl: './entity-list.component.html',
-  styleUrls: ['./entity-list.component.scss']
+  styleUrls: ['./entity-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EntityListComponent implements OnInit {
 
@@ -20,12 +21,21 @@ export class EntityListComponent implements OnInit {
   displayedColumns: string[] = ['no.', 'image', 'name', 'description'];
 
   @Input()
-  set entityList(entity: any) {
-    this.list = entity.list;
+  set entityList(list: any) {
+    this.list = list;
     this.dataSource = new MatTableDataSource(this.list);
-    this.entityType = entity.type;
-    this.entityId = entity.orgId;
   }
+
+  @Input()
+  set type(type: string) {
+    this.entityType = type;
+  }
+  @Input()
+  set applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  @Output() updateList = new EventEmitter<any>();
 
   constructor(private organizationService: OrganizationService, private dialog: MatDialog,
     private router: Router, private snackBar: MatSnackBar, private eventService: EventsService) { }
@@ -43,7 +53,7 @@ export class EntityListComponent implements OnInit {
     this.displayedColumns.push('action');
   }
 
-  openDialog(title, data?, event?) {
+  openDialog(title, data?, index?, event?) {
     if (event) {
       event.stopPropagation();
     }
@@ -61,14 +71,15 @@ export class EntityListComponent implements OnInit {
         if (title === 'add') {
           result['createdAt'] = Date();
           if (this.entityType === 'event') { result['organizationId'] =  this.entityId; }
-          this.createEntity(result);
+          // this.createEntity(result);
         } else {
-         const res = Object.assign(data, result);
-          this.updateEntity(res);
+         const res = Object.assign(data, result['data']);
+          this.updateEntity(res, index);
         }
       }
     });
   }
+
   openWarningDialog(data, index, event?) {
     if (event) {
       event.stopPropagation();
@@ -84,27 +95,14 @@ export class EntityListComponent implements OnInit {
     });
   }
 
-  updateEntity(formData) {
+  updateEntity(formData, index) {
     const entityService = this.entityType === 'event' ? this.eventService : this.organizationService;
     entityService.update(formData)
     .subscribe(
       (data: any) => {
+        this.list[index] = data[this.entityType];
+        this.updateList.emit(this.list);
         this.showToast('Updated');
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
-
-  createEntity(formData) {
-    const entityService = this.entityType === 'event' ? this.eventService : this.organizationService;
-    entityService.create(formData)
-    .subscribe(
-      (data: any) => {
-        this.showToast('Create');
-        this.list.unshift(data[this.entityType]);
-        this.dataSource = new MatTableDataSource(this.list);
       },
       (err) => {
         console.log(err);
@@ -136,10 +134,6 @@ export class EntityListComponent implements OnInit {
     });
   }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
   moveToEvent(data) {
     if (this.entityType === 'organization') {
       this.router.navigateByUrl(`admin/organization/${data._id}/events`, data);
@@ -148,6 +142,6 @@ export class EntityListComponent implements OnInit {
 
   removeElement(index) {
     const list = this.list.splice(index, 1);
-    this.dataSource = new MatTableDataSource(this.list);
+    this.updateList.emit(this.list);
   }
 }

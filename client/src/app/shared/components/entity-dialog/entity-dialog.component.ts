@@ -10,6 +10,7 @@ import { FormGroup, FormBuilder , Validators, FormControl } from '@angular/forms
 export class EntityDialogComponent implements OnInit {
   isOrganization: boolean;
   entityDialogForm: FormGroup;
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder) {
     this.isOrganization = this.data.entityType === 'Organization' ? true : false;
   }
@@ -45,6 +46,13 @@ export class EntityDialogComponent implements OnInit {
     if (this.data.entityData) {
       this.entityDialogForm.patchValue(this.data.entityData);
     }
+  }
+
+  getData(file, formData) {
+    return {
+      file,
+      data: this.entityDialogForm.value
+    };
   }
 
 }

@@ -1,124 +1,47 @@
 @import "../../../../styles/e-man/_variables";
-.entity-container{
-  padding: 30px;
-  margin-top: 30px;
-  & .error-container{
-    font-size: 20px;
-    color: black;
-    letter-spacing: 2px;
-    margin-top: 50px;
-    margin-left: 20px;
-    & p{
+
+.table-container {
+  width: 95%;
+  position: relative;
+  padding-bottom: 20px;
+  top: -40px;
+  &__row{
+    height: 90px;
+    cursor: pointer;
+    &--btn{
+      margin-right: 10px;
+    }
+    & td{
+      color: $em-grey;
       text-transform: capitalize;
-    }
-  }
-  &__top-container{
-    padding: 80px 40px 80px 40px;
-    background-color: $em-purple;
-    display: flex;
-    flex-direction:  row;
-    max-width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    & h1{
-      color: $em-white-1;
-      letter-spacing: 2.9px;
-      font-weight: 100;
-      font-size: 30px;
-    }
-    &__search{
-      color: $em-white-1;
-      & mat-form-field{
-        letter-spacing: 2px;
-        .search-icon{
-          position: relative;
-          top: 6px;
-          font-size: 14px;
-        }
-        font-size: 15px;
-        &.mat-focused {
-          ::ng-deep .mat-form-field-ripple {
-            background-color: $em-white-1;
-            transform: none;
-          }
-        }
-        ::ng-deep .mat-form-field-wrapper {
-            .mat-form-field-underline {
-              background-color: $em-white-1;
-            }
-            .mat-form-field-label {
-              color: $em-white-1;
-          }
-        }
-      }
-    }
-  }
-  &__bottom-container{
-    display: flex;
-    justify-content: center;
-    &__table {
-      width: 95%;
-      position: relative;
-      padding-bottom: 20px;
-      top: -40px;
-      &__row{
-        height: 90px;
-        cursor: pointer;
-        &--btn{
-          margin-right: 10px;
-        }
-        & td{
-          color: $em-grey;
-          text-transform: capitalize;
-          & img{
-            width: 70px;
-            height: 70px;
-            background-position: center;
-            background-repeat: none;
-            background-size: cover;
-          }
-        }
+      & img{
+        width: 70px;
+        height: 70px;
+        background-position: center;
+        background-repeat: none;
+        background-size: cover;
       }
     }
   }
 }
 
 @media (max-width: $widthxs) {
-  .entity-container{
-    &__top-container{
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 0px 40px 0px;
-      &__search{
-        margin-bottom: 20px;
-      }
-    }
-    &__bottom-container{
-      &__table {
-        position: relative;
-        top: -22px;
+  .table-container{
+    &__row{
+      & td{
+        padding-left: 5px;
       }
     }
   }
 }
 
  @media (max-width: $widthsm){
-  .entity-container{
-    &__top-container{
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 0px 40px 0px;
-      &__search{
-        margin-bottom: 20px;
-      }
-    }
-    &__bottom-container{
-      &__table {
-        position: relative;
-        top: -22px;
+  .table-container{
+    &__row{
+      & td{
+        padding-left: 5px;
       }
     }
   }
 }
+

@@ -1,1 +1,25 @@
-<em-entity-list [entityList] = "organizations"></em-entity-list>
+<div class="entity-container">
+  <div class="entity-container__top-container">
+    <h1>
+      <mat-icon>group</mat-icon>
+      Organizations
+   </h1>
+   <div class="entity-container__top-container__search">
+      <mat-form-field color="white">
+        <span matPrefix class="search-icon"><mat-icon matPreffix>search</mat-icon> &nbsp;</span>
+        <input matInput type="text" placeholder="Search" (keyup)="applyFilter($event.target.value)">
+      </mat-form-field>
+   </div>
+   <div class="entity-container__top-container__button">
+      <button class="button--state-submit" mat-raised-button (click)="openDialog('add')">
+        Add Organization
+      </button>
+   </div>
+  </div>
+
+  <em-entity-list class="entity-container__bottom-container" [applyFilter]="filterValue" [entityList]="organizations" (updateList)="resendList($event)"  [type]="'organization'" *ngIf ="organizations.length > 0"></em-entity-list>
+
+  <div class="error-container" *ngIf ="organizations.length === 0">
+    <p>No Organization Avaliable.. You Can Add New Organizations.</p>
+  </div>
+</div>

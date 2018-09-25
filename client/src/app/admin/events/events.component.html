@@ -1,1 +1,26 @@
-<em-entity-list [entityList] = "events"></em-entity-list>
+<div class="entity-container">
+  <div class="entity-container__top-container">
+    <h1>
+      <mat-icon>event</mat-icon>
+      Events
+   </h1>
+   <div class="entity-container__top-container__search">
+      <mat-form-field color="white">
+        <span matPrefix class="search-icon"><mat-icon matPreffix>search</mat-icon> &nbsp;</span>
+        <input matInput type="text" placeholder="Search" (keyup)="applyFilter($event.target.value)">
+      </mat-form-field>
+   </div>
+   <div class="entity-container__top-container__button">
+      <button class="button--state-submit" mat-raised-button (click)="openDialog('add')">
+        Add Event
+      </button>
+   </div>
+  </div>
+
+  <em-entity-list [entityList]="events" [applyFilter]="filterValue" [type]="'event'" (updateList)="resendList($event)" class="entity-container__bottom-container" *ngIf ="events.length > 0"></em-entity-list>
+
+  <div class="error-container" *ngIf ="events.length === 0">
+    <p>No Event Avaliable.. You Can Add New Event.</p>
+  </div>
+</div>
+
