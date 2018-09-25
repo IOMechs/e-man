@@ -2,7 +2,6 @@ import { EntityDialogComponent } from './../../shared/components/entity-dialog/e
 import { OrganizationService } from './../../core/services/organizations/organization.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar, MatTableDataSource } from '@angular/material';
-import { ImageService } from '../../core/services/image/image.service';
 
 export interface Organzation {
   name: string;
@@ -22,7 +21,7 @@ export class OrganizationsComponent implements OnInit {
   filterValue = '';
 
   constructor(private organizationService: OrganizationService,
-    private snackBar: MatSnackBar, private dialog: MatDialog, private imageService: ImageService ) { }
+    private snackBar: MatSnackBar, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.getOrganization();

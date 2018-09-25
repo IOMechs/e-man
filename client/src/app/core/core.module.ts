@@ -7,8 +7,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthGuard } from './guard/auth.guard';
 import { TokenInterceptor } from './interceptor/http-token-interceptor';
-import { ImageService } from './services/image/image.service';
-
 
 @NgModule({
   imports: [
@@ -25,7 +23,6 @@ import { ImageService } from './services/image/image.service';
       multi: true
     },
     EventsService,
-    ImageService
   ]
 
 })
