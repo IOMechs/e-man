@@ -1,8 +1,14 @@
 @import "../../../../styles/e-man/_variables";
 .dialog-container{
   display: flex;
-    flex-direction: column;
-    height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  &__header-container{
+    &--heading{
+      text-transform: capitalize;
+    }
+  }
   &__content-container{
     margin-top: 10px;
     &__entity-form{

@@ -23,7 +23,7 @@ const organizationSchema = mongoose.Schema(
             type: String,
             required: true
         },
-        organizationImage:
+        imageUrl:
         {
             type: String,
             required: false

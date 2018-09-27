@@ -1,0 +1,47 @@
+@import "../../../../styles/e-man/_variables";
+
+.table-container {
+  width: 95%;
+  position: relative;
+  padding-bottom: 20px;
+  top: -40px;
+  &__row{
+    height: 90px;
+    cursor: pointer;
+    &--btn{
+      margin-right: 10px;
+    }
+    & td{
+      color: $em-grey;
+      text-transform: capitalize;
+      & img{
+        width: 70px;
+        height: 70px;
+        background-position: center;
+        background-repeat: none;
+        background-size: cover;
+      }
+    }
+  }
+}
+
+@media (max-width: $widthxs) {
+  .table-container{
+    &__row{
+      & td{
+        padding-left: 5px;
+      }
+    }
+  }
+}
+
+ @media (max-width: $widthsm){
+  .table-container{
+    &__row{
+      & td{
+        padding-left: 5px;
+      }
+    }
+  }
+}
+

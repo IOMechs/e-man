@@ -1,19 +1,29 @@
-import { DeleteWarningDialogComponent } from './../../shared/components/delete-warning-dialog/delete-warning-dialog.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { EntityDialogComponent } from './../../shared/components/entity-dialog/entity-dialog.component';
 import { EventsService } from './../../core/services/events/events.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { EntityDialogComponent } from '../../shared/components/entity-dialog/entity-dialog.component';
+
+export interface EventList {
+  name: string;
+  description: string;
+  organizationId: string;
+  eventDate: string;
+  createdAt: string;
+}
 
 @Component({
   selector: 'em-events',
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss']
 })
+
 export class EventsComponent implements OnInit {
 
   orgId: string;
-  events: any = [];
+  events: EventList[] = [];
+  filterValue = '';
+
   constructor(private route: ActivatedRoute, private eventService: EventsService,
     private dialog: MatDialog, private snackBar: MatSnackBar) {
   }
@@ -21,99 +31,71 @@ export class EventsComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.orgId = params['id'];
-   });
+    });
    this.getEvents();
+  }
+
+  resendList(list) {
+    this.events = [].concat(list);
   }
 
   getEvents() {
     this.eventService.getEvents(this.orgId)
-    .subscribe(data => {
-      this.events = (data.event && data.event.length > 0 ) ? data.event : [];
+    .subscribe(
+    (data: EventList[]) => {
+      this.events = (data['events'] && data['events'].length > 0 ) ? data['events'] :  [];
     },
-    err => {
-      console.log(err);
+    (err) => {
+      this.showToast('Internal server Error');
     });
   }
-
-  createEvent(formData) {
-    this.eventService.create(formData)
-    .subscribe(
-      (data: any) => {
-        this.showToast('Create');
-        this.events.unshift(data.event);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
-
-  updateEvent(formData) {
-    this.eventService.update(formData)
-    .subscribe(
-      (data: any) => {
-        this.showToast('Updated');
-        console.log(data);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
-
-  deleteEvent(formData) {
-    if (formData) {
-      this.showToast('Delete');
-      this.eventService.delete(formData)
-    .subscribe(
-      (data: any) => {
-        this.getEvents();
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+  openDialog(title, data?, index?, event?) {
+    if (event) {
+      event.stopPropagation();
     }
-  }
-
-  openEventDialog(title, data?) {
     const dialogRef = this.dialog.open(EntityDialogComponent, {
-      data: { header : title === 'add' ? 'Add Event' : 'Edit Event', entityData: data ? data : null, entityType: 'Event'},
-      height: '400px',
+      data: {
+        header : `Add Event`,
+        entityData: data ? data : null,
+        entityType: 'Event'
+      },
       width: '500px',
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result !== '') {
         if (title === 'add') {
-          result['createdOn'] = Date();
-          result['organizationId'] =  this.orgId;
-          this.createEvent(result);
-        } else {
-          const res = Object.assign(data, result);
-          this.updateEvent(res);
+          result['data']['createdAt'] = Date();
+          result['data']['organizationId'] = this.orgId;
+          result['data']['imageUrl'] = result['file'];
+          this.createOrganization(result['data']);
         }
       }
     });
   }
 
-  openWarningDialog(data) {
-    const dialogRef = this.dialog.open(DeleteWarningDialogComponent, {
-      height: '150px',
-      width: '400px',
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result === true) {
-        this.deleteEvent(data);
+  createOrganization(formData) {
+    this.eventService.create(formData)
+    .subscribe(
+      (data: EventList) => {
+        this.showToast('Event Create Sucessfully');
+        this.events.unshift(data['event']);
+        this.events = [].concat(this.events);
+      },
+      (err) => {
+        this.showToast('Internal server Error');
       }
-    });
+    );
   }
 
-  showToast(title) {
-    this.snackBar.open(`Event ${title} Sucessfully`, '' , {
+  showToast(message) {
+    this.snackBar.open(message, '' , {
       duration: 5000,
       verticalPosition: 'top',
       horizontalPosition: 'right'
     });
   }
 
+  applyFilter(filterValue: string) {
+    this.filterValue = filterValue.trim().toLowerCase();
+  }
 }

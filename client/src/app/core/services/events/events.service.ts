@@ -24,7 +24,6 @@ export class EventsService {
   }
 
   create(data): Observable<any> {
-    // data['userId'] = this.userService.getUser()._id;
     return this.http.post(`${this.apiBaseUrl}/event`, data)
     .pipe(
       map((res) => {

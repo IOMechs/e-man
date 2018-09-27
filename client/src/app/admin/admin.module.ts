@@ -1,3 +1,4 @@
+import { EntityListComponent } from './../shared/components/entity-list/entity-list.component';
 import { DeleteWarningDialogComponent } from './../shared/components/delete-warning-dialog/delete-warning-dialog.component';
 import { AdminComponent } from './admin.component';
 import { NgModule } from '@angular/core';

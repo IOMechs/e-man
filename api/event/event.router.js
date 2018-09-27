@@ -29,8 +29,6 @@ addEvent = function(expressInstance, jwtInstance, verifyToken)
             else
             {
                 var newEvent = new EventModel(req.body);
-                // newEvent.eventImage.data = fs.readFileSync(req.file.path).type;
-                newEvent.eventImage.fileInfo = req.file;
                 newEvent.save( (err, eventObject) => {
                     if(err)
                     {
@@ -151,7 +149,7 @@ getAllEventsByOranization = function(expressInstance)
             }
             else
             {
-                res.json({ "event": eventObject });
+                res.json({ "events": eventObject });
             }
         });
     });

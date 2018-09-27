@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { AuthGuard } from './guard/auth.guard';
 import { TokenInterceptor } from './interceptor/http-token-interceptor';
 
-
 @NgModule({
   imports: [
     CommonModule,
@@ -23,7 +22,7 @@ import { TokenInterceptor } from './interceptor/http-token-interceptor';
       useClass: TokenInterceptor,
       multi: true
     },
-    EventsService
+    EventsService,
   ]
 
 })

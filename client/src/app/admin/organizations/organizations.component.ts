@@ -1,11 +1,14 @@
 import { EntityDialogComponent } from './../../shared/components/entity-dialog/entity-dialog.component';
-import { Router } from '@angular/router';
-import { DeleteWarningDialogComponent } from './../../shared/components/delete-warning-dialog/delete-warning-dialog.component';
 import { OrganizationService } from './../../core/services/organizations/organization.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar, MatTableDataSource } from '@angular/material';
 
-
+export interface Organzation {
+  name: string;
+  description: string;
+  userId: string;
+  createdAt: string;
+}
 
 @Component({
   selector: 'em-organizations',
@@ -14,126 +17,76 @@ import { MatDialog, MatSnackBar, MatTableDataSource } from '@angular/material';
 })
 export class OrganizationsComponent implements OnInit {
 
-  organizations: any = [];
-  dataSource: any = [];
-  displayedColumns: string[] = ['no.', 'image', 'name', 'description', 'createAt', 'action'];
+  organizations: Organzation[] = [];
+  filterValue = '';
 
-  constructor(private organizationService: OrganizationService, private dialog: MatDialog,
-    private router: Router, private snackBar: MatSnackBar) { }
+  constructor(private organizationService: OrganizationService,
+    private snackBar: MatSnackBar, private dialog: MatDialog) { }
 
   ngOnInit() {
-  this.getOrganization();
-
+    this.getOrganization();
   }
 
   getOrganization() {
     this.organizationService.get()
     .subscribe(
-      (data: any) => {
-        this.organizations =  data['organizations'] && data['organizations'].length > 0 ? data['organizations'] : [];
+      (data: Organzation[]) => {
+        this.organizations =  data['organizations'] && data['organizations'].length > 0 ? data['organizations']  : [];
       },
       (err) => {
-        console.log(err);
+        this.showToast(`Internal Server Error`);
       }
     );
   }
 
-  updateOrganization(formData) {
-    this.organizationService.update(formData)
-    .subscribe(
-      (data: any) => {
-        this.showToast('Updated');
-        console.log(data);
+  resendList(list) {
+    this.organizations = [].concat(list);
+  }
+
+  applyFilter(filterValue: string) {
+    this.filterValue = filterValue.trim().toLowerCase();
+  }
+
+  openDialog(title, data?, index?, event?) {
+    if (event) {
+      event.stopPropagation();
+    }
+    const dialogRef = this.dialog.open(EntityDialogComponent, {
+      data: {
+        header : `Add Organization`,
+        entityData: data ? data : null,
+        entityType: 'Organization'
       },
-      (err) => {
-        console.log(err);
+      width: '500px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== '') {
+        result['data']['createdAt'] = Date();
+        result['data']['imageUrl'] = result['file'];
+        this.createOrganization(result['data']);
       }
-    );
+    });
   }
 
   createOrganization(formData) {
     this.organizationService.create(formData)
     .subscribe(
-      (data: any) => {
-        this.showToast('Create');
+      (data: Organzation) => {
+        this.showToast('Organization Create Sucessfully');
         this.organizations.unshift(data['organization']);
-        this.dataSource = new MatTableDataSource(this.organizations);
+        this.organizations = [].concat(this.organizations);
       },
       (err) => {
-        console.log(err);
+        this.showToast(`Internal Server Error`);
       }
     );
   }
 
-  deleteOrganization(formData) {
-    if (formData) {
-      this.organizationService.delete(formData)
-    .subscribe(
-      (data: any) => {
-        this.showToast('Delete');
-        this.getOrganization();
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-    }
-  }
-
-  openOrgDialog(title, data?, event?) {
-    if (event) {
-      event.stopPropagation();
-    }
-    const dialogRef = this.dialog.open(EntityDialogComponent, {
-      // tslint:disable-next-line:max-line-length
-      data: { header : title === 'add' ? 'Add Organization' : 'Edit Organization', entityData: data ? data : null, entityType: 'Organization'},
-      width: '500px',
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result !== '') {
-        if (title === 'add') {
-          result['createdAt'] = Date();
-          this.createOrganization(result);
-        } else {
-         const res = Object.assign(data, result);
-          this.updateOrganization(res);
-        }
-      }
-    });
-  }
-
-  openWarningDialog(data, event?) {
-    if (event) {
-      event.stopPropagation();
-    }
-    const dialogRef = this.dialog.open(DeleteWarningDialogComponent, {
-      height: '150px',
-      width: '400px',
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result === true) {
-        this.deleteOrganization(data);
-      }
-    });
-  }
-
-  event(organization) {
-    this.router.navigate(['organization/' + organization._id]);
-  }
-
-  showToast(title) {
-    this.snackBar.open(`Organization ${title} Sucessfully`, '' , {
+  showToast(message) {
+    this.snackBar.open(message, '' , {
       duration: 5000,
       verticalPosition: 'top',
       horizontalPosition: 'right'
     });
-  }
-
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  moveToEvent(data) {
-    this.router.navigateByUrl(`admin/organization/${data._id}/events`);
   }
 }

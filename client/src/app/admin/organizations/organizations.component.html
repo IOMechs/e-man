@@ -1,70 +1,25 @@
-<div class="organizations-container">
-  <div class="organizations-container__top-container">
+<div class="entity-container">
+  <div class="entity-container__top-container">
     <h1>
       <mat-icon>group</mat-icon>
       Organizations
    </h1>
-   <div class="organizations-container__top-container__search">
+   <div class="entity-container__top-container__search">
       <mat-form-field color="white">
         <span matPrefix class="search-icon"><mat-icon matPreffix>search</mat-icon> &nbsp;</span>
         <input matInput type="text" placeholder="Search" (keyup)="applyFilter($event.target.value)">
       </mat-form-field>
    </div>
-   <div class="organizations-container__top-container__button">
-      <button class="button--state-submit" mat-raised-button (click)="openOrgDialog('add')">
+   <div class="entity-container__top-container__button">
+      <button class="button--state-submit" mat-raised-button (click)="openDialog('add')">
         Add Organization
       </button>
    </div>
   </div>
-  <div class="organizations-container__bottom-container" *ngIf ="organizations.length > 0">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 organizations-container__bottom-container__table">
 
-      <ng-container matColumnDef="no.">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let i = index"> {{ i +1  }} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="image">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element">
-          <img src= "../../../assets/images/image-placeholder.png" />
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef> Description </th>
-        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="createAt">
-        <th mat-header-cell *matHeaderCellDef> Created at </th>
-        <td mat-cell *matCellDef="let element"> {{element.createdAt | date: 'EEEE, dd MMM yyyy' }} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef> Action </th>
-        <td mat-cell *matCellDef="let element">
-          <button class="organizations-container__bottom-container__table__row--btn" mat-mini-fab color="primary" (click)="openOrgDialog('edit', element, $event)">
-            Edit
-          </button>
-          <button mat-mini-fab color="warn" (click)="openWarningDialog(element, $event)">
-            Delete
-          </button>
-        </td>
-      </ng-container>
-
-      <tr class="organizations-container__bottom-container__table__row" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr class="organizations-container__bottom-container__table__row" mat-row *matRowDef="let row; columns: displayedColumns; let element;" (click)="moveToEvent(element)"></tr>
-    </table>
-  </div>
+  <em-entity-list class="entity-container__bottom-container" [applyFilter]="filterValue" [entityList]="organizations" (updateList)="resendList($event)"  [type]="'organization'" *ngIf ="organizations.length > 0"></em-entity-list>
 
   <div class="error-container" *ngIf ="organizations.length === 0">
-    <p>No Organization Avaliable.. You Can Add New Organization. </p>
+    <p>No Organization Avaliable.. You Can Add New Organizations.</p>
   </div>
 </div>
-

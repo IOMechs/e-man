@@ -22,8 +22,6 @@ addOrganization = function(expressInstance, jwtInstance, verifyToken, multerInst
 {
     expressInstance.post('/organization', verifyToken,(req, res) => {
         var newOrganization = new OrganizationModel(req.body);
-        // newOrganization.organizationImage.data = fs.readFileSync(req.file.path).type;
-        newOrganization.organizationImage.fileInfo = req.file;
         newOrganization.save( (err, organizationObject) => {
             if(err)
             {
