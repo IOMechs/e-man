@@ -1,0 +1,22 @@
+<div class="dialog-container">
+  <div class="dialog-container__header-container">
+      <h1 class="dialog-container__header-container--heading" mat-dialog-title>Upload Event Images</h1>
+  </div>
+  <div class="dialog-container__content-container">
+      <mat-dialog-content>
+          <div class="dialog-container__content-container__uploadImage">
+              <label for="singleFile" class="dialog-container__content-container__uploadImage-label">Upload Image</label>
+             <input class="dialog-container__content-container__uploadImage-input" type="file" [fileUploadInputFor]= "fileUploadQueue"/>
+              <br>
+
+              <mat-file-upload-queue #fileUploadQueue [fileAlias]="'file'" [httpUrl]="'http://localhost:3000/file/upload'" class="dialog-container__content-container__uploadImage-queue">
+                <mat-file-upload (onUpload)="uploadDone($event)" class="dialog-container__content-container__uploadImage-upload" [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index"></mat-file-upload>
+              </mat-file-upload-queue>
+            </div>
+      </mat-dialog-content>
+      <!-- <mat-dialog-actions class ="dialog-container__content-container__footer-container">
+        <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+        <button mat-raised-button color="primary" (click)="submitEntity(fileUploadQueue)">Upload</button>
+      </mat-dialog-actions> -->
+  </div>
+</div>

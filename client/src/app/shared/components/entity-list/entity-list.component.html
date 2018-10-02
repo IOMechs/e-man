@@ -37,8 +37,11 @@
       <button class="table-container__row--btn" mat-mini-fab color="primary" (click)="openDialog('edit', element, i, $event)">
         Edit
       </button>
-      <button mat-mini-fab color="warn" (click)="openWarningDialog(element,i, $event)">
+      <button class="table-container__row--btn" mat-mini-fab color="warn" (click)="openWarningDialog(element,i, $event)">
         Delete
+      </button>
+      <button mat-mini-fab color="basic" *ngIf="entityType == 'event'" (click)="moveToPhotos(element)">
+        Photos
       </button>
     </td>
   </ng-container>

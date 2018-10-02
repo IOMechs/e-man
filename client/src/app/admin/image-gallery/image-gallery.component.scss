@@ -1,0 +1,23 @@
+@import '../../../styles/e-man/variables';
+
+.gallery-container{
+  padding: 30px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  &__header-container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    & h1{
+      color: $em-black;
+      letter-spacing: 2.9px;
+      font-weight: 100;
+      font-size: 30px;
+    }
+  }
+  &__body-container{
+    padding-top:20px;
+  }
+
+}

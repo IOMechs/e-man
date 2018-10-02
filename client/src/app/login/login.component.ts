@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
       ]
     });
   }
-
   get loginControls() { return this.loginForm.controls; }
 
   onSubmit() {
