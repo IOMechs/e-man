@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DeleteWarningDialogComponent } from './components/delete-warning-dialog/delete-warning-dialog.component';
 import { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
 import { EntityListComponent } from './components/entity-list/entity-list.component';
+import { UploadImagesDialogComponent } from './components/upload-images-dialog/upload-images-dialog.component';
 
 
 @NgModule({
@@ -19,7 +20,14 @@ import { EntityListComponent } from './components/entity-list/entity-list.compon
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  declarations: [HeaderComponent, SidebarComponent, DeleteWarningDialogComponent, EntityDialogComponent, EntityListComponent],
+  declarations: [
+    HeaderComponent,
+    SidebarComponent,
+    DeleteWarningDialogComponent,
+    EntityDialogComponent,
+    EntityListComponent,
+    UploadImagesDialogComponent
+  ],
   exports: [
     MaterialCustomModule,
     HeaderComponent,

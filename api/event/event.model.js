@@ -1,5 +1,5 @@
 /*
-@author: Emad Bin Abid
+@author: Emad Bin Abid, Mehdi Rajani
 @date: July 03, 2018
 */
 
@@ -38,6 +38,11 @@ const eventSchema = mongoose.Schema(
             type: Date,
             required: true,
             default: Date.now
+        },
+        eventImages:
+        {
+            type: [String],
+            required:false
         }
     }
 );

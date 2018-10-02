@@ -140,6 +140,10 @@ export class EntityListComponent implements OnInit {
     }
   }
 
+  moveToPhotos(data) {
+    this.router.navigateByUrl(`admin/organization/${data.organizationId}/event/${data._id}/images`);
+  }
+
   removeElement(index) {
     const list = this.list.splice(index, 1);
     this.updateList.emit(this.list);

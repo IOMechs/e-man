@@ -1,5 +1,5 @@
 /*
-@author: Emad Bin Abid
+@author: Emad Bin Abid, Mehdi Rajani
 @date: July 03, 2018
 */
 
@@ -119,6 +119,7 @@ response type: sends a json object of type { "event": object }. Else sends "Bad 
 getEventById = function(expressInstance)
 {
     expressInstance.get('/event', (req, res) => {
+        console.log(req.query.id);
         EventModel.findOne({ _id: req.query._id }, (err, eventObject) => {
             if(err)
             {

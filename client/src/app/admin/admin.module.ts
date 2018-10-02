@@ -9,7 +9,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 import { EventsComponent } from './events/events.component';
 import { EntityDialogComponent } from '../shared/components/entity-dialog/entity-dialog.component';
-
+import { ImageGalleryComponent } from './image-gallery/image-gallery.component';
+import { UploadImagesDialogComponent } from '../shared/components/upload-images-dialog/upload-images-dialog.component';
 
 @NgModule({
   imports: [
@@ -22,10 +23,12 @@ import { EntityDialogComponent } from '../shared/components/entity-dialog/entity
     OrganizationsComponent,
     DashboardComponent,
     EventsComponent,
+    ImageGalleryComponent,
   ],
   entryComponents: [
     DeleteWarningDialogComponent,
-    EntityDialogComponent
+    EntityDialogComponent,
+    UploadImagesDialogComponent
   ]
 })
 export class AdminModule { }

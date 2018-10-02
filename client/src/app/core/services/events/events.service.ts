@@ -11,8 +11,9 @@ export class EventsService {
   apiBaseUrl: string  = EmanConfig.apiBaseUrl;
   constructor(private http: HttpClient) { }
 
-  getEvents(data): Observable<any> {
-    return this.http.get(`${this.apiBaseUrl}/event/all-events?_id=${data}`)
+  getEvents(data, title?): Observable<any> {
+    const url = title ? `${this.apiBaseUrl}/event?_id=${data}` : `${this.apiBaseUrl}/event/all-events?_id=${data}`;
+    return this.http.get(url)
     .pipe(
       map((res) => {
         return res;
