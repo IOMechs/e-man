@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/EmadBinAbid/e-man#readme",
   "dependencies": {
-    "angular-material-fileupload": "^1.0.1",
     "concurrently": "^3.6.1",
     "cors": "^2.8.4",
     "express": "^4.16.3",

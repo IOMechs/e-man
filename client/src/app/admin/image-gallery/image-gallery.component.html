@@ -1,8 +1,8 @@
 <div class="gallery-container">
   <div class="gallery-container__header-container">
     <h1>
-      <mat-icon>photo_library</mat-icon>
-      Image Gallery
+      <!-- <mat-icon>photo_library</mat-icon> -->
+      <span>{{event?.name }}</span> image gallery
     </h1>
     <div class="gallery-container__header-container__btn">
       <button class="button--state-add" mat-raised-button color="primary" (click)="openDialog()">
@@ -12,12 +12,12 @@
   </div>
   <div class="gallery-container__body-container">
     <ng-container *ngIf="images.length > 0">
-      <mat-card class="gallery-container__body-container__image-container" *ngFor="let image of images">
-        <img mat-card-image src="{{ image }}" alt="{{event.name}}">
+      <mat-card class="gallery-container__body-container__image-container-image-card" *ngFor="let image of images">
+        <img mat-card-image src="{{apiBaseUrl}}/{{ image.path }}" alt="{{event.name}}">
       </mat-card>
     </ng-container>
     <ng-container *ngIf="images.length == 0">
-        No Images for this Event
+      No Images for this Event
     </ng-container>
   </div>
 

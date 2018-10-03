@@ -1,16 +1,9 @@
+import { EventItem } from './../../core/models/event-item';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { EventsService } from './../../core/services/events/events.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EntityDialogComponent } from '../../shared/components/entity-dialog/entity-dialog.component';
-
-export interface EventList {
-  name: string;
-  description: string;
-  organizationId: string;
-  eventDate: string;
-  createdAt: string;
-}
 
 @Component({
   selector: 'em-events',
@@ -21,7 +14,7 @@ export interface EventList {
 export class EventsComponent implements OnInit {
 
   orgId: string;
-  events: EventList[] = [];
+  events: EventItem[] = [];
   filterValue = '';
 
   constructor(private route: ActivatedRoute, private eventService: EventsService,
@@ -42,7 +35,7 @@ export class EventsComponent implements OnInit {
   getEvents() {
     this.eventService.getEvents(this.orgId)
     .subscribe(
-    (data: EventList[]) => {
+    (data: EventItem[]) => {
       this.events = (data['events'] && data['events'].length > 0 ) ? data['events'] :  [];
     },
     (err) => {
@@ -76,7 +69,7 @@ export class EventsComponent implements OnInit {
   createOrganization(formData) {
     this.eventService.create(formData)
     .subscribe(
-      (data: EventList) => {
+      (data: EventItem) => {
         this.showToast('Event Create Sucessfully');
         this.events.unshift(data['event']);
         this.events = [].concat(this.events);

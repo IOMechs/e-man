@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { ImageService } from '../../../core/services/image/image.service';
 
 @Component({
   selector: 'em-upload-images-dialog',
@@ -7,35 +8,29 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
   styleUrls: ['./upload-images-dialog.component.scss']
 })
 export class UploadImagesDialogComponent implements OnInit {
+  id: string;
+  imageList = [];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<UploadImagesDialogComponent>
+    public dialogRef: MatDialogRef<UploadImagesDialogComponent>,
+    private imageService: ImageService
   ) { }
 
   ngOnInit() {
-  }
-
-  submitEntity(queue) {
-    // const files = queue['_results'];
-    if (queue) {
-      queue.uploadAll();
-    } else {
-      this.dialogRef.close({
-        file: this.data.images
-      });
-    }
+    this.id = this.data.entityId;
   }
 
   uploadDone(response) {
-    // let n
-    console.log(response);
     if (response.event.type === 4) {
+      if (response.event.body.status === 'success') {
+        const uploaddImage = response.event.body.image;
+        this.imageList.push(uploaddImage);
+      }
       this.dialogRef.close({
-        file: response.event.body
+        upload: this.imageList
       });
     }
-
   }
 
 }

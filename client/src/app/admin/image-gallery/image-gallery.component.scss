@@ -8,16 +8,56 @@
   &__header-container{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-direction: row;
     & h1{
       color: $em-black;
       letter-spacing: 2.9px;
       font-weight: 100;
       font-size: 30px;
+      text-transform: capitalize;
+      & span{
+        color: $em-purple;
+        text-transform: capitalize;
+      }
     }
   }
   &__body-container{
-    padding-top:20px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 20px 0px 20px;
+    & .mat-card{
+      width: 360px;
+      height: 187px;
+      margin: 10px;
+      & img{
+        width: 410px;
+        height: 236px;
+      }
+    }
   }
+}
 
+
+@media (max-width: $widthxs) {
+  .gallery-container{
+    &__header-container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    &__body-container{
+      justify-content: center;
+      & .mat-card{
+        width: 400px;
+        height: 200px;
+        margin-bottom: 30px;
+        & img{
+          width: 450px;
+          height: 250px;
+        }
+      }
+    }
+  }
 }
