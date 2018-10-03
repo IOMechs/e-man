@@ -11,6 +11,17 @@
   }
   &__content-container{
     &__uploadImage{
+      &-btn{
+        width: 104px;
+        padding: 0px;
+        padding-left: 4px;
+        ::ng-deep &-input {
+          position: relative;
+          left: -94px;
+          opacity: 0;
+          width: 0px;
+        }
+      }
       &-upload{
         ::ng-deep & mat-card {
           height: 50px;
