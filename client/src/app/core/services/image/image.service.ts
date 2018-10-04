@@ -19,11 +19,11 @@ export class ImageService {
   ) { }
 
   get(entityId): Observable<Array<Image>> {
-    return this.http.get(`${this.apiBaseUrl}/images/all/${entityId}`)
+    return this.http.get<{images: Image[]}>(`${this.apiBaseUrl}/images/all/${entityId}`)
     .pipe(
       map((res) => {
-        this.images = res['images'];
-        return res['images'];
+        this.images = res.images;
+        return res.images;
       }),
       catchError((err) => {
       throw(err);

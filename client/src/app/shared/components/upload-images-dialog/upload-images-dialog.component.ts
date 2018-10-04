@@ -1,3 +1,4 @@
+import { Image } from './../../../core/models/image';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ImageService } from '../../../core/services/image/image.service';
@@ -9,7 +10,7 @@ import { ImageService } from '../../../core/services/image/image.service';
 })
 export class UploadImagesDialogComponent implements OnInit {
   id: string;
-  imageList = [];
+  imageList: Array<Image> = [];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -22,11 +23,9 @@ export class UploadImagesDialogComponent implements OnInit {
   }
 
   uploadDone(response) {
-    if (response.event.type === 4) {
-      if (response.event.body.status === 'success') {
-        const uploaddImage = response.event.body.image;
-        this.imageList.push(uploaddImage);
-      }
+    if (response.event.type === 4 && response.event.body.status === 'success') {
+      const uploaddImage = response.event.body.image;
+      this.imageList.push(uploaddImage);
       this.dialogRef.close({
         upload: this.imageList
       });

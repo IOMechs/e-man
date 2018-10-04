@@ -75,10 +75,10 @@ export class EventsService {
       }
       return of(filterEvent);
     } else if (this.events.length === 0) {
-      return this.http.get(`${this.apiBaseUrl}/event?_id=${eventId}`)
+      return this.http.get<{event: EventItem}>(`${this.apiBaseUrl}/event?_id=${eventId}`)
         .pipe(
           map((res) => {
-            return res['event'];
+            return res.event;
           }),
           catchError(err => {
             throw(err);

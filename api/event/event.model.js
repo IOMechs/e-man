@@ -39,11 +39,6 @@ const eventSchema = mongoose.Schema(
             required: true,
             default: Date.now
         },
-        eventImages:
-        {
-            type: [String],
-            required:false
-        }
     }
 );
 
