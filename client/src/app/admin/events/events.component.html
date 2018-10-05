@@ -1,6 +1,6 @@
 <div class="entity-container">
   <div class="entity-container__top-container">
-    <h1>
+    <h1 class="entity-container__top-container__title">
       <mat-icon>event</mat-icon>
       Events
    </h1>
@@ -10,7 +10,7 @@
         <input matInput type="text" placeholder="Search" (keyup)="applyFilter($event.target.value)">
       </mat-form-field>
    </div>
-   <div class="entity-container__top-container__button">
+   <div class="entity-container__top-container__actions-container">
       <button class="button--state-submit" mat-raised-button (click)="openDialog('add')">
         Add Event
       </button>
