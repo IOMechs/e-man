@@ -1,3 +1,17 @@
-<p>
-  entity-header works!
-</p>
+<div class="entity-container__top-container">
+  <h1 class="entity-container__top-container__title">
+    <mat-icon>{{ heading == 'Organizations'? 'group': 'event' }}</mat-icon>
+    {{ heading }}
+ </h1>
+ <div class="entity-container__top-container__search">
+    <mat-form-field color="white">
+      <span matPrefix class="search-icon"><mat-icon matPreffix>search</mat-icon> &nbsp;</span>
+      <input matInput type="text" placeholder="Search" (keyup)="applyFilter($event.target.value)">
+    </mat-form-field>
+ </div>
+ <div class="entity-container__top-container__actions-container">
+    <button class="entity-container__top-container__actions-container--state-submit" mat-raised-button (click)="openDialog('add')">
+      Add {{ btnText }}
+    </button>
+ </div>
+</div>

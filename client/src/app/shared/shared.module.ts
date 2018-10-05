@@ -36,7 +36,8 @@ import { EntityHeaderComponent } from './components/entity-header/entity-header.
     SidebarComponent,
     ReactiveFormsModule,
     HttpClientModule,
-    EntityListComponent
+    EntityListComponent,
+    EntityHeaderComponent
   ]
 })
 export class SharedModule { }

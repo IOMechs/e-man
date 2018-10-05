@@ -92,7 +92,7 @@
         margin-bottom: 20px;
       }
 
-      &__button {
+      &__actions-container {
         margin-bottom: 20px;
       }
     }
@@ -101,6 +101,21 @@
       &__table {
         position: relative;
         top: -22px;
+      }
+    }
+  }
+}
+
+@media (max-width: $widthmd-1) {
+  .entity-container {
+    &__top-container {
+      &__title {
+        letter-spacing: 1.9px;
+        font-size: 23px;
+      }
+
+      &__search {
+        width: 190px;
       }
     }
   }
@@ -116,9 +131,10 @@
 
       &__search {
         margin-bottom: 20px;
+        width: 300px;
       }
 
-      &__button {
+      &__actions-container {
         margin-bottom: 20px;
       }
     }

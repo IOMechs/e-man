@@ -1,22 +1,5 @@
 <div class="entity-container">
-  <div class="entity-container__top-container">
-    <h1 class="entity-container__top-container__title">
-      <mat-icon>group</mat-icon>
-      Organizations
-   </h1>
-   <div class="entity-container__top-container__search">
-      <mat-form-field color="white">
-        <span matPrefix class="search-icon"><mat-icon matPreffix>search</mat-icon> &nbsp;</span>
-        <input matInput type="text" placeholder="Search" (keyup)="applyFilter($event.target.value)">
-      </mat-form-field>
-   </div>
-   <div class="entity-container__top-container__actions-container">
-      <button class="button--state-submit" mat-raised-button (click)="openDialog('add')">
-        Add Organization
-      </button>
-   </div>
-  </div>
-
+  <em-entity-header [btnText]="'Organization'" [heading]="'Organizations'" (filterString)="applyFilter($event)" (openModal)="openDialog($event)"></em-entity-header>
   <em-entity-list class="entity-container__bottom-container" [applyFilter]="filterValue" [entityList]="organizations" (updateList)="resendList($event)"  [type]="'organization'" *ngIf ="organizations.length > 0"></em-entity-list>
 
   <div class="error-container" *ngIf ="organizations.length === 0">
