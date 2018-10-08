@@ -1,2 +1,4 @@
-/node_modules
-/public/uploads
+node_modules
+public/uploads
+dist
+client/dist

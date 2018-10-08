@@ -10,6 +10,7 @@ import { DeleteWarningDialogComponent } from './components/delete-warning-dialog
 import { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
 import { EntityListComponent } from './components/entity-list/entity-list.component';
 import { UploadImagesDialogComponent } from './components/upload-images-dialog/upload-images-dialog.component';
+import { EntityHeaderComponent } from './components/entity-header/entity-header.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { UploadImagesDialogComponent } from './components/upload-images-dialog/u
     DeleteWarningDialogComponent,
     EntityDialogComponent,
     EntityListComponent,
-    UploadImagesDialogComponent
+    UploadImagesDialogComponent,
+    EntityHeaderComponent
   ],
   exports: [
     MaterialCustomModule,
@@ -34,7 +36,8 @@ import { UploadImagesDialogComponent } from './components/upload-images-dialog/u
     SidebarComponent,
     ReactiveFormsModule,
     HttpClientModule,
-    EntityListComponent
+    EntityListComponent,
+    EntityHeaderComponent
   ]
 })
 export class SharedModule { }
