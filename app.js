@@ -27,6 +27,7 @@ app.use(express.json());    //To parse json objects sent by the client.
 app.use(cors());            //To resolve cross-origin browser issues.
 app.use('/file',fileRoutes);
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/dist'));
 
 //Routes
 userRouter.createRoutes(app, jwt, authentication.verifyToken);
@@ -38,4 +39,4 @@ imageRouter.createRoutes(app);
 authentication.validateUser(app, jwt);
 
 //Running the server
-server.run(app, 3000);
+server.run(app, env.PORT || 3000);
