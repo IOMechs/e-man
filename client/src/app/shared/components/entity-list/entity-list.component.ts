@@ -1,3 +1,4 @@
+import { environment } from './../../../../environments/environment';
 import { DeleteWarningDialogComponent } from './../delete-warning-dialog/delete-warning-dialog.component';
 import { Router } from '@angular/router';
 import { EntityDialogComponent } from './../entity-dialog/entity-dialog.component';
@@ -5,7 +6,6 @@ import { OrganizationService } from './../../../core/services/organizations/orga
 import { MatTableDataSource, MatSnackBar, MatDialog } from '@angular/material';
 import { Component, OnInit, Input, Output, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
 import { EventsService } from '../../../core/services/events/events.service';
-import { EmanConfig } from '../../../core/config/eman-config';
 
 @Component({
   selector: 'em-entity-list',
@@ -20,7 +20,7 @@ export class EntityListComponent implements OnInit {
   entityId: string;
   entityType: string;
   displayedColumns: string[] = ['no.', 'image', 'name', 'description'];
-  apiBaseUrl: string  = EmanConfig.apiBaseUrl;
+  apiBaseUrl: string  = environment.apiBaseUrl;
 
   @Input()
   set entityList(list: any) {
@@ -55,14 +55,14 @@ export class EntityListComponent implements OnInit {
     this.displayedColumns.push('action');
   }
 
-  openDialog(title, data?, index?, event?) {
+  editEntity(data?, event?) {
+    const eleIndex = this.list.indexOf(data);
     if (event) {
       event.stopPropagation();
     }
     const dialogRef = this.dialog.open(EntityDialogComponent, {
-      // tslint:disable-next-line:max-line-length
       data: {
-        header : title === 'add' ? `Add ${this.entityType}` : `Edit ${this.entityType}`,
+        header : `Edit ${this.entityType}`,
         entityData: data ? data : null,
         entityType: this.entityType === 'organization'  ? 'Organization' : 'Event'
       },
@@ -75,12 +75,13 @@ export class EntityListComponent implements OnInit {
           result.data['imageUrl'] = result.file;
         }
         const res = Object.assign(data, result['data']);
-        this.updateEntity(res, index);
+        this.updateEntity(res, eleIndex);
       }
     });
   }
 
-  openWarningDialog(data, index, event?) {
+  deleteEntity(data, event?) {
+    const elementIndex = this.list.indexOf(data);
     if (event) {
       event.stopPropagation();
     }
@@ -90,7 +91,7 @@ export class EntityListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result === true) {
-        this.deleteEntity(data, index);
+        this.removeEntity(data, elementIndex);
       }
     });
   }
@@ -110,7 +111,7 @@ export class EntityListComponent implements OnInit {
     );
   }
 
-  deleteEntity(formData, index?) {
+  removeEntity(formData, index?) {
     if (formData) {
       const entityService = this.entityType === 'event' ? this.eventService : this.organizationService;
       entityService.delete(formData)
