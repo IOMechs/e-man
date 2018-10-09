@@ -6,9 +6,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { EventsService } from '../../core/services/events/events.service';
-import { EmanConfig } from '../../core/config/eman-config';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -18,7 +18,7 @@ import { first } from 'rxjs/operators';
 })
 export class ImageGalleryComponent implements OnInit, OnDestroy {
 
-  apiBaseUrl: string =  EmanConfig.apiBaseUrl;
+  apiBaseUrl: string =  environment.apiBaseUrl;
   images: Image[] = [];
   eventId: string;
   event: EventItem;

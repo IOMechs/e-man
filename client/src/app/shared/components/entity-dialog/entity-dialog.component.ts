@@ -1,3 +1,4 @@
+import { environment } from './../../../../environments/environment';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormGroup, FormBuilder , Validators, FormControl } from '@angular/forms';
@@ -10,6 +11,7 @@ import { FormGroup, FormBuilder , Validators, FormControl } from '@angular/forms
 export class EntityDialogComponent implements OnInit {
   isOrganization: boolean;
   entityDialogForm: FormGroup;
+  apiBaseUrl: string = environment.apiBaseUrl;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,

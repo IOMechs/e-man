@@ -12,7 +12,7 @@
               </button>
               <br>
               <!-- <button mat-button> Upload Image</button> -->
-              <mat-file-upload-queue #fileUploadQueue [fileAlias]="'file'" [httpUrl]="'http://localhost:3000/file/upload?entityId=' +id" class="dialog-container__content-container__uploadImage-queue">
+              <mat-file-upload-queue #fileUploadQueue [fileAlias]="'file'" [httpUrl]="apiBaseUrl + '/file/upload?entityId=' +id" class="dialog-container__content-container__uploadImage-queue">
                 <mat-file-upload (onUpload)="uploadDone($event)" class="dialog-container__content-container__uploadImage-upload" [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index"></mat-file-upload>
               </mat-file-upload-queue>
             </div>
