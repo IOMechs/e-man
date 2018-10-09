@@ -1,4 +1,4 @@
-import { EmanConfig } from './../../config/eman-config';
+import { environment } from './../../../../environments/environment';
 import { UserService } from './../user/user.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class OrganizationService {
-apiBaseUrl: string  = EmanConfig.apiBaseUrl;
+apiBaseUrl: string  = environment.apiBaseUrl;
 user: any;
 
   constructor(private http: HttpClient, private userService: UserService) {

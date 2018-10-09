@@ -1,5 +1,5 @@
+import { environment } from './../../../../environments/environment';
 import { EventItem } from './../../models/event-item';
-import { EmanConfig } from './../../config/eman-config';
 import { map, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -10,7 +10,7 @@ import { of } from 'rxjs/Observable/of';
   providedIn: 'root'
 })
 export class EventsService {
-  apiBaseUrl: string  = EmanConfig.apiBaseUrl;
+  apiBaseUrl: string  = environment.apiBaseUrl;
   events: Array<EventItem> = [];
 
   constructor(private http: HttpClient) { }

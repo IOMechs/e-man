@@ -1,3 +1,4 @@
+import { environment } from './../../../../environments/environment';
 import { Image } from './../../../core/models/image';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
@@ -11,6 +12,7 @@ import { ImageService } from '../../../core/services/image/image.service';
 export class UploadImagesDialogComponent implements OnInit {
   id: string;
   imageList: Array<Image> = [];
+  apiBaseUrl: string = environment.apiBaseUrl;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,

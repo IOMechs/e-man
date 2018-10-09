@@ -1,5 +1,4 @@
-import { of } from 'rxjs/Observable/of';
-import { EmanConfig } from './../../config/eman-config';
+import { environment } from './../../../../environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Image } from './../../models/image';
@@ -12,7 +11,7 @@ import { Observable } from 'rxjs';
 export class ImageService {
 
   images: Array<Image> = [];
-  apiBaseUrl: string  =  EmanConfig.apiBaseUrl;
+  apiBaseUrl: string  =  environment.apiBaseUrl;
 
   constructor(
     private http: HttpClient
