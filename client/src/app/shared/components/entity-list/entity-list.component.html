@@ -34,15 +34,27 @@
   <ng-container matColumnDef="action">
     <th mat-header-cell *matHeaderCellDef> Action </th>
     <td mat-cell *matCellDef="let element; let i = index">
-      <button class="table-container__row--btn" mat-mini-fab color="primary" (click)="openDialog('edit', element, i, $event)">
-        Edit
+
+      <button mat-mini-fab color="primary"
+        class="table-container__row--btn"
+        matTooltip="Edit"
+        matTooltipPosition="above">
+        <mat-icon (click)="openDialog('edit', element, i, $event)">edit</mat-icon>
       </button>
-      <button class="table-container__row--btn" mat-mini-fab color="warn" (click)="openWarningDialog(element,i, $event)">
-        Delete
+
+      <button mat-mini-fab color="warn"
+        class="table-container__row--btn"
+        matTooltip="Delete"
+        matTooltipPosition="above">
+        <mat-icon (click)="openWarningDialog(element,i, $event)">delete</mat-icon>
       </button>
-      <button mat-mini-fab color="basic" *ngIf="entityType == 'event'" (click)="moveToPhotos(element)">
-        Photos
-      </button>
+
+      <!-- <button mat-mini-fab color="basic"
+          *ngIf="entityType == 'event'"
+          matTooltip="Gallery"
+          matTooltipPosition="above">
+          <mat-icon (click)="moveToPhotos(element)">collections</mat-icon>
+      </button> -->
     </td>
   </ng-container>
 

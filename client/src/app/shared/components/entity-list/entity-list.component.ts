@@ -137,11 +137,9 @@ export class EntityListComponent implements OnInit {
   moveToEvent(data) {
     if (this.entityType === 'organization') {
       this.router.navigateByUrl(`admin/organization/${data._id}/events`, data);
+    } else {
+      this.router.navigateByUrl(`admin/organization/${data.organizationId}/event/${data._id}/images`);
     }
-  }
-
-  moveToPhotos(data) {
-    this.router.navigateByUrl(`admin/organization/${data.organizationId}/event/${data._id}/images`);
   }
 
   removeElement(index) {
