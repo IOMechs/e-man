@@ -15,7 +15,8 @@ import {
   MatOptionModule,
   MatSelectModule,
   MatSnackBarModule,
-  MatTableModule
+  MatTableModule,
+  MatTooltipModule
 } from '@angular/material';
 
 @NgModule({
@@ -36,7 +37,8 @@ import {
     MatSelectModule,
     MatSnackBarModule,
     MatFileUploadModule,
-    MatTableModule
+    MatTableModule,
+    MatTooltipModule
   ],
   declarations: [],
   exports: [
@@ -55,7 +57,8 @@ import {
     MatSelectModule,
     MatSnackBarModule,
     MatFileUploadModule,
-    MatTableModule
+    MatTableModule,
+    MatTooltipModule
   ]
 })
 export class MaterialCustomModule { }

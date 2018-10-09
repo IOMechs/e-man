@@ -1,4 +1,3 @@
-import { EmanConfig } from './../../core/config/eman-config';
 import { OrganizationService } from './../../core/services/organizations/organization.service';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
@@ -28,8 +27,4 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-  // TODO: getImageUrl(imagePath){
-  //   return `url(${EmanConfig.imageBaseUrl}/${imagePath})`;
-  // }
-
 }
