@@ -1,5 +1,5 @@
 /*
-@author: Emad Bin Abid
+@author: Emad Bin Abid, Muhammad Mehdi
 @date: July 03, 2018
 */
 
@@ -39,4 +39,4 @@ imageRouter.createRoutes(app);
 authentication.validateUser(app, jwt);
 
 //Running the server
-server.run(app, env.PORT || 3000);
+server.run(app, process.env.PORT || 5000);
