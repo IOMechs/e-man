@@ -27,8 +27,14 @@
                 </mat-form-field>
 
                 <div class="dialog-container__content-container__entity-form__uploadImage">
-                  <label for="singleFile" class="dialog-container__content-container__entity-form__uploadImage-label">Upload Image</label>
-                  <input id="singleFile" class="dialog-container__content-container__entity-form__uploadImage-input" type="file" ng2FileSelect [uploader]="uploader"/>
+                  <!-- <label for="singleFile" class="dialog-container__content-container__entity-form__uploadImage-label">Upload Image</label>
+                  <input id="singleFile" class="dialog-container__content-container__entity-form__uploadImage-input" type="file" ng2FileSelect [uploader]="uploader"/> -->
+
+                  <button class="dialog-container__content-container__entity-form__uploadImage-btn" mat-raised-button color="primary">
+                    Upload Images
+                    <input class="dialog-container__content-container__entity-form__uploadImage-btn-input" type="file" ng2FileSelect [uploader]="uploader"/>
+                  </button>
+
                   <br>
 
                   <mat-card *ngFor="let ele of uploader.queue" class="dialog-container__content-container__entity-form__uploadImage__queue-card">

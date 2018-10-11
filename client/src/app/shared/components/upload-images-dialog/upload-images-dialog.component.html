@@ -5,16 +5,15 @@
   <div class="dialog-container__content-container">
       <mat-dialog-content>
           <div class="dialog-container__content-container__uploadImage">
-              <!-- <label for="singleFile" class="dialog-container__content-container__uploadImage-label">Upload Image: </label> -->
               <button class="dialog-container__content-container__uploadImage-btn" mat-raised-button color="primary">
                 Upload Images
-                <input class="dialog-container__content-container__uploadImage-btn-input" type="file" [fileUploadInputFor]= "fileUploadQueue"/>
+                <input class="dialog-container__content-container__uploadImage-btn-input" type="file" ng2FileSelect [uploader]="uploader"/>
               </button>
               <br>
-              <!-- <button mat-button> Upload Image</button> -->
-              <mat-file-upload-queue #fileUploadQueue [fileAlias]="'file'" [httpUrl]="apiBaseUrl + '/file/upload?entityId=' +id" class="dialog-container__content-container__uploadImage-queue">
-                <mat-file-upload (onUpload)="uploadDone($event)" class="dialog-container__content-container__uploadImage-upload" [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index"></mat-file-upload>
-              </mat-file-upload-queue>
+              <mat-card *ngFor="let ele of uploader.queue" class="dialog-container__content-container__uploadImage__queue-card">
+                <h4 class="dialog-container__content-container__uploadImage__queue-card__title">{{ ele.file.name }}</h4>
+                <mat-icon class="dialog-container__content-container__uploadImage__queue-card__icon">cancel</mat-icon>
+              </mat-card>
             </div>
       </mat-dialog-content>
   </div>

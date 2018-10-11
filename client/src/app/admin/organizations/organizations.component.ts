@@ -47,14 +47,10 @@ export class OrganizationsComponent implements OnInit {
     this.filterValue = filterValue.trim().toLowerCase();
   }
 
-  openDialog(title, data?, index?, event?) {
-    if (event) {
-      event.stopPropagation();
-    }
+  openDialog() {
     const dialogRef = this.dialog.open(EntityDialogComponent, {
       data: {
         header : `Add Organization`,
-        entityData: data ? data : null,
         entityType: 'Organization'
       },
       width: '500px',

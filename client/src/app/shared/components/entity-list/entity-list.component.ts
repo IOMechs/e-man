@@ -72,7 +72,7 @@ export class EntityListComponent implements OnInit {
       if (result !== '') {
         result['createdAt'] = Date();
         if (result.file !== '') {
-          result.data['imageUrl'] = result.file;
+          result.data['imageUrl'] = result.file + '?ts=' + Date.now();
         }
         const res = Object.assign(data, result['data']);
         this.updateEntity(res, eleIndex);

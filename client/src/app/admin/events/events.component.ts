@@ -42,26 +42,23 @@ export class EventsComponent implements OnInit {
       this.showToast('Internal server Error');
     });
   }
-  openDialog(title, data?, index?, event?) {
+  openDialog() {
     if (event) {
       event.stopPropagation();
     }
     const dialogRef = this.dialog.open(EntityDialogComponent, {
       data: {
         header : `Add Event`,
-        entityData: data ? data : null,
         entityType: 'Event'
       },
       width: '500px',
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result !== '') {
-        if (title === 'add') {
-          result['data']['createdAt'] = Date();
-          result['data']['organizationId'] = this.orgId;
-          result['data']['imageUrl'] = result['file'];
-          this.createOrganization(result['data']);
-        }
+        result['data']['createdAt'] = Date();
+        result['data']['organizationId'] = this.orgId;
+        result['data']['imageUrl'] = result['file'];
+        this.createOrganization(result['data']);
       }
     });
   }

@@ -21,8 +21,8 @@ export class EntityHeaderComponent implements OnInit {
   applyFilter(value) {
     this.filterString.emit(value.trim().toLowerCase());
   }
-  openDialog(type) {
-    this.openModal.emit(type);
+  addEntity() {
+    this.openModal.emit();
   }
 
 }
