@@ -28,18 +28,20 @@
 
                 <div class="dialog-container__content-container__entity-form__uploadImage">
                   <label for="singleFile" class="dialog-container__content-container__entity-form__uploadImage-label">Upload Image</label>
-                  <input id="singleFile" class="dialog-container__content-container__entity-form__uploadImage-input" type="file" [fileUploadInputFor]= "fileUploadQueue"/>
+                  <input id="singleFile" class="dialog-container__content-container__entity-form__uploadImage-input" type="file" ng2FileSelect [uploader]="uploader"/>
                   <br>
 
-                  <mat-file-upload-queue #fileUploadQueue [fileAlias]="'file'" [httpUrl]="apiBaseUrl + '/file/upload'">
-                    <mat-file-upload (onUpload)="uploadDone($event)" class="dialog-container__content-container__entity-form__uploadImage-upload" [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index"></mat-file-upload>
-                  </mat-file-upload-queue>
+                  <mat-card *ngFor="let ele of uploader.queue" class="dialog-container__content-container__entity-form__uploadImage__queue-card">
+                    <h4 class="dialog-container__content-container__entity-form__uploadImage__queue-card__title">{{ ele.file.name }}</h4>
+                    <mat-icon class="dialog-container__content-container__entity-form__uploadImage__queue-card__icon">cancel</mat-icon>
+                  </mat-card>
+
                 </div>
             </form>
         </mat-dialog-content>
         <mat-dialog-actions class ="dialog-container__content-container__footer-container">
           <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-          <button mat-raised-button color="primary" (click)="submitEntity(fileUploadQueue.fileUploads)" [disabled]="entityDialogForm.invalid">Submit</button>
+          <button mat-raised-button color="primary" (click)="submitEntity(uploader.queue)" [disabled]="entityDialogForm.invalid">Submit</button>
         </mat-dialog-actions>
     </div>
   </div>
