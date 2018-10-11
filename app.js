@@ -24,7 +24,11 @@ const app = express();
 
 //Middlewares
 app.use(express.json());    //To parse json objects sent by the client.
-app.use(cors());            //To resolve cross-origin browser issues.
+app.use(cors({
+    'credentials': true, 
+    'Control-Allow-Methods': 'POST,GET,OPTIONS,PUT,DELETE'
+}));
+            //To resolve cross-origin browser issues.`
 app.use('/file',fileRoutes);
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/dist'));

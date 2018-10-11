@@ -50,6 +50,26 @@
             }
           }
         }
+
+        &__queue-card {
+          height: 20px;
+          margin: 20px 0px;
+          padding: 20px;
+          display: flex;
+          justify-content: space-between;
+          background-color: #fbfbfb;
+
+          &__title {
+            color: $em-purple;
+            font-size: 15px;
+          }
+
+          &__icon {
+            font-size: 19px;
+            color: grey;
+            cursor: pointer;
+          }
+        }
       }
       & mat-form-field{
         font-size: 15px;

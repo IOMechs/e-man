@@ -36,14 +36,14 @@
     <td mat-cell *matCellDef="let element; let i = index">
 
       <button mat-mini-fab color="primary"
-        class="table-container__row--btn"
+        class="table-container__row__btn"
         matTooltip="Edit"
         matTooltipPosition="above">
         <mat-icon (click)="editEntity(element, $event)">edit</mat-icon>
       </button>
 
       <button mat-mini-fab color="warn"
-        class="table-container__row--btn"
+        class="table-container__row__btn"
         matTooltip="Delete"
         matTooltipPosition="above">
         <mat-icon (click)="deleteEntity(element, $event)">delete</mat-icon>

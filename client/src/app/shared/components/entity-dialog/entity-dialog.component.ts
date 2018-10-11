@@ -2,6 +2,8 @@ import { environment } from './../../../../environments/environment';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormGroup, FormBuilder , Validators, FormControl } from '@angular/forms';
+import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
+
 
 @Component({
   selector: 'em-entity-dialog',
@@ -12,6 +14,12 @@ export class EntityDialogComponent implements OnInit {
   isOrganization: boolean;
   entityDialogForm: FormGroup;
   apiBaseUrl: string = environment.apiBaseUrl;
+  uploader: FileUploader = new FileUploader({
+      url: this.apiBaseUrl + '/file/upload',
+      itemAlias: 'file',
+      isHTML5: true,
+      method: 'POST',
+    });
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -36,7 +44,10 @@ export class EntityDialogComponent implements OnInit {
         ]
       ]
     });
-
+    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      this.uploadDone(JSON.parse(response));
+    };
     this.resettValidators();
     this.setEntityValue();
   }
@@ -55,9 +66,9 @@ export class EntityDialogComponent implements OnInit {
   }
 
   submitEntity(queue) {
-    const files = queue['_results'];
-    if (files && files[0]) {
-      files[0].upload();
+    // const files = queue.file;
+    if (queue && queue.length > 0) {
+      this.uploader.uploadAll();
     } else {
       this.dialogRef.close({
         file: '',
@@ -67,14 +78,10 @@ export class EntityDialogComponent implements OnInit {
   }
 
   uploadDone(response) {
-    console.log(response);
-    if (response.event.type === 4) {
-      this.dialogRef.close({
-        file: response.event.body.path,
-        data: this.entityDialogForm.value
-      });
-    }
-
+    this.dialogRef.close({
+      file: response.path,
+      data: this.entityDialogForm.value
+    });
   }
 
 }

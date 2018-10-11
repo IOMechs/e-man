@@ -10,7 +10,7 @@ import { EmanConstant } from './../../../../constant/eman-constant';
   providedIn: 'root'
 })
 export class AuthService {
-  apiBaseUrl: String = environment.apiBaseUrl;
+  apiBaseUrl: string = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) { }
 
