@@ -30,9 +30,9 @@ const store = multer.diskStorage({
         callback(null, 'public/uploads/');
     },
     filename: (req, file, callback) => {
-        const tag = req.query.entityId ?  makeRandomString() : '-logo';
+        const tag = (req.query.entityId) ?  makeRandomString() : 'logo';
         const id = (req.query.entityId || req.query.id) ? (req.query.entityId? req.query.entityId: req.query.id) : makeRandomString();
-        callback(null, id + tag + path.extname(file.originalname));
+        callback(null, id+ '-' + tag + path.extname(file.originalname));
     }
 });
 var upload = multer({ storage: store }).single('file');
@@ -43,8 +43,8 @@ router.post('/upload', function(req,res){
             res.status(501).json({status:'error',err: err});
         }
         else{
-            if(req.query.entityId){
-                const entityId = req.query.entityId;
+            const entityId = req.query.entityId;
+            if(entityId) {
                 addImage({entityId:entityId, path: `/uploads/${req.file.filename}`},res);
             }
             else {

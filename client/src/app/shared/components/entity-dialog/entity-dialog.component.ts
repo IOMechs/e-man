@@ -83,4 +83,13 @@ export class EntityDialogComponent implements OnInit {
     });
   }
 
+  removeItem(ele) {
+    if (this.uploader.queue.length === 1) {
+      this.uploader.queue = [];
+    } else {
+      const index = this.uploader.queue.indexOf(ele);
+      this.uploader.queue = this.uploader.queue.splice(index, 1);
+    }
+  }
+
 }

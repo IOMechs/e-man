@@ -15,7 +15,7 @@ export class UploadImagesDialogComponent implements OnInit {
   imageList: Array<Image> = [];
   apiBaseUrl: string = environment.apiBaseUrl;
   uploader: FileUploader = new FileUploader({
-      url: this.apiBaseUrl + '/file/upload?id=' + this.data.entityId,
+      url: this.apiBaseUrl + '/file/upload?entityId=' + this.data.entityId,
       itemAlias: 'file',
       isHTML5: true,
       method: 'POST',
@@ -28,16 +28,37 @@ export class UploadImagesDialogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.id = this.data.entityId;
+    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      this.uploadDone(JSON.parse(response));
+    };
   }
 
   uploadDone(response) {
-    if (response.event.type === 4 && response.event.body.status === 'success') {
-      const uploaddImage = response.event.body.image;
-      this.imageList.push(uploaddImage);
+    this.imageList.push({path: response.image.path});
+    if (this.imageList.length === this.uploader.queue.length) {
       this.dialogRef.close({
         upload: this.imageList
       });
+    }
+  }
+
+  submitEntity(queue) {
+    if (queue && queue.length > 0) {
+      this.uploader.uploadAll();
+    } else {
+      this.dialogRef.close({
+        upload: '',
+      });
+    }
+  }
+
+  removeItem(ele) {
+    if (this.uploader.queue.length === 1) {
+      this.uploader.queue = [];
+    } else {
+      const index = this.uploader.queue.indexOf(ele);
+      this.uploader.queue = this.uploader.queue.splice(index, 1);
     }
   }
 

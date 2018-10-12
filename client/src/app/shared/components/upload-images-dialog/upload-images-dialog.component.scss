@@ -28,12 +28,6 @@
         }
       }
 
-       ::ng-deep &-queue {
-        & button {
-          margin-right: 10px;
-        }
-      }
-
       &__queue-card {
         height: 20px;
         margin: 20px 0px;
@@ -54,11 +48,13 @@
         }
       }
     }
+
+    &__footer-container{
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+    }
   }
-  &__footer-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-  }
+
 }
 

@@ -37,7 +37,7 @@
 
                   <mat-card *ngFor="let ele of uploader.queue" class="dialog-container__content-container__entity-form__uploadImage__queue-card">
                     <h4 class="dialog-container__content-container__entity-form__uploadImage__queue-card__title">{{ ele.file.name }}</h4>
-                    <mat-icon class="dialog-container__content-container__entity-form__uploadImage__queue-card__icon">cancel</mat-icon>
+                    <mat-icon class="dialog-container__content-container__entity-form__uploadImage__queue-card__icon" (click)="removeItem(ele)">cancel</mat-icon>
                   </mat-card>
 
                 </div>

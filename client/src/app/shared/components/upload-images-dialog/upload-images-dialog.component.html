@@ -3,18 +3,24 @@
       <h1 class="dialog-container__header-container--heading" mat-dialog-title>Upload Event Images</h1>
   </div>
   <div class="dialog-container__content-container">
-      <mat-dialog-content>
-          <div class="dialog-container__content-container__uploadImage">
-              <button class="dialog-container__content-container__uploadImage-btn" mat-raised-button color="primary">
-                Upload Images
-                <input class="dialog-container__content-container__uploadImage-btn-input" type="file" ng2FileSelect [uploader]="uploader"/>
-              </button>
-              <br>
-              <mat-card *ngFor="let ele of uploader.queue" class="dialog-container__content-container__uploadImage__queue-card">
-                <h4 class="dialog-container__content-container__uploadImage__queue-card__title">{{ ele.file.name }}</h4>
-                <mat-icon class="dialog-container__content-container__uploadImage__queue-card__icon">cancel</mat-icon>
-              </mat-card>
-            </div>
-      </mat-dialog-content>
+
+    <mat-dialog-content>
+        <div class="dialog-container__content-container__uploadImage">
+            <button class="dialog-container__content-container__uploadImage-btn" mat-raised-button color="primary">
+              Upload Images
+              <input class="dialog-container__content-container__uploadImage-btn-input" type="file" ng2FileSelect [uploader]="uploader"/>
+            </button>
+            <br>
+            <mat-card *ngFor="let ele of uploader.queue" class="dialog-container__content-container__uploadImage__queue-card">
+              <h4 class="dialog-container__content-container__uploadImage__queue-card__title">{{ ele.file.name }}</h4>
+              <mat-icon class="dialog-container__content-container__uploadImage__queue-card__icon" (click)="removeItem(ele)">cancel</mat-icon>
+            </mat-card>
+          </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class ="dialog-container__content-container__footer-container">
+      <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+      <button mat-raised-button color="primary" (click)="submitEntity(uploader.queue)" [disabled]="uploader.queue.length === 0">Submit</button>
+    </mat-dialog-actions>
   </div>
 </div>
