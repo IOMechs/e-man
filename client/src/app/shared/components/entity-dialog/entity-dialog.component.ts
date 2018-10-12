@@ -70,7 +70,7 @@ export class EntityDialogComponent implements OnInit {
       this.uploader.uploadAll();
     } else {
       this.dialogRef.close({
-        file: '',
+        file: null,
         data: this.entityDialogForm.value
       });
     }

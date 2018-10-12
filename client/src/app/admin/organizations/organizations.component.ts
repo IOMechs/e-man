@@ -56,7 +56,7 @@ export class OrganizationsComponent implements OnInit {
       width: '500px',
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result !== '') {
+      if (result && result !== null) {
         result.data.createdAt = Date();
         result.data.imageUrl = result.file;
         this.createOrganization(result.data);
@@ -69,8 +69,8 @@ export class OrganizationsComponent implements OnInit {
     .subscribe(
       (data) => {
         this.showToast('Organization Create Sucessfully');
-        this.organizations.unshift(data.organization);
-        this.organizations = [].concat(this.organizations);
+        this.organizations = [data.organization, ...this.organizations];
+        this.organizations = [...this.organizations];
       },
       (err) => {
         this.showToast(`Internal Server Error`);
