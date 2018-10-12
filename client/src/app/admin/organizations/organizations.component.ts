@@ -30,8 +30,8 @@ export class OrganizationsComponent implements OnInit {
   getOrganization() {
     this.organizationService.get()
     .subscribe(
-      (data: Organzation[]) => {
-        this.organizations =  data['organizations'] && data['organizations'].length > 0 ? data['organizations']  : [];
+      (data) => {
+        this.organizations =  data.organizations && data.organizations.length > 0 ? data.organizations  : [];
       },
       (err) => {
         this.showToast(`Internal Server Error`);
@@ -47,23 +47,19 @@ export class OrganizationsComponent implements OnInit {
     this.filterValue = filterValue.trim().toLowerCase();
   }
 
-  openDialog(title, data?, index?, event?) {
-    if (event) {
-      event.stopPropagation();
-    }
+  addNewOrganization() {
     const dialogRef = this.dialog.open(EntityDialogComponent, {
       data: {
         header : `Add Organization`,
-        entityData: data ? data : null,
         entityType: 'Organization'
       },
       width: '500px',
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result !== '') {
-        result['data']['createdAt'] = Date();
-        result['data']['imageUrl'] = result['file'];
-        this.createOrganization(result['data']);
+      if (result && result !== null) {
+        result.data.createdAt = Date();
+        result.data.imageUrl = result.file;
+        this.createOrganization(result.data);
       }
     });
   }
@@ -71,10 +67,10 @@ export class OrganizationsComponent implements OnInit {
   createOrganization(formData) {
     this.organizationService.create(formData)
     .subscribe(
-      (data: Organzation) => {
+      (data) => {
         this.showToast('Organization Create Sucessfully');
-        this.organizations.unshift(data['organization']);
-        this.organizations = [].concat(this.organizations);
+        this.organizations = [data.organization, ...this.organizations];
+        this.organizations = [...this.organizations];
       },
       (err) => {
         this.showToast(`Internal Server Error`);

@@ -4,17 +4,22 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  &__header-container{
-    &--heading{
+
+  &__header-container {
+
+    &--heading {
       text-transform: capitalize;
     }
   }
-  &__content-container{
-    &__uploadImage{
-      &-btn{
+  &__content-container {
+
+    &__uploadImage {
+
+      &-btn {
         width: 104px;
         padding: 0px;
         padding-left: 4px;
+
         ::ng-deep &-input {
           position: relative;
           left: -94px;
@@ -22,30 +27,34 @@
           width: 0px;
         }
       }
-      &-upload{
-        ::ng-deep & mat-card {
-          height: 50px;
-          padding: 5px;
-          margin-top: 10px;
-          ::ng-deep & .file-info{
-            font-size: 14px;
-          }
-          ::ng-deep & span{
-            font-size: 13px;
-          }
+
+      &__queue-card {
+        height: 20px;
+        margin: 20px 0px;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        background-color: $em-light-grey;
+
+        &__title {
+          color: $em-purple;
+          font-size: 15px;
         }
-      }
-       ::ng-deep &-queue{
-        & button {
-          margin-right: 10px;
+
+        &__icon {
+          font-size: 19px;
+          color: $em-grey;
+          cursor: pointer;
         }
       }
     }
+
+    &__footer-container{
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+    }
   }
-  &__footer-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-  }
+
 }
 

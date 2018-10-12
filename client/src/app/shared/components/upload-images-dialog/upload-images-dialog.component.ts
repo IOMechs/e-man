@@ -3,6 +3,7 @@ import { Image } from './../../../core/models/image';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ImageService } from '../../../core/services/image/image.service';
+import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 @Component({
   selector: 'em-upload-images-dialog',
@@ -13,6 +14,12 @@ export class UploadImagesDialogComponent implements OnInit {
   id: string;
   imageList: Array<Image> = [];
   apiBaseUrl: string = environment.apiBaseUrl;
+  uploader: FileUploader = new FileUploader({
+      url: this.apiBaseUrl + '/file/upload?entityId=' + this.data.entityId,
+      itemAlias: 'file',
+      isHTML5: true,
+      method: 'POST',
+    });
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -21,16 +28,37 @@ export class UploadImagesDialogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.id = this.data.entityId;
+    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      this.uploadDone(JSON.parse(response));
+    };
   }
 
   uploadDone(response) {
-    if (response.event.type === 4 && response.event.body.status === 'success') {
-      const uploaddImage = response.event.body.image;
-      this.imageList.push(uploaddImage);
+    this.imageList.push({path: response.image.path});
+    if (this.imageList.length === this.uploader.queue.length) {
       this.dialogRef.close({
         upload: this.imageList
       });
+    }
+  }
+
+  submitEntity(queue) {
+    if (queue && queue.length > 0) {
+      this.uploader.uploadAll();
+    } else {
+      this.dialogRef.close({
+        upload: '',
+      });
+    }
+  }
+
+  removeItem(ele) {
+    if (this.uploader.queue.length === 1) {
+      this.uploader.queue = [];
+    } else {
+      const index = this.uploader.queue.indexOf(ele);
+      this.uploader.queue = this.uploader.queue.splice(index, 1);
     }
   }
 

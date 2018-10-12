@@ -16,10 +16,10 @@ export class EventsService {
   constructor(private http: HttpClient) { }
 
   getEvents(data, title?): Observable<any> {
-    return this.http.get(`${this.apiBaseUrl}/event/all-events?_id=${data}`)
+    return this.http.get<{events: Array<EventItem>}>(`${this.apiBaseUrl}/event/all-events?_id=${data}`)
     .pipe(
       map((res) => {
-        this.events = res['events'];
+        this.events = res.events;
         return res;
       }),
       catchError(err => {

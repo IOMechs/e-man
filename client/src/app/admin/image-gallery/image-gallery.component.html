@@ -13,7 +13,7 @@
   <div class="gallery-container__body-container">
     <ng-container *ngIf="images.length > 0">
       <mat-card class="gallery-container__body-container__image-container-image-card" *ngFor="let image of images">
-        <img mat-card-image src="{{apiBaseUrl}}/{{ image.path }}" alt="{{event.name}}">
+        <img mat-card-image src="{{apiBaseUrl}}/{{ image?.path }}" alt="{{event?.name}}">
       </mat-card>
     </ng-container>
     <ng-container *ngIf="images.length == 0">
