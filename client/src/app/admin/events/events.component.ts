@@ -23,7 +23,7 @@ export class EventsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.orgId = params['id'];
+      this.orgId = params.id;
     });
    this.getEvents();
   }
@@ -35,14 +35,14 @@ export class EventsComponent implements OnInit {
   getEvents() {
     this.eventService.getEvents(this.orgId)
     .subscribe(
-    (data: EventItem[]) => {
-      this.events = (data['events'] && data['events'].length > 0 ) ? data['events'] :  [];
+    (data) => {
+      this.events = (data.events && data.events.length > 0 ) ? data.events :  [];
     },
     (err) => {
       this.showToast('Internal server Error');
     });
   }
-  openDialog() {
+  addNewEvent() {
     if (event) {
       event.stopPropagation();
     }
@@ -54,11 +54,11 @@ export class EventsComponent implements OnInit {
       width: '500px',
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result !== '') {
-        result['data']['createdAt'] = Date();
-        result['data']['organizationId'] = this.orgId;
-        result['data']['imageUrl'] = result['file'];
-        this.createOrganization(result['data']);
+      if (result && result !== '') {
+        result.data.createdAt = Date();
+        result.data.organizationId = this.orgId;
+        result.data.imageUrl = result.file;
+        this.createOrganization(result.data);
       }
     });
   }
@@ -66,9 +66,9 @@ export class EventsComponent implements OnInit {
   createOrganization(formData) {
     this.eventService.create(formData)
     .subscribe(
-      (data: EventItem) => {
+      (data) => {
         this.showToast('Event Create Sucessfully');
-        this.events.unshift(data['event']);
+        this.events.unshift(data.event);
         this.events = [].concat(this.events);
       },
       (err) => {

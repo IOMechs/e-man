@@ -69,12 +69,12 @@ export class EntityListComponent implements OnInit {
       width: '500px',
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result !== '') {
-        result['createdAt'] = Date();
+      if (result && result !== '') {
+        result.createdAt = Date();
         if (result.file !== '') {
-          result.data['imageUrl'] = result.file + '?ts=' + Date.now();
+          result.data.imageUrl = result.file + '?ts=' + Date.now();
         }
-        const res = Object.assign(data, result['data']);
+        const res = Object.assign(data, result.data);
         this.updateEntity(res, eleIndex);
       }
     });

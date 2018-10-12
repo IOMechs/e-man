@@ -30,8 +30,8 @@ export class OrganizationsComponent implements OnInit {
   getOrganization() {
     this.organizationService.get()
     .subscribe(
-      (data: Organzation[]) => {
-        this.organizations =  data['organizations'] && data['organizations'].length > 0 ? data['organizations']  : [];
+      (data) => {
+        this.organizations =  data.organizations && data.organizations.length > 0 ? data.organizations  : [];
       },
       (err) => {
         this.showToast(`Internal Server Error`);
@@ -47,7 +47,7 @@ export class OrganizationsComponent implements OnInit {
     this.filterValue = filterValue.trim().toLowerCase();
   }
 
-  openDialog() {
+  addNewOrganization() {
     const dialogRef = this.dialog.open(EntityDialogComponent, {
       data: {
         header : `Add Organization`,
@@ -56,10 +56,10 @@ export class OrganizationsComponent implements OnInit {
       width: '500px',
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result !== '') {
-        result['data']['createdAt'] = Date();
-        result['data']['imageUrl'] = result['file'];
-        this.createOrganization(result['data']);
+      if (result && result !== '') {
+        result.data.createdAt = Date();
+        result.data.imageUrl = result.file;
+        this.createOrganization(result.data);
       }
     });
   }
@@ -67,9 +67,9 @@ export class OrganizationsComponent implements OnInit {
   createOrganization(formData) {
     this.organizationService.create(formData)
     .subscribe(
-      (data: Organzation) => {
+      (data) => {
         this.showToast('Organization Create Sucessfully');
-        this.organizations.unshift(data['organization']);
+        this.organizations.unshift(data.organization);
         this.organizations = [].concat(this.organizations);
       },
       (err) => {

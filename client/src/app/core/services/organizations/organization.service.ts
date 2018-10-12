@@ -1,3 +1,4 @@
+import { Organzation } from './../../../admin/organizations/organizations.component';
 import { environment } from './../../../../environments/environment';
 import { UserService } from './../user/user.service';
 import { HttpClient } from '@angular/common/http';
@@ -18,7 +19,7 @@ user: any;
 
   get(): Observable<any> {
     this.user = this.userService.getUser();
-    return this.http.get(`${this.apiBaseUrl}/organizations?_id=${this.user._id}`)
+    return this.http.get<{organzations: Organzation[]}>(`${this.apiBaseUrl}/organizations?_id=${this.user._id}`)
     .pipe(
       map((res) => {
         return res;
@@ -30,7 +31,7 @@ user: any;
   }
 
   create(data): Observable<any> {
-    data['userId'] = this.userService.getUser()._id;
+    data.userId = this.userService.getUser()._id;
     return this.http.post(`${this.apiBaseUrl}/organization`, data)
     .pipe(
       map((res) => {
