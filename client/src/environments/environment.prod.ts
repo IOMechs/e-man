@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: false,
+  baseUrl : '',
+  apiBaseUrl : 'http://localhost:5000',
+  assetsBaseUrl : ''
 };

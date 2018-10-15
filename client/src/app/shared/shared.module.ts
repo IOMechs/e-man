@@ -11,7 +11,7 @@ import { EntityDialogComponent } from './components/entity-dialog/entity-dialog.
 import { EntityListComponent } from './components/entity-list/entity-list.component';
 import { UploadImagesDialogComponent } from './components/upload-images-dialog/upload-images-dialog.component';
 import { EntityHeaderComponent } from './components/entity-header/entity-header.component';
-import { FileSelectDirective } from 'ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   imports: [
@@ -20,6 +20,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FileUploadModule
   ],
   declarations: [
     HeaderComponent,
@@ -28,8 +29,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
     EntityDialogComponent,
     EntityListComponent,
     UploadImagesDialogComponent,
-    EntityHeaderComponent,
-    FileSelectDirective
+    EntityHeaderComponent
   ],
   exports: [
     MaterialCustomModule,
@@ -38,8 +38,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
     ReactiveFormsModule,
     HttpClientModule,
     EntityListComponent,
-    EntityHeaderComponent,
-    FileSelectDirective
+    EntityHeaderComponent
   ]
 })
 export class SharedModule { }

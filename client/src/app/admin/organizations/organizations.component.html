@@ -1,5 +1,5 @@
 <div class="entity-container">
-  <em-entity-header btnText="Organization" heading="Organizations" (filterString)="applyFilter($event)" (openModal)="addNewOrganization($event)"></em-entity-header>
+  <em-entity-header btnText="Organization" heading="Organizations" (filterString)="applyFilter($event)" (openModal)="addNewOrganization()"></em-entity-header>
   <em-entity-list class="entity-container__bottom-container" [applyFilter]="filterValue" [entityList]="organizations" (updateList)="resendList($event)"  [type]="'organization'" *ngIf ="organizations.length > 0"></em-entity-list>
 
   <div class="error-container" *ngIf ="organizations.length === 0">

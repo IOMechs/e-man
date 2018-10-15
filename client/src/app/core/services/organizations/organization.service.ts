@@ -19,7 +19,7 @@ user: any;
 
   get(): Observable<any> {
     this.user = this.userService.getUser();
-    return this.http.get<{organzations: Organzation[]}>(`${this.apiBaseUrl}/organizations?_id=${this.user._id}`)
+    return this.http.get<{organzations: Array<Organzation>}>(`${this.apiBaseUrl}/organizations?_id=${this.user._id}`)
     .pipe(
       map((res) => {
         return res;
