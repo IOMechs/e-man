@@ -39,15 +39,20 @@ var upload = multer({ storage: store }).single('file');
 
 router.post('/upload', function(req,res){
     upload(req,res, function(err){
+        console.log('in upload function');
         if(err){
+            console.log('in upload err');
             res.status(501).json({status:'error',err: err});
         }
         else{
+            console.log('in upload, success function');
             const entityId = req.query.entityId;
             if(entityId) {
                 addImage({entityId:entityId, path: `/uploads/${req.file.filename}`},res);
             }
             else {
+                console.log(req.query.id);
+                console.log(req.file.filename);
                 res.status(200).json({status:'success', path: `/uploads/${req.file.filename}`});
             }
         }

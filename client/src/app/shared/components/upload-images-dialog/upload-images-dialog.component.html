@@ -8,7 +8,7 @@
         <div class="dialog-container__content-container__uploadImage">
             <button class="dialog-container__content-container__uploadImage-btn" mat-raised-button color="primary">
               Upload Images
-              <input class="dialog-container__content-container__uploadImage-btn-input" type="file" ng2FileSelect [uploader]="uploader"/>
+              <input class="dialog-container__content-container__uploadImage-btn-input" type="file" multiple  ng2FileSelect [uploader]="uploader"/>
             </button>
             <br>
             <mat-card *ngFor="let ele of uploader.queue" class="dialog-container__content-container__uploadImage__queue-card">
