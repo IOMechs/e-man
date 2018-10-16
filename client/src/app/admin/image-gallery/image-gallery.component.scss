@@ -12,14 +12,14 @@
     align-items: center;
     flex-direction: row;
 
-    & h1 {
+    &__heading-container {
       color: $em-black;
       letter-spacing: 2.9px;
       font-weight: 100;
       font-size: 30px;
       text-transform: capitalize;
 
-      & span {
+      &__title-container {
         color: $em-purple;
         text-transform: capitalize;
       }
