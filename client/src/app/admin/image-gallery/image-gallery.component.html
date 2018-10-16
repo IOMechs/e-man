@@ -1,8 +1,8 @@
 <div class="gallery-container">
   <div class="gallery-container__header-container">
-    <h1>
+    <h1 class="gallery-container__header-container__heading-container">
       <!-- <mat-icon>photo_library</mat-icon> -->
-      <span>{{event?.name }}</span> image gallery
+      <span class="gallery-container__header-container__heading-container__title-container">{{event?.name }}</span> image gallery
     </h1>
     <div class="gallery-container__header-container__btn">
       <button class="button--state-add" mat-raised-button color="primary" (click)="openDialog()">
