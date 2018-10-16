@@ -1,43 +1,60 @@
 @import '../../../styles/e-man/variables';
 
-.gallery-container{
+.gallery-container {
   padding: 30px;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
-  &__header-container{
+
+  &__header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    & h1{
+
+    & h1 {
       color: $em-black;
       letter-spacing: 2.9px;
       font-weight: 100;
       font-size: 30px;
       text-transform: capitalize;
-      & span{
+
+      & span {
         color: $em-purple;
         text-transform: capitalize;
       }
     }
   }
-  &__body-container{
+
+  &__body-container {
     display: flex;
     flex-wrap: wrap;
-    padding: 20px 20px 0px 20px;
-    & .mat-card{
-      width: 360px;
-      height: 187px;
-      margin: 10px;
-      & img{
-        width: 410px;
-        height: 236px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    &__list-container {
+      padding: 10px;
+      max-width: 1285px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 0 auto;
+
+      &__image-card {
+        width: 360px;
+        height: 187px;
+        margin: 10px;
+
+        &__image {
+          width: 410px;
+          height: 236px;
+        }
       }
     }
   }
 }
-
 
 @media (max-width: $widthxs) {
   .gallery-container{
@@ -47,16 +64,48 @@
       align-items: center;
       flex-direction: column;
     }
+  }
+}
+
+@media (max-width: $widthmd) {
+  .gallery-container{
     &__body-container{
-      justify-content: center;
-      & .mat-card{
-        width: 400px;
-        height: 200px;
-        margin-bottom: 30px;
-        & img{
-          width: 450px;
-          height: 250px;
+
+      &__list-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &__image-card {
+          width: 400px;
+          height: 200px;
+          margin-bottom: 30px;
+
+          &__image {
+            width: 450px;
+            height: 250px;
+          }
         }
+      }
+    }
+  }
+}
+
+@media (min-width: $widthmd) {
+  .gallery-container{
+    &__body-container{
+      &__list-container {
+        max-width: 860px;
+      }
+    }
+  }
+}
+
+@media (min-width: $widthlg-1) {
+  .gallery-container{
+    &__body-container{
+      &__list-container {
+        max-width: 1285px;
       }
     }
   }

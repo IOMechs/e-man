@@ -10,12 +10,16 @@
       </button>
     </div>
   </div>
+
   <div class="gallery-container__body-container">
-    <ng-container *ngIf="images.length > 0">
-      <mat-card class="gallery-container__body-container__image-container-image-card" *ngFor="let image of images">
-        <img mat-card-image src="{{apiBaseUrl}}/{{ image?.path }}" alt="{{event?.name}}">
+    <div *ngIf="images.length > 0" class="gallery-container__body-container__list-container">
+      <mat-card class="gallery-container__body-container__list-container__image-card" *ngFor="let image of images">
+        <img
+          class="gallery-container__body-container__list-container__image-card__image"
+          mat-card-image src="{{apiBaseUrl}}/{{ image?.path }}" alt="{{event?.name}}"
+        >
       </mat-card>
-    </ng-container>
+    </div>
     <ng-container *ngIf="images.length == 0">
       No Images for this Event
     </ng-container>
