@@ -402,3 +402,7 @@ MIT
 @angular/forms@6.1.0
 MIT
 MIT
+
+ngx-spinner@6.1.2
+MIT
+MIT
