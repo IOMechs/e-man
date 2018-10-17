@@ -4,6 +4,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ImageService } from '../../../core/services/image/image.service';
 import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'em-upload-images-dialog',
@@ -24,7 +25,8 @@ export class UploadImagesDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<UploadImagesDialogComponent>,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -37,6 +39,7 @@ export class UploadImagesDialogComponent implements OnInit {
   uploadDone(response) {
     this.imageList.push({path: response.image.path});
     if (this.imageList.length === this.uploader.queue.length) {
+      this.spinner.hide();
       this.dialogRef.close({
         upload: this.imageList
       });
@@ -44,6 +47,7 @@ export class UploadImagesDialogComponent implements OnInit {
   }
 
   submitEntity(queue) {
+    this.spinner.show();
     if (queue && queue.length > 0) {
       this.uploader.uploadAll();
     } else {
