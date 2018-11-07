@@ -1,76 +1,73 @@
 <div class="auth-outer-container">
-  <div class="row">
-    <div class="auth-intro-container">
-      <img src="assets/images/background.jpg">
-      <div class="title">
-        <h1>E-man</h1>
-      </div>
-    </div>
-    <div class="auth-form-container">
-      <mat-card>
-        <div class="card-container">
-
-          <div class="auth-header">
-            <mat-card-header>
-              <mat-card-title>
-                <h2>CREATE AN ACCOUNT</h2>
-              </mat-card-title>
-            </mat-card-header>
-          </div>
-          <!-- form -->
-          <div class="auth-content">
-            <form [formGroup]="signupForm" (submit)="onSubmit()">
-              <mat-form-field>
-                <input matInput placeholder="First Name" name="firstName" formControlName="firstName">
-                <mat-error *ngIf="signupControls.firstName.hasError('required')">
-                  First Name is <strong>required</strong>
-                </mat-error>
-                <mat-error *ngIf="signupControls.firstName.hasError('pattern')">
-                  Provide Valid <strong>First Name e.g John</strong>
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput placeholder="Last Name" name="lastName" formControlName="lastName">
-                <mat-error *ngIf="signupControls.lastName.hasError('required')">
-                  Last Name is <strong>required</strong>
-                </mat-error>
-                <mat-error *ngIf="signupControls.lastName.hasError('pattern')">
-                  Provide Valid <strong>Last Name e.g doe</strong>
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput placeholder="Email" name="email" formControlName="email">
-                <mat-error *ngIf="signupControls.email.hasError('required')">
-                  Email is <strong>required</strong>.
-                </mat-error>
-                <mat-error *ngIf="signupControls.email.hasError('email')">
-                  Invalid <strong>Email address</strong>.
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput placeholder="Input" type="password" name="password" placeholder="Password"
-                  formControlName="password">
-                <mat-error *ngIf="signupControls.password.hasError('required')">
-                  Password is <strong>required</strong>.
-                </mat-error>
-              </mat-form-field>
-              <div class="auth__checkbox">
-                <mat-checkbox [labelPosition]="after">
-                  Accept terms and condition
-                </mat-checkbox>
-              </div>
-              <div class="auth__button">
-                <button class="button--state-submit" mat-raised-button color="primary" [disabled]="signupForm.invalid">CREATE
-                  AN ACCOUNT</button>
-              </div>
-            </form>
-          </div>
-          <div class="auth-footer">
-            <span>Already have an account?</span>
-            <a routerLink="/login">Login</a>
-          </div>
+  <div class="auth-intro-container">
+    <img src="assets/images/background.jpg">
+  </div>
+  <div class="auth-form-container">
+    <mat-card>
+      <div class="card-container">
+        <div class="login-logo">
+          <div>E-Man</div>
         </div>
-      </mat-card>
-    </div>
+        <div class="auth-header">
+          <mat-card-header>
+            <mat-card-title>
+              <h2>CREATE AN ACCOUNT</h2>
+            </mat-card-title>
+          </mat-card-header>
+        </div>
+        <!-- form -->
+        <div class="auth-content">
+          <form [formGroup]="signupForm" (submit)="onSubmit()">
+            <mat-form-field>
+              <input matInput placeholder="First Name" name="firstName" formControlName="firstName">
+              <mat-error *ngIf="signupControls.firstName.hasError('required')">
+                First Name is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="signupControls.firstName.hasError('pattern')">
+                Provide Valid <strong>First Name e.g John</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Last Name" name="lastName" formControlName="lastName">
+              <mat-error *ngIf="signupControls.lastName.hasError('required')">
+                Last Name is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="signupControls.lastName.hasError('pattern')">
+                Provide Valid <strong>Last Name e.g doe</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Email" name="email" formControlName="email">
+              <mat-error *ngIf="signupControls.email.hasError('required')">
+                Email is <strong>required</strong>.
+              </mat-error>
+              <mat-error *ngIf="signupControls.email.hasError('email')">
+                Invalid <strong>Email address</strong>.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Input" type="password" name="password" placeholder="Password"
+                formControlName="password">
+              <mat-error *ngIf="signupControls.password.hasError('required')">
+                Password is <strong>required</strong>.
+              </mat-error>
+            </mat-form-field>
+            <div class="auth__checkbox">
+              <mat-checkbox [labelPosition]="after">
+                Accept terms and condition
+              </mat-checkbox>
+            </div>
+            <div class="auth__button">
+              <button class="button--state-submit" mat-raised-button color="primary" [disabled]="signupForm.invalid">CREATE
+                AN ACCOUNT</button>
+            </div>
+          </form>
+        </div>
+        <div class="auth-footer">
+          <span>Already have an account?</span>
+          <a routerLink="/login">Login</a>
+        </div>
+      </div>
+    </mat-card>
   </div>
 </div>
