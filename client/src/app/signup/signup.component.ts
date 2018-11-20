@@ -59,16 +59,19 @@ constructor(private authService: AuthService, private formBuilder: FormBuilder,
           this.route.navigate(['/admin']);
         },
         (err) => {
-          this.snackBar.open(String(err.error), '' , {
-            duration: 5000,
-            verticalPosition: 'top',
-            horizontalPosition: 'right'
-          });
-          console.log(err);
+          this.showToast(err.error.message);
         }
       );
     } else {
-      console.log('Please Provide Valid Inputs');
+      this.showToast('Please Provide Valid Inputs');
     }
+  }
+
+  showToast(message) {
+    this.snackBar.open(message, '' , {
+      duration: 10000,
+      verticalPosition: 'top',
+      horizontalPosition: 'right'
+    });
   }
 }

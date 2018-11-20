@@ -25,10 +25,10 @@ addUser = function(expressInstance, jwtInstance)
         {
             if(err)
             {
-                res.status(400).send("Bad request");
+                res.status(400).send({"error": err, "message": "Bad request"});
             }
             else if (userObject) {
-                res.status(400).send("User already created");
+                res.status(400).send({"error": true, "message": "User Already Exist"});
             }
             else
             {
@@ -39,7 +39,7 @@ addUser = function(expressInstance, jwtInstance)
                     {
                         if(err)
                         {
-                            res.status(400).send("Bad request");
+                            res.status(400).send({"error": err, "message": "Bad request"});
                         }
                         else
                         {
@@ -49,11 +49,11 @@ addUser = function(expressInstance, jwtInstance)
                             jwtInstance.sign(signObject, config.jwt_key, (err, token) => {
                                 if(err)
                                 {
-                                    res.status(401).send('Unauthorized');
+                                    res.status(400).send({"error": err, "message": "Unauthorized"});
                                 }
                                 else
                                 {
-                                    res.json({ "user": user, "token": token });
+                                    res.json({ "success": true, "user": user, "token": token });
                                 }
                             });
                         }
@@ -81,7 +81,7 @@ updateUser = function (expressInstance, jwtInstance, verifyToken)
         jwtInstance.verify(req.token, config.jwt_key, (err, userData) => {
             if(err)
             {
-                res.status(401).send("Unauthorized");
+                res.status(400).send({"error": err, "message": "Unauthorized"});
             }
             else
             {
@@ -91,11 +91,11 @@ updateUser = function (expressInstance, jwtInstance, verifyToken)
                 UserModel.findOneAndUpdate(query, req.body, options, (err, userObject) => {
                     if(err)
                     {
-                        res.status(400).send("Bad request");
+                        res.status(400).send({"error": err, "message": "Bad Request"});
                     }
                     else
                     {
-                        res.json({ "user": userObject });
+                        res.json({ "success": true, "user": userObject });
                     }
                 });
             }
@@ -119,28 +119,32 @@ response type: sends a json object of type { "user": object } if it exists. Else
 getUser = function(expressInstance, jwtInstance)
 {
     expressInstance.post('/login', (req, res) => {
-        UserModel.findOne( { "email": req.body.email },  (err, userObject) => 
+        UserModel.findOne( { "email": req.body.email},  (err, userObject) => 
         {
             if(err)
             {
-                res.status(400).send("Bad request");
+                res.status(400).send("Bad Request");
             }
             else if (userObject) {
                 const user = userObject.toJSON();
-                delete user.password;
-                const signObject = { "user": user };
-                jwtInstance.sign(signObject, config.jwt_key, (err, token) => {
-                    if(err)
-                    {
-                        res.status(401).send('Unauthorized');
-                    }
-                    else
-                    {
-                        res.json({ "user": user, "token": token });
-                    }
-                });
+                if(req.body.password === user.password){
+                    delete user.password;
+                    const signObject = { "user": user };
+                    jwtInstance.sign(signObject, config.jwt_key, (err, token) => {
+                        if(err)
+                        {
+                            res.status(400).send({"error": err, "message": "Unauthorized"});
+                        }
+                        else
+                        {
+                            res.json({ "success": true, "user": user, "token": token });
+                        }
+                    });
+                } else {
+                    res.status(400).send({"error": true, "message": "Invalid Password"});
+                }
             } else {
-                res.status(400).json({error: "User not found"});
+                res.status(400).json({"error": true, "message": "User Not Found"});
             }
         });
     });

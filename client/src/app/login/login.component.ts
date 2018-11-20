@@ -3,6 +3,7 @@ import { LoginForm } from './../core/common/login';
 import { AuthService } from './../core/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder , Validators, FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -13,8 +14,9 @@ import { FormGroup, FormBuilder , Validators, FormControl } from '@angular/forms
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  passwordErrorMessage = '';
 
-  constructor(private authService: AuthService, private route: Router, private formBuilder: FormBuilder) {
+  constructor(private snackBar: MatSnackBar,private authService: AuthService, private route: Router, private formBuilder: FormBuilder) {
    }
 
   ngOnInit() {
@@ -42,11 +44,23 @@ export class LoginComponent implements OnInit {
           this.route.navigate(['/admin']);
         },
         (err) => {
-          console.log(err);
+          if (err.error.message === 'Invalid password') {
+            this.passwordErrorMessage = err.error.message;
+          } else {
+            this.showToast(err.error.message);
+          }
         }
       );
     } else {
-      console.log('Please Provide Valid Inputs');
+      this.showToast('Please Provide Valid Inputs');
     }
+  }
+
+  showToast(message) {
+    this.snackBar.open(message, '' , {
+      duration: 10000,
+      verticalPosition: 'top',
+      horizontalPosition: 'right'
+    });
   }
 }
