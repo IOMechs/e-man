@@ -125,8 +125,7 @@ getUser = function(expressInstance, jwtInstance)
             {
                 res.status(400).send("Bad request");
             }
-            else
-            {
+            else if (userObject) {
                 const user = userObject.toJSON();
                 delete user.password;
                 const signObject = { "user": user };
@@ -140,7 +139,8 @@ getUser = function(expressInstance, jwtInstance)
                         res.json({ "user": user, "token": token });
                     }
                 });
-        
+            } else {
+                res.status(400).json({error: "User not found"});
             }
         });
     });
