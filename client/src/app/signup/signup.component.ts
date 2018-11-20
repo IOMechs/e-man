@@ -29,10 +29,6 @@ constructor(private authService: AuthService, private formBuilder: FormBuilder,
           Validators.pattern("^[a-zA-Z ,.'-]+$"),
         ]
       ],
-      username: ['', [
-          Validators.required
-        ]
-      ],
       email: ['', [
           Validators.required,
           Validators.email
