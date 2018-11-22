@@ -3,7 +3,8 @@ import { EventItem } from './../../models/event-item';
 import { map, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { of } from 'rxjs/observable/of';
 
 @Injectable({
   providedIn: 'root'

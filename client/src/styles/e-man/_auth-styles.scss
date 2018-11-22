@@ -96,6 +96,13 @@
                         font-size: 15px;
                     }
                 }
+                .custom-password-error {
+                    p {
+                        margin: 0px;
+                        color: red;
+                        font-size: 12px;
+                    }
+                }
                 .auth__checkbox__forgot {
                     display: flex;
                     justify-content: space-between;

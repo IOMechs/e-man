@@ -32,6 +32,9 @@
                 Password is <strong>required</strong>.
               </mat-error>
             </mat-form-field>
+            <div class="custom-password-error">
+              <p>{{ passwordErrorMessage }}</p>
+            </div>
             <div class="auth__checkbox__forgot">
               <mat-checkbox [labelPosition]="after">
                 Remember Me
