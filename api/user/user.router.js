@@ -28,7 +28,7 @@ addUser = function(expressInstance, jwtInstance)
                 res.status(400).send({"error": err, "message": "Bad request"});
             }
             else if (userObject) {
-                res.status(400).send({"error": true, "message": "User Already Exist"});
+                res.status(400).send({"error": true, "message": "User already exist"});
             }
             else
             {
@@ -91,11 +91,16 @@ updateUser = function (expressInstance, jwtInstance, verifyToken)
                 UserModel.findOneAndUpdate(query, req.body, options, (err, userObject) => {
                     if(err)
                     {
-                        res.status(400).send({"error": err, "message": "Bad Request"});
+                        res.status(400).send({"error": err, "message": "Bad request"});
                     }
                     else
                     {
-                        res.json({ "success": true, "user": userObject });
+                        if(userObject) {
+                            res.json({ "success": true, "user": userObject });
+                        }
+                        else {
+                            res.json({ "error": true, "message": "No user found"});
+                        }
                     }
                 });
             }
@@ -123,7 +128,7 @@ getUser = function(expressInstance, jwtInstance)
         {
             if(err)
             {
-                res.status(400).send("Bad Request");
+                res.status(400).send("Bad request");
             }
             else if (userObject) {
                 const user = userObject.toJSON();
@@ -141,10 +146,10 @@ getUser = function(expressInstance, jwtInstance)
                         }
                     });
                 } else {
-                    res.status(400).send({"error": true, "message": "Invalid Password"});
+                    res.status(400).send({"error": true, "message": "Invalid password"});
                 }
             } else {
-                res.status(400).json({"error": true, "message": "User Not Found"});
+                res.status(400).json({"error": true, "message": "User not found"});
             }
         });
     });
@@ -162,7 +167,7 @@ getAllUsers = function(expressInstance)
         {
             if(err)
             {
-                res.status(400).send("Bad Request");
+                res.status(400).send("Bad request");
             }
             else
             {

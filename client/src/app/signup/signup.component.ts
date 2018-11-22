@@ -63,13 +63,13 @@ constructor(private authService: AuthService, private formBuilder: FormBuilder,
         }
       );
     } else {
-      this.showToast('Please Provide Valid Inputs');
+      this.showToast('Please provide valid inputs');
     }
   }
 
   showToast(message) {
     this.snackBar.open(message, '' , {
-      duration: 10000,
+      duration: 1500,
       verticalPosition: 'top',
       horizontalPosition: 'right'
     });
