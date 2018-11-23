@@ -1,0 +1,40 @@
+<div class="main-container">
+  <mat-card class="main-container__first-section">
+    <div class="main-container__first-section__image-container">
+      <img src="../../assets/images/user.png">
+    </div>
+    <div class="main-container__first-section__profile-container-name">
+      {{user?.firstName | titlecase}} {{user?.lastName | titlecase }}
+    </div>
+  </mat-card>
+  <mat-card class="main-container__second-section">
+    <div class="main-container__second-section__heading">
+      <h1>USER INFORMATION</h1>
+      <i class="material-icons" (click)="editInformation ()" *ngIf="!editSection">
+        edit
+      </i>
+    </div>
+    <div class="main-container__second-section__information" *ngIf="!editSection">
+      <p>Name: {{user?.firstName | uppercase}} {{user?.lastName | uppercase}}</p>
+      <p>Email Address: {{user?.email | uppercase}}</p>
+    </div>
+    <div class="main-container__second-section__edit-information" *ngIf="editSection" [formGroup]="EditInfoGroup">
+      <div class="main-container__second-section__edit-information__user-info">
+        <p>First Name: </p>
+        <input type="text" formControlName="firstName">
+      </div>
+      <div class="main-container__second-section__edit-information__user-info">
+        <p>Last Name: </p>
+        <input type="text" formControlName="lastName">
+      </div>
+      <div class="main-container__second-section__edit-information__user-info">
+        <p>Email Address: </p>
+        <input type="text" formControlName="email">
+      </div>
+      <div *ngIf="editSection" class="main-container__second-section__edit-information__edit-buttons">
+        <button mat-raised-button color="warn" (click)="closeEditSection()">Cancle</button>
+        <button mat-raised-button color="primary" (click)="edit()" [disabled]="!EditInfoGroup.valid">Update</button>
+      </div>
+    </div>
+  </mat-card>
+</div>
