@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
   baseUrl : '',
-  apiBaseUrl : 'https://e-man-io.herokuapp.com',
+  apiBaseUrl : 'https://e-man.herokuapp.com',
   assetsBaseUrl : ''
 };
