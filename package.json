@@ -8,7 +8,8 @@
     "start": "node_modules/.bin/concurrently --kill-others \"npm run server:run:dev\" \"cd client && ng serve --progress false\"",
     "serve:client": "cd client && ng serve",
     "server:run": "node app.js",
-    "server:run:dev": "nodemon app.js"
+    "server:run:dev": "nodemon app.js",
+    "build:frontend": "cd ./client && ng build --prod && cp -R ./dist ../ && cd ../"
   },
   "repository": {
     "type": "git",
