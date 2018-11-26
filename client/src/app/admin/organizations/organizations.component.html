@@ -3,6 +3,6 @@
   <em-entity-list class="entity-container__bottom-container" [applyFilter]="filterValue" [entityList]="organizations" (updateList)="resendList($event)"  [type]="'organization'" *ngIf ="organizations.length > 0"></em-entity-list>
 
   <div class="error-container" *ngIf ="organizations.length === 0">
-    <p>No Organization Avaliable.. You Can Add New Organizations.</p>
+    <p>No organizations to show. <a (click)="addNewOrganization()">Create an organization.</a></p>
   </div>
 </div>

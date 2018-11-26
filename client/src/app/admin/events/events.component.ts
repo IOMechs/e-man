@@ -14,6 +14,7 @@ import { EntityDialogComponent } from '../../shared/components/entity-dialog/ent
 export class EventsComponent implements OnInit {
 
   orgId: string;
+  orgName : string;
   events: EventItem[] = [];
   filterValue = '';
 
@@ -25,7 +26,9 @@ export class EventsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.orgId = params.id;
     });
-   this.getEvents();
+    this.orgName = JSON.parse(localStorage.getItem('selectedOrganization')).name;
+    console.log(this.orgName);
+    this.getEvents();
   }
 
   resendList(list) {
@@ -39,7 +42,7 @@ export class EventsComponent implements OnInit {
       this.events = (data.events && data.events.length > 0 ) ? data.events :  [];
     },
     (err) => {
-      this.showToast('Internal server Error');
+      this.showToast('Internal server error');
     });
   }
   addNewEvent() {
@@ -67,12 +70,12 @@ export class EventsComponent implements OnInit {
     this.eventService.create(formData)
     .subscribe(
       (data) => {
-        this.showToast('Event Create Sucessfully');
+        this.showToast('Event created successfully');
         this.events = [data.event, ...this.events];
         this.events = [...this.events];
       },
       (err) => {
-        this.showToast('Internal server Error');
+        this.showToast('Internal server error');
       }
     );
   }

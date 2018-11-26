@@ -86,7 +86,9 @@ export class EntityListComponent implements OnInit {
       event.stopPropagation();
     }
     const dialogRef = this.dialog.open(DeleteWarningDialogComponent, {
-      height: '150px',
+      data:{
+        entityName : data.name
+      },
       width: '400px',
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -137,6 +139,7 @@ export class EntityListComponent implements OnInit {
 
   moveToEvent(data) {
     if (this.entityType === 'organization') {
+      localStorage.setItem('selectedOrganization', JSON.stringify(data));
       this.router.navigateByUrl(`admin/organization/${data._id}/events`, data);
     } else {
       this.router.navigateByUrl(`admin/organization/${data.organizationId}/event/${data._id}/images`);
