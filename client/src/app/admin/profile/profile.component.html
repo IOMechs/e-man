@@ -15,10 +15,10 @@
       </i>
     </div>
     <div class="main-container__second-section__information" *ngIf="!editSection">
-      <p>Name: {{user?.firstName | uppercase}} {{user?.lastName | uppercase}}</p>
-      <p>Email Address: {{user?.email | uppercase}}</p>
+      <p>Name: {{user?.firstName | titlecase}} {{user?.lastName | titlecase}}</p>
+      <p>Email Address: {{user?.email | titlecase}}</p>
     </div>
-    <div class="main-container__second-section__edit-information" *ngIf="editSection" [formGroup]="EditInfoGroup">
+    <div class="main-container__second-section__edit-information" *ngIf="editSection" [formGroup]="editInfoForm">
       <div class="main-container__second-section__edit-information__user-info">
         <p>First Name: </p>
         <input type="text" formControlName="firstName">
@@ -33,7 +33,7 @@
       </div>
       <div *ngIf="editSection" class="main-container__second-section__edit-information__edit-buttons">
         <button mat-raised-button color="warn" (click)="closeEditSection()">Cancle</button>
-        <button mat-raised-button color="primary" (click)="edit()" [disabled]="!EditInfoGroup.valid">Update</button>
+        <button mat-raised-button color="primary" (click)="edit()" [disabled]="!editInfoForm.valid">Update</button>
       </div>
     </div>
   </mat-card>

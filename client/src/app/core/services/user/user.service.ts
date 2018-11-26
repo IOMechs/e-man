@@ -22,14 +22,6 @@ export class UserService {
   }
 
   updateUser(data): Observable<any> {
-    return this.http.put(`${this.apiBaseUrl}/user`, data)
-    .pipe(
-      map((res) => {
-        return res;
-      }),
-      catchError(err => {
-        throw(err);
-      })
-    );
+    return this.http.put(`${this.apiBaseUrl}/user`, data);
   }
 }
