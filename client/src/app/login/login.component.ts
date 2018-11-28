@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   passwordErrorMessage = '';
 
-  constructor(private snackBar: MatSnackBar,private authService: AuthService, private route: Router, private formBuilder: FormBuilder) {
+  constructor(private snackBar: MatSnackBar, private authService: AuthService, private route: Router, private formBuilder: FormBuilder) {
    }
 
   ngOnInit() {
