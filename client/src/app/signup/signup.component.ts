@@ -19,25 +19,11 @@ constructor(private authService: AuthService, private formBuilder: FormBuilder,
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
-      firstName: ['', [
-          Validators.required,
-          Validators.pattern("^[a-zA-Z ,.'-]+$")
-        ]
-      ],
-      lastName: ['', [
-          Validators.required,
-          Validators.pattern("^[a-zA-Z ,.'-]+$"),
-        ]
-      ],
-      email: ['', [
-          Validators.required,
-          Validators.email
-        ]
-      ],
-      password: ['', [
-          Validators.required
-        ]
-      ]
+      firstName: ['', [Validators.required, Validators.pattern( "^[a-zA-Z ,.'-]+$" )]],
+      lastName: ['', [Validators.required, Validators.pattern("^[a-zA-Z ,.'-]+$") ]],
+      email: ['', [Validators.required, Validators.email ]],
+      password: ['', [Validators.required]],
+      termsConditions: [false, []],
     });
   }
 
