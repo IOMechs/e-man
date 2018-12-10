@@ -4,19 +4,19 @@
       <img src="../../assets/images/user.png">
     </div>
     <div class="main-container__first-section__profile-container-name">
-      {{user?.firstName | titlecase}} {{user?.lastName | titlecase }}
+      {{($user | async)?.firstName | titlecase}} {{($user | async)?.lastName | titlecase }}
     </div>
   </mat-card>
   <mat-card class="main-container__second-section">
     <div class="main-container__second-section__heading">
       <h1>USER INFORMATION</h1>
-      <i class="material-icons" (click)="editInformation ()" *ngIf="!editSection">
+      <i class="material-icons" (click)="editInformation()" *ngIf="!editSection">
         edit
       </i>
     </div>
     <div class="main-container__second-section__information" *ngIf="!editSection">
-      <p>Name: {{user?.firstName | titlecase}} {{user?.lastName | titlecase}}</p>
-      <p>Email Address: {{user?.email | titlecase}}</p>
+      <p>Name: {{($user | async)?.firstName}} {{($user | async)?.lastName}}</p>
+      <p>Email Address: {{($user | async)?.email}}</p>
     </div>
     <div class="main-container__second-section__edit-information" *ngIf="editSection" [formGroup]="editInfoForm">
       <div class="main-container__second-section__edit-information__user-info">

@@ -12,14 +12,12 @@ import { Observable } from 'rxjs';
 })
 export class OrganizationService {
 apiBaseUrl: string  = environment.apiBaseUrl;
-user: any;
 
-  constructor(private http: HttpClient, private userService: UserService) {
+  constructor(private http: HttpClient) {
   }
 
-  get(): Observable<any> {
-    this.user = this.userService.getUser();
-    return this.http.get<{organzations: Array<Organzation>}>(`${this.apiBaseUrl}/organizations?_id=${this.user._id}`)
+  getOrganization(user): Observable<any> {
+    return this.http.get<{organzations: Array<Organzation>}>(`${this.apiBaseUrl}/organizations?_id=${user._id}`)
     .pipe(
       map((res) => {
         return res;
@@ -30,9 +28,8 @@ user: any;
     );
   }
 
-  create(data): Observable<any> {
-    data.userId = this.userService.getUser()._id;
-    return this.http.post(`${this.apiBaseUrl}/organization`, data)
+  create(userId): Observable<any> {
+    return this.http.post(`${this.apiBaseUrl}/organization`, userId)
     .pipe(
       map((res) => {
         return res;
@@ -43,8 +40,8 @@ user: any;
     );
   }
 
-  update(data): Observable<any> {
-    return this.http.put(`${this.apiBaseUrl}/organization`, data)
+  update(organization): Observable<any> {
+    return this.http.put(`${this.apiBaseUrl}/organization`, organization)
     .pipe(
       map((res) => {
         return res;
@@ -55,8 +52,8 @@ user: any;
     );
   }
 
-  delete(data): Observable<any> {
-    return this.http.delete(`${this.apiBaseUrl}/organization/${data._id}`)
+  delete(organization): Observable<any> {
+    return this.http.delete(`${this.apiBaseUrl}/organization/${organization._id}`)
     .pipe(
       map((res) => {
         return res;
