@@ -9,6 +9,7 @@ import { User } from 'src/app/shared/interfaces/user';
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
   userSource: BehaviorSubject<User> = new BehaviorSubject<User>(null);
   $user: Observable<User>;
