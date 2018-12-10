@@ -78,29 +78,41 @@ updateUser = function (expressInstance, jwtInstance, verifyToken)
 {
     expressInstance.put('/user', verifyToken, (req, res) => 
     {
-        jwtInstance.verify(req.token, config.jwt_key, (err, userData) => {
+        UserModel.findOne( { "email": req.body.email },  (err, isUserExist) => {
             if(err)
             {
-                res.status(400).send({"error": err, "message": "Unauthorized"});
+                res.status(400).send({"error": err, "message": "Bad request"});
+            }
+            else if (isUserExist) {
+                res.status(400).send({"error": true, "message": "Email already exist"});
             }
             else
             {
-                const query = { username: userData.user.username };
-                const options = { new: true };
-
-                UserModel.findOneAndUpdate(query, req.body, options, (err, userObject) => {
+                jwtInstance.verify(req.token, config.jwt_key, (err, userData) => {
                     if(err)
                     {
-                        res.status(400).send({"error": err, "message": "Bad request"});
+                        res.status(400).send({"error": err, "message": "Unauthorized"});
                     }
                     else
                     {
-                        if(userObject) {
-                            res.json({ "success": true, "user": userObject });
-                        }
-                        else {
-                            res.json({ "error": true, "message": "No user found"});
-                        }
+                        const options = { new: true };
+                        UserModel.findOneAndUpdate(userData.user.email, req.body, options, (err, userObject) => {
+                            if(err)
+                            {
+                                res.status(400).send({"error": err, "message": "Bad request"});
+                            }
+                            else
+                            {
+                                if(userObject) {
+                                    const user = userObject.toJSON();
+                                    delete user.password
+                                    res.json({ "success": true, "user": user });
+                                }
+                                else {
+                                    res.json({ "error": true, "message": "No user found"});
+                                }
+                            }
+                        });
                     }
                 });
             }
