@@ -1,0 +1,78 @@
+@import '../../../styles/e-man/variables';
+
+.main-container {
+  margin: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 100px;
+  padding-top: 60px;
+}
+
+.main-container__first-section {
+  width: 25%;
+}
+
+.main-container__second-section {
+  width: 60%;
+}
+
+.main-container__second-section__edit-information__edit-buttons button{
+  margin: 20px 0px 0px 20px;
+}
+
+.main-container__first-section__image-container{
+  display: flex;
+  justify-content: center;
+}
+
+.main-container__first-section__profile-container-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 56px;
+  font-size: 30px;
+  font-weight: bold;
+  color: $em-purple;
+}
+
+.main-container__second-section__heading{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-container__second-section__heading h1{
+  color: $em-purple;
+}
+
+.main-container__second-section__heading i{
+  cursor: pointer;
+  color: $em-purple;
+}
+
+.main-container__second-section__edit-information{
+  display: flex;
+  flex-direction: column;
+}
+
+.main-container__second-section__information p {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.main-container__second-section__edit-information__user-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.main-container__second-section__edit-information__user-info:last-child {
+  margin-left: 20px;
+}
+
+.main-container__second-section__edit-information__user-info input{
+  height: 30px;
+  padding-left: 10px;
+}
