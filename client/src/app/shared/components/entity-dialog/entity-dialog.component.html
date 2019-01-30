@@ -1,51 +1,52 @@
 <div class="dialog-container">
-    <div class="dialog-container__header-container">
-        <h1 class="dialog-container__header-container--heading" mat-dialog-title>{{data.header}}</h1>
-    </div>
-    <div class="dialog-container__content-container">
-        <mat-dialog-content>
-            <form class="dialog-container__content-container__entity-form" [formGroup]="entityDialogForm">
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="{{data.entityType}} Name" formControlName="name">
-                    <mat-error *ngIf="entityControls.name.hasError('required')">
-                      Name is <strong>required</strong>.
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="{{data.entityType}}'s Description" formControlName="description">
-                  <mat-error *ngIf="entityControls.description.hasError('required')">
-                      Description is <strong>required</strong>.
-                  </mat-error>
-                </mat-form-field>
-                <mat-form-field *ngIf= "!isOrganization">
-                  <input matInput [matDatepicker]="picker" placeholder="Select {{data.entityType}} Date" formControlName="eventDate">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                  <mat-error *ngIf="entityControls.eventDate.hasError('required')">
-                      Date is <strong>required</strong>.
-                  </mat-error>
-                </mat-form-field>
-
-                <div class="dialog-container__content-container__entity-form__uploadImage">
-
-                  <button class="dialog-container__content-container__entity-form__uploadImage-btn" mat-raised-button color="primary">
-                    Upload Images
-                    <input class="dialog-container__content-container__entity-form__uploadImage-btn-input" type="file" ng2FileSelect [uploader]="uploader"/>
-                  </button>
-
-                  <br>
-
-                  <mat-card *ngFor="let ele of uploader.queue" class="dialog-container__content-container__entity-form__uploadImage__queue-card">
-                    <h4 class="dialog-container__content-container__entity-form__uploadImage__queue-card__title">{{ ele.file.name }}</h4>
-                    <mat-icon class="dialog-container__content-container__entity-form__uploadImage__queue-card__icon" (click)="removeItem(ele)">cancel</mat-icon>
-                  </mat-card>
-
-                </div>
-            </form>
-        </mat-dialog-content>
-        <mat-dialog-actions class ="dialog-container__content-container__footer-container">
-          <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-          <button mat-raised-button color="primary" (click)="submitEntity(uploader.queue)" [disabled]="entityDialogForm.invalid">Submit</button>
-        </mat-dialog-actions>
-    </div>
+  <div class="dialog-container__header-container">
+    <h1 class="dialog-container__header-container--heading" mat-dialog-title>{{data.header}}</h1>
   </div>
+  <div class="dialog-container__content-container">
+    <mat-dialog-content>
+      <form class="dialog-container__content-container__entity-form" [formGroup]="entityDialogForm">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="{{data.entityType}} Name" formControlName="name">
+          <mat-error *ngIf="entityDialogForm.get('name').hasError('required')">
+            Name is <strong>required</strong>.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="{{data.entityType}}'s Description" formControlName="description">
+          <mat-error *ngIf="entityDialogForm.get('description').hasError('required')">
+            Description is <strong>required</strong>.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field *ngIf="!isOrganization">
+          <input matInput [matDatepicker]="picker" placeholder="Select {{data.entityType}} Date" formControlName="eventDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="entityDialogForm.get('eventDate').hasError('required')">
+            Date is <strong>required</strong>.
+          </mat-error>
+        </mat-form-field>
+
+        <div class="dialog-container__content-container__entity-form__uploadImage">
+          <button type="button" class="dialog-container__content-container__entity-form__uploadImage-btn" mat-raised-button color="primary">
+            Upload Images
+            <input class="dialog-container__content-container__entity-form__uploadImage-btn-input" type="file"
+              ng2FileSelect [uploader]="uploader" />
+          </button>
+
+          <br>
+
+          <mat-card *ngFor="let ele of uploader.queue" class="dialog-container__content-container__entity-form__uploadImage__queue-card">
+            <h4 class="dialog-container__content-container__entity-form__uploadImage__queue-card__title">{{
+              ele.file.name }}</h4>
+            <mat-icon class="dialog-container__content-container__entity-form__uploadImage__queue-card__icon" (click)="removeItem(ele)">cancel</mat-icon>
+          </mat-card>
+
+        </div>
+      </form>
+    </mat-dialog-content>
+    <mat-dialog-actions class="dialog-container__content-container__footer-container">
+      <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+      <button mat-raised-button color="primary" (click)="submitEntity(uploader.queue)" [disabled]="entityDialogForm.invalid">Submit</button>
+    </mat-dialog-actions>
+  </div>
+</div>
