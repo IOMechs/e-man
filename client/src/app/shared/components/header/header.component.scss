@@ -9,3 +9,17 @@
     margin: 10px;
   }
 }
+.avatar {
+  width: 26px;
+  height: 26px;
+  margin-right: 5px;
+  position: relative;
+  top: 6px;
+}
+.mat-menu-item {
+    &:hover{
+      color: $em-white;
+      background-color: $em-purple;
+      outline: none;
+    }
+}
