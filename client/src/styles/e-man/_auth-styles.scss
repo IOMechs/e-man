@@ -152,6 +152,14 @@
     }
 }
 
+::ng-deep .success-message {
+  background-color: $em-green !important;
+}
+
+::ng-deep .mat-snack-bar-container {
+  background-color: $em-red2;
+}
+
 @media (max-width: $widthsm) {
     .auth-form-container{
         .auth-form-container{

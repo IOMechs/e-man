@@ -42,6 +42,13 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (data: LoginForm) => {
           this.route.navigate(['/admin']);
+          const userName = 'Welcome ' + data.firstName;
+          this.snackBar.open(userName, '' , {
+            duration: 3000,
+            panelClass: 'success-message',
+            verticalPosition: 'bottom',
+            horizontalPosition: 'center'
+          });
         },
         (err) => {
           if (err.error.message === 'Invalid password') {

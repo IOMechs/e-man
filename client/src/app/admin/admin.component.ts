@@ -8,14 +8,9 @@ import { UserService } from '../core/services/user/user.service';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
-  user: any;
-  ngOnInit() {
-    this.getUser();
-  }
+  constructor(public userService: UserService) { }
 
-  getUser() {
-    this.user = this.userService.getUser();
+  ngOnInit() {
   }
 
 }

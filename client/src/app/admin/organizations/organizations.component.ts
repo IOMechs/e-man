@@ -2,6 +2,9 @@ import { EntityDialogComponent } from './../../shared/components/entity-dialog/e
 import { OrganizationService } from './../../core/services/organizations/organization.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar, MatTableDataSource } from '@angular/material';
+import { UserService } from 'src/app/core/services/user/user.service';
+import { first } from 'rxjs/internal/operators/first';
+import { mergeMap } from 'rxjs/operators';
 
 export interface Organzation {
   name: string;
@@ -20,18 +23,28 @@ export class OrganizationsComponent implements OnInit {
   organizations: Organzation[] = [];
   filterValue = '';
 
-  constructor(private organizationService: OrganizationService,
-    private snackBar: MatSnackBar, private dialog: MatDialog) { }
+  constructor(
+    private organizationService: OrganizationService,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
     this.getOrganization();
   }
 
   getOrganization() {
-    this.organizationService.get()
+    this.userService.$user
+    .pipe(
+      first(),
+      mergeMap(user => {
+        return this.organizationService.getOrganization(user);
+      })
+    )
     .subscribe(
-      (data) => {
-        this.organizations =  data.organizations && data.organizations.length > 0 ? data.organizations  : [];
+      (resp) => {
+        this.organizations =  resp.organizations && resp.organizations.length > 0 ? resp.organizations  : [];
       },
       (err) => {
         this.showToast(`Internal Server Error`);

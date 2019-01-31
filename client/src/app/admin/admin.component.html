@@ -12,10 +12,10 @@
       </div>
       <div class="nav__side-nav__navbar-header__profile-container">
         <div class="nav__side-nav__navbar-header__profile-container-name">
-          {{user?.firstName}} {{user?.lastName}}
+          {{(userService.$user | async)?.firstName}} {{(userService.$user | async)?.lastName}}
         </div>
         <div class="nav__side-nav__navbar-header__profile-container-email">
-          {{user?.email}}
+          {{(userService.$user | async)?.email}}
         </div>
         <div class="nav__side-nav__navbar-header__profile-container__image-container">
           <img src="../../assets/images/user.png" class="nav__side-nav__navbar-header__profile-container__image-container-image">

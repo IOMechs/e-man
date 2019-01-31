@@ -26,11 +26,16 @@
     align-items: center;
 
     &__title {
+      display: flex;
+      align-items: center;
       color: $em-white-1;
       letter-spacing: 2.9px;
       font-weight: 100;
       font-size: 30px;
       flex: 1;
+    }
+    &__title mat-icon {
+      margin-right: 12px;
     }
 
     &__search {
@@ -72,6 +77,12 @@
       flex: 1;
       justify-content: flex-end;
     }
+
+    &__actions-container--state-submit:hover {
+      background-color: $em-purple;
+      color: $em-white;
+    }
+
   }
 
   &__bottom-container {

@@ -10,6 +10,7 @@ declare const $: any;
 export class HeaderComponent implements OnInit {
 
   @Output() toggleMenuBar = new EventEmitter();
+  @Output() user = new EventEmitter();
 
   constructor(private router: Router) {
   }
@@ -20,6 +21,7 @@ export class HeaderComponent implements OnInit {
 
   toggleMenu() {
     this.toggleMenuBar.emit();
+    this.user.emit();
   }
 
   logOut() {
