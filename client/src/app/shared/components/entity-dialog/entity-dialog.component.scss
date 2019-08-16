@@ -27,11 +27,10 @@
           padding: 0px;
           padding-left: 4px;
 
-          ::ng-deep &-input {
+          /deep/ &-input {
             position: relative;
             left: -94px;
             opacity: 0;
-            width: 0px;
           }
         }
 
