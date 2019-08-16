@@ -16,9 +16,7 @@ export class EntityHeaderComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.organizationName);
-  }
+  ngOnInit() {}
 
   applyFilter(value) {
     this.filterString.emit(value.trim().toLowerCase());
