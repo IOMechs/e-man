@@ -10,13 +10,13 @@ export class EntityHeaderComponent implements OnInit {
 
   @Input() heading: string;
   @Input() btnText: string;
+  @Input() organizationName: string;
   @Output() filterString = new EventEmitter<any>();
   @Output() openModal = new EventEmitter<any>();
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   applyFilter(value) {
     this.filterString.emit(value.trim().toLowerCase());

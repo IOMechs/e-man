@@ -66,4 +66,17 @@ user: any;
       })
     );
   }
+
+  getOrganizationById(organizationId): Observable<any> {
+    this.user = this.userService.getUser();
+    return this.http.get<{organzations: Array<Organzation>}>(`${this.apiBaseUrl}/organization?_id=${organizationId}`)
+    .pipe(
+      map((res) => {
+        return res;
+      }),
+      catchError(err => {
+        throw(err);
+      })
+    );
+  }
 }

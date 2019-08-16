@@ -1,12 +1,20 @@
 <div class="entity-container__top-container">
-  <h1 class="entity-container__top-container__title">
-    <mat-icon>{{ heading == 'Organizations'? 'group': 'event' }}</mat-icon>
-    {{ heading }}
+  <h1 class="entity-container__top-container__title" *ngIf="organizationName">
+    <mat-icon class="entity-container__top-container__title__entity-icon">{{ heading == 'Organizations'? 'group': 'event' }}</mat-icon>
+    <div class="entity-container__top-container__title__text-container">
+      <span class="entity-container__top-container__title__text-container__organization-name">{{ organizationName }}</span>
+      <span>{{ heading }}</span>
+    </div>
+    
  </h1>
+ <h1 class="entity-container__top-container__title" *ngIf="!organizationName">
+  <mat-icon class="entity-container__top-container__title__entity-icon">{{ heading == 'Organizations'? 'group': 'event' }}</mat-icon>
+    {{heading}}
+</h1>
  <div class="entity-container__top-container__search">
     <mat-form-field color="white">
       <span matPrefix class="search-icon"><mat-icon matPreffix>search</mat-icon> &nbsp;</span>
-      <input matInput type="text" placeholder="Search" (keyup)="applyFilter($event.target.value)">
+      <input matInput type="text" placeholder="Search {{ heading == 'Organizations'? 'organizations': 'events' }}" (keyup)="applyFilter($event.target.value)">
     </mat-form-field>
  </div>
  <div class="entity-container__top-container__actions-container">
