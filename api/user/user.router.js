@@ -78,41 +78,29 @@ updateUser = function (expressInstance, jwtInstance, verifyToken)
 {
     expressInstance.put('/user', verifyToken, (req, res) => 
     {
-        UserModel.findOne( { "email": req.body.email },  (err, isUserExist) => {
+        jwtInstance.verify(req.token, config.jwt_key, (err, userData) => {
             if(err)
             {
-                res.status(400).send({"error": err, "message": "Bad request"});
-            }
-            else if (isUserExist) {
-                res.status(400).send({"error": true, "message": "Email already exist"});
+                res.status(400).send({"error": err, "message": "Unauthorized"});
             }
             else
             {
-                jwtInstance.verify(req.token, config.jwt_key, (err, userData) => {
+                const query = { username: userData.user.username };
+                const options = { new: true };
+
+                UserModel.findOneAndUpdate(query, req.body, options, (err, userObject) => {
                     if(err)
                     {
-                        res.status(400).send({"error": err, "message": "Unauthorized"});
+                        res.status(400).send({"error": err, "message": "Bad request"});
                     }
                     else
                     {
-                        const options = { new: true };
-                        UserModel.findOneAndUpdate(userData.user.email, req.body, options, (err, userObject) => {
-                            if(err)
-                            {
-                                res.status(400).send({"error": err, "message": "Bad request"});
-                            }
-                            else
-                            {
-                                if(userObject) {
-                                    const user = userObject.toJSON();
-                                    delete user.password
-                                    res.json({ "success": true, "user": user });
-                                }
-                                else {
-                                    res.json({ "error": true, "message": "No user found"});
-                                }
-                            }
-                        });
+                        if(userObject) {
+                            res.json({ "success": true, "user": userObject });
+                        }
+                        else {
+                            res.json({ "error": true, "message": "No user found"});
+                        }
                     }
                 });
             }
