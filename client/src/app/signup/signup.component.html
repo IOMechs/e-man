@@ -53,13 +53,14 @@
               </mat-error>
             </mat-form-field>
             <div class="auth__checkbox">
-              <mat-checkbox labelPosition="after">
+              <mat-checkbox color="primary" labelPosition="after" formControlName="termsConditions">
                 Accept terms and condition
               </mat-checkbox>
             </div>
             <div class="auth__button">
-              <button class="button--state-submit" mat-raised-button color="primary" [disabled]="signupForm.invalid">CREATE
-                AN ACCOUNT</button>
+              <button class="button--state-submit" mat-raised-button color="primary" 
+              [disabled]="signupForm.invalid || !signupControls.termsConditions.value">
+              CREATE AN ACCOUNT</button>
             </div>
           </form>
         </div>

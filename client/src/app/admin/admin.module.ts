@@ -11,6 +11,7 @@ import { EventsComponent } from './events/events.component';
 import { EntityDialogComponent } from '../shared/components/entity-dialog/entity-dialog.component';
 import { ImageGalleryComponent } from './image-gallery/image-gallery.component';
 import { UploadImagesDialogComponent } from '../shared/components/upload-images-dialog/upload-images-dialog.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { UploadImagesDialogComponent } from '../shared/components/upload-images-
     DashboardComponent,
     EventsComponent,
     ImageGalleryComponent,
+    ProfileComponent,
   ],
   entryComponents: [
     DeleteWarningDialogComponent,
