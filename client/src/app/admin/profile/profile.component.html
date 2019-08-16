@@ -29,7 +29,7 @@
       </div>
       <div class="main-container__second-section__edit-information__user-info">
         <p>Email Address: </p>
-        <input type="text" formControlName="email">
+        <input type="text" formControlName="email" disabled="true">
       </div>
       <div *ngIf="editSection" class="main-container__second-section__edit-information__edit-buttons">
         <button mat-raised-button color="warn" (click)="closeEditSection()">Cancle</button>
