@@ -7,7 +7,6 @@
     //custom dependencies
 const server = require('./server');
 require('./connection.mongoose');
-const authentication = require('./authentication.mongoose');
 const userRouter = require('./api/user/user.router');
 const eventRouter = require('./api/event/event.router');
 const organizationRouter = require('./api/organization/organization.router');
@@ -18,16 +17,15 @@ const path = require('path');
     //npm dependencies
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
 const fileRoutes = require('./fileUpload');
+const authentication = require('./authentication.mongoose');
 
 const app = express();
 
 //Middlewares
 app.use(express.json());    //To parse json objects sent by the client.
 app.use(cors({
-    'credentials': true, 
+    'credentials': true,
     'Control-Allow-Methods': 'POST,GET,OPTIONS,PUT,DELETE'
 }));
             //To resolve cross-origin browser issues.`
@@ -41,12 +39,10 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/dist'));
 
 //Routes
-userRouter.createRoutes(app, jwt, authentication.verifyToken);
-eventRouter.createRoutes(app, jwt, authentication.verifyToken);
-organizationRouter.createRoutes(app, jwt, authentication.verifyToken);
+userRouter.createRoutes(app);
+eventRouter.createRoutes(app);
+organizationRouter.createRoutes(app);
 imageRouter.createRoutes(app);
 
-//Validating the user on Login
-authentication.validateUser(app, jwt);
 //Running the server
 server.run(app, process.env.PORT || 5000);
