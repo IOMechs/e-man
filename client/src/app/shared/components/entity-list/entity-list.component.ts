@@ -39,8 +39,13 @@ export class EntityListComponent implements OnInit {
 
   @Output() updateList = new EventEmitter<any>();
 
-  constructor(private organizationService: OrganizationService, private dialog: MatDialog,
-    private router: Router, private snackBar: MatSnackBar, private eventService: EventsService) { }
+  constructor(
+    private organizationService: OrganizationService,
+    private dialog: MatDialog,
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private eventService: EventsService
+  ) { }
 
   ngOnInit() {
     this.setDisplayedColumns();
@@ -86,7 +91,7 @@ export class EntityListComponent implements OnInit {
       event.stopPropagation();
     }
     const dialogRef = this.dialog.open(DeleteWarningDialogComponent, {
-      data:{
+      data: {
         entityName : data.name
       },
       width: '400px',
@@ -139,7 +144,6 @@ export class EntityListComponent implements OnInit {
 
   moveToEvent(data) {
     if (this.entityType === 'organization') {
-      localStorage.setItem('selectedOrganization', JSON.stringify(data));
       this.router.navigateByUrl(`admin/organization/${data._id}/events`, data);
     } else {
       this.router.navigateByUrl(`admin/organization/${data.organizationId}/event/${data._id}/images`);
