@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'em-delete-warning-dialog',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteWarningDialogComponent implements OnInit {
 
-  constructor() { }
+  entityName: string;
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,) { 
+    this.entityName = this.data.entityName;
+  }
 
   ngOnInit() {
   }

@@ -1,11 +1,30 @@
 @import "../../../../styles/e-man/variables";
-.header-navbar{
+
+.header-navbar {
   background-color: $em-grey-1;
   color: $em-white;
-  .header-sidenav-content{
+
+  &__header-sidenav-content {
     flex: 1%;
   }
-  button{
+
+  &____menu-button {
     margin: 10px;
+  }
+
+  &__avatar {
+    width: 26px;
+    height: 26px;
+    margin-right: 5px;
+    position: relative;
+    top: 6px;
+  }
+}
+
+.mat-menu-item {
+  &:hover {
+    color: $em-white;
+    background-color: $em-purple;
+    outline: none;
   }
 }

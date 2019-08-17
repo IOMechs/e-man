@@ -1,9 +1,11 @@
 import { EventItem } from './../../core/models/event-item';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { EventsService } from './../../core/services/events/events.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EntityDialogComponent } from '../../shared/components/entity-dialog/entity-dialog.component';
+import { OrganizationService } from 'src/app/core/services/organizations/organization.service';
+import { takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'em-events',
@@ -11,13 +13,18 @@ import { EntityDialogComponent } from '../../shared/components/entity-dialog/ent
   styleUrls: ['./events.component.scss']
 })
 
-export class EventsComponent implements OnInit {
+export class EventsComponent implements OnInit, OnDestroy {
 
   orgId: string;
+  orgName: string;
   events: EventItem[] = [];
   filterValue = '';
+  isComponentAlive = true;
 
-  constructor(private route: ActivatedRoute, private eventService: EventsService,
+  constructor(
+    private route: ActivatedRoute,
+    private eventService: EventsService,
+    private organizationService: OrganizationService,
     private dialog: MatDialog, private snackBar: MatSnackBar) {
   }
 
@@ -25,7 +32,22 @@ export class EventsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.orgId = params.id;
     });
-   this.getEvents();
+    this.getOrganization();
+    this.getEvents();
+  }
+
+  ngOnDestroy() {
+    this.isComponentAlive = false;
+  }
+
+  getOrganization() {
+    this.organizationService.getOrganizationById(this.orgId)
+    .pipe(
+      takeWhile(() => this.isComponentAlive)
+    )
+    .subscribe((organizationData) => {
+      this.orgName = organizationData.organization.name;
+    });
   }
 
   resendList(list) {
@@ -34,12 +56,15 @@ export class EventsComponent implements OnInit {
 
   getEvents() {
     this.eventService.getEvents(this.orgId)
+    .pipe(
+      takeWhile(() => this.isComponentAlive)
+    )
     .subscribe(
     (data) => {
       this.events = (data.events && data.events.length > 0 ) ? data.events :  [];
     },
     (err) => {
-      this.showToast('Internal server Error');
+      this.showToast('Internal server error');
     });
   }
   addNewEvent() {
@@ -65,14 +90,16 @@ export class EventsComponent implements OnInit {
 
   createOrganization(formData) {
     this.eventService.create(formData)
+    .pipe(
+      takeWhile(() => this.isComponentAlive)
+    )
     .subscribe(
       (data) => {
-        this.showToast('Event Create Sucessfully');
+        this.showToast('Event created successfully');
         this.events = [data.event, ...this.events];
-        this.events = [...this.events];
       },
       (err) => {
-        this.showToast('Internal server Error');
+        this.showToast('Internal server error');
       }
     );
   }

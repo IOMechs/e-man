@@ -68,7 +68,7 @@ export class OrganizationsComponent implements OnInit {
     this.organizationService.create(formData)
     .subscribe(
       (data) => {
-        this.showToast('Organization Create Sucessfully');
+        this.showToast('Organization created sucessfully');
         this.organizations = [data.organization, ...this.organizations];
         this.organizations = [...this.organizations];
       },

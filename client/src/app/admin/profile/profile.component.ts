@@ -47,7 +47,14 @@ export class ProfileComponent implements OnInit {
         verticalPosition: 'bottom',
         horizontalPosition: 'center'
       });
-    });
-    this.editSection = false;
+      this.editSection = false;
+    }, (err) => {
+      this.snackBar.open('Error while Updating', err.error.message, {
+        duration: 1500,
+        verticalPosition: 'bottom',
+        horizontalPosition: 'center'
+      });
+    }
+    );
   }
 }

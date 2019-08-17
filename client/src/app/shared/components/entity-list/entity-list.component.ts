@@ -39,8 +39,13 @@ export class EntityListComponent implements OnInit {
 
   @Output() updateList = new EventEmitter<any>();
 
-  constructor(private organizationService: OrganizationService, private dialog: MatDialog,
-    private router: Router, private snackBar: MatSnackBar, private eventService: EventsService) { }
+  constructor(
+    private organizationService: OrganizationService,
+    private dialog: MatDialog,
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private eventService: EventsService
+  ) { }
 
   ngOnInit() {
     this.setDisplayedColumns();
@@ -86,7 +91,9 @@ export class EntityListComponent implements OnInit {
       event.stopPropagation();
     }
     const dialogRef = this.dialog.open(DeleteWarningDialogComponent, {
-      height: '150px',
+      data: {
+        entityName : data.name
+      },
       width: '400px',
     });
     dialogRef.afterClosed().subscribe(result => {
