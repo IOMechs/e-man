@@ -60,7 +60,7 @@ response type: sends a json object of type { "user": object } if it exists. Else
 updateUser = function(expressInstance) {
   expressInstance.put("/user", verifyToken, (req, res) => {
     const userData = req.user;
-    const query = { username: userData.user.username };
+    const query = { username: userData.firstName };
     const options = { new: true };
 
     UserModel.findOneAndUpdate(query, req.body, options, (err, userObject) => {
