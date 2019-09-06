@@ -54,4 +54,9 @@ export class AuthService {
       })
     );
   }
+
+  forgotPassword(formData) {
+    const message = 'An email has been sent to the email address entered above with details on how to reset your password'
+    return message;
+  }
 }

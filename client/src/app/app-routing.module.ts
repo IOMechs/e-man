@@ -2,7 +2,7 @@ import { LoginComponent } from './login/login.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
-
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: SignupComponent
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent
   },
   {
     path: 'admin',

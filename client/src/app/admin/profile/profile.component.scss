@@ -1,4 +1,4 @@
-@import '../../../styles/e-man/variables';
+@import "../../../styles/e-man/variables";
 
 .main-container {
   margin: 40px;
@@ -17,11 +17,11 @@
   width: 60%;
 }
 
-.main-container__second-section__edit-information__edit-buttons button{
+.main-container__second-section__edit-information__edit-buttons button {
   margin: 20px 0px 0px 20px;
 }
 
-.main-container__first-section__image-container{
+.main-container__first-section__image-container {
   display: flex;
   justify-content: center;
 }
@@ -36,23 +36,21 @@
   color: $em-purple;
 }
 
-.main-container__second-section__heading{
+.main-container__second-section__heading {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  h1 {
+    color: $em-purple;
+  }
+  i {
+    cursor: pointer;
+    color: $em-purple;
+  }
 }
 
-.main-container__second-section__heading h1{
-  color: $em-purple;
-}
-
-.main-container__second-section__heading i{
-  cursor: pointer;
-  color: $em-purple;
-}
-
-.main-container__second-section__edit-information{
+.main-container__second-section__edit-information {
   display: flex;
   flex-direction: column;
 }
@@ -62,17 +60,24 @@
   font-weight: bold;
 }
 
-.main-container__second-section__edit-information__user-info{
+.main-container__second-section__edit-information__user-info {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
-.main-container__second-section__edit-information__user-info:last-child {
-  margin-left: 20px;
+.main-container__second-section__edit-information__user-info__error {
+  color: $em-red;
+  font-size: 12px;
+  margin: 10px 0px;
 }
 
-.main-container__second-section__edit-information__user-info input{
-  height: 30px;
-  padding-left: 10px;
+.main-container__second-section__edit-information__user-info {
+  &:last-child {
+    margin-left: 20px;
+  }
+  input {
+    height: 30px;
+    padding-left: 10px;
+  }
 }

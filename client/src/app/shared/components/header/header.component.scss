@@ -28,3 +28,7 @@
     outline: none;
   }
 }
+
+::ng-deep .cdk-overlay-connected-position-bounding-box {
+  top: 64px !important;
+}
